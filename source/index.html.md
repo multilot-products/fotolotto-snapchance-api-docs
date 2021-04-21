@@ -38,7 +38,7 @@ Base URLs:
 
 * <a href="https://api-stg3.snapchance.no">https://api-stg3.snapchance.no</a>
 
-Web: <a href="https://multilot.com">Multilot</a> 
+Web: <a href="https://snapchance.no">SnapChance</a> 
 
 # Authentication
 
@@ -59,9 +59,9 @@ The valid JWT token must be supplied as part of the header to access API's all o
 
 Player and Profile management and reporting
 
-## deactivatePlayer
+## Deactivate Player
 
-<a id="opIddeactivatePlayer"></a>
+<a id="opIdDeactivate Player"></a>
 
 > Code samples
 
@@ -218,7 +218,7 @@ This endpoint is used for a player to deactivate their own account permanently.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="deactivateplayer-responses">Responses</h3>
+<h3 id="deactivate-player-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -231,9 +231,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Set_Loss_Limit
+## Update Loss Limit
 
-<a id="opIdSet_Loss_Limit"></a>
+<a id="opIdUpdate Loss Limit"></a>
 
 > Code samples
 
@@ -401,7 +401,7 @@ This endpoint is use to Sets loss limits for a Player
 }
 ```
 
-<h3 id="set_loss_limit-parameters">Parameters</h3>
+<h3 id="update-loss-limit-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -449,7 +449,7 @@ This endpoint is use to Sets loss limits for a Player
 "HTTP Token: Access denied."
 ```
 
-<h3 id="set_loss_limit-responses">Responses</h3>
+<h3 id="update-loss-limit-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -457,7 +457,7 @@ This endpoint is use to Sets loss limits for a Player
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="set_loss_limit-responseschema">Response Schema</h3>
+<h3 id="update-loss-limit-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -492,9 +492,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Onboard
+## Onboard Completed
 
-<a id="opIdOnboard"></a>
+<a id="opIdOnboard Completed"></a>
 
 > Code samples
 
@@ -683,7 +683,7 @@ This endpoint is used to Update player onboard parameter and change the flag sta
 "HTTP Token: Access denied."
 ```
 
-<h3 id="onboard-responses">Responses</h3>
+<h3 id="onboard-completed-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -696,9 +696,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Update_Profile
+## Update Profile
 
-<a id="opIdUpdate_Profile"></a>
+<a id="opIdUpdate Profile"></a>
 
 > Code samples
 
@@ -865,7 +865,7 @@ last_name: testName
 
 ```
 
-<h3 id="update_profile-parameters">Parameters</h3>
+<h3 id="update-profile-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -913,7 +913,7 @@ last_name: testName
 "HTTP Token: Access denied."
 ```
 
-<h3 id="update_profile-responses">Responses</h3>
+<h3 id="update-profile-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -926,9 +926,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_Profile
+## Get Profile
 
-<a id="opIdRetrieve_Profile"></a>
+<a id="opIdGet Profile"></a>
 
 > Code samples
 
@@ -1117,7 +1117,7 @@ This endpoint is use to return the entire player Information.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_profile-responses">Responses</h3>
+<h3 id="get-profile-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1130,9 +1130,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Set_Suspension
+## Self Exclusion
 
-<a id="opIdSet_Suspension"></a>
+<a id="opIdSelf Exclusion"></a>
 
 > Code samples
 
@@ -1298,7 +1298,7 @@ This endpoint is use to set the player suspension for a specific time.
 }
 ```
 
-<h3 id="set_suspension-parameters">Parameters</h3>
+<h3 id="self-exclusion-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1345,7 +1345,7 @@ This endpoint is use to set the player suspension for a specific time.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="set_suspension-responses">Responses</h3>
+<h3 id="self-exclusion-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1358,9 +1358,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Drawings
+## Player Drawings
 
-<a id="opIdDrawings"></a>
+<a id="opIdPlayer Drawings"></a>
 
 > Code samples
 
@@ -1692,7 +1692,7 @@ This endpoint is use to retrieve the previous(one before the current) and curren
 "HTTP Token: Access denied."
 ```
 
-<h3 id="drawings-responses">Responses</h3>
+<h3 id="player-drawings-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1700,7 +1700,7 @@ This endpoint is use to retrieve the previous(one before the current) and curren
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="drawings-responseschema">Response Schema</h3>
+<h3 id="player-drawings-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -1731,9 +1731,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Drawing_Summary
+## Get Drawing Summary for Player
 
-<a id="opIdDrawing_Summary"></a>
+<a id="opIdGet Drawing Summary for Player"></a>
 
 > Code samples
 
@@ -1882,7 +1882,7 @@ func main() {
 
 This endpoint is use to return the specific drawing summary.
 
-<h3 id="drawing_summary-parameters">Parameters</h3>
+<h3 id="get-drawing-summary-for-player-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1906,7 +1906,7 @@ This endpoint is use to return the specific drawing summary.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="drawing_summary-responses">Responses</h3>
+<h3 id="get-drawing-summary-for-player-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1914,7 +1914,7 @@ This endpoint is use to return the specific drawing summary.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="drawing_summary-responseschema">Response Schema</h3>
+<h3 id="get-drawing-summary-for-player-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -1933,9 +1933,9 @@ bearerAuth
 
 Automatic subscription to drawings
 
-## Activate_Subscription
+## Create Subscription
 
-<a id="opIdActivate_Subscription"></a>
+<a id="opIdCreate Subscription"></a>
 
 > Code samples
 
@@ -2107,7 +2107,7 @@ This endpoint is used to activate the player subscription.Player can subscribe t
 }
 ```
 
-<h3 id="activate_subscription-parameters">Parameters</h3>
+<h3 id="create-subscription-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2125,7 +2125,7 @@ This endpoint is used to activate the player subscription.Player can subscribe t
 "HTTP Token: Access denied."
 ```
 
-<h3 id="activate_subscription-responses">Responses</h3>
+<h3 id="create-subscription-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2139,9 +2139,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Verify_Subscription
+## Update Subscription
 
-<a id="opIdVerify_Subscription"></a>
+<a id="opIdUpdate Subscription"></a>
 
 > Code samples
 
@@ -2309,7 +2309,7 @@ This endpoint is to Verify the activated subscription.The mandatory fields are d
 }
 ```
 
-<h3 id="verify_subscription-parameters">Parameters</h3>
+<h3 id="update-subscription-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2346,7 +2346,7 @@ This endpoint is to Verify the activated subscription.The mandatory fields are d
 "HTTP Token: Access denied."
 ```
 
-<h3 id="verify_subscription-responses">Responses</h3>
+<h3 id="update-subscription-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2360,9 +2360,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_Subscription
+## Get Subscription
 
-<a id="opIdRetrieve_Subscription"></a>
+<a id="opIdGet Subscription"></a>
 
 > Code samples
 
@@ -2540,7 +2540,7 @@ This endpoint is for retrieving the Player subscription.This Returns an active s
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_subscription-responses">Responses</h3>
+<h3 id="get-subscription-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2553,9 +2553,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Cancel_Subscription
+## Cancel Subscription
 
-<a id="opIdCancel_Subscription"></a>
+<a id="opIdCancel Subscription"></a>
 
 > Code samples
 
@@ -2712,7 +2712,7 @@ This endpoint is used to cancel the Subscription.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="cancel_subscription-responses">Responses</h3>
+<h3 id="cancel-subscription-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2725,9 +2725,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## List_of_Subscription_Entries
+## List Entries for Subscription
 
-<a id="opIdList_of_Subscription_Entries"></a>
+<a id="opIdList Entries for Subscription"></a>
 
 > Code samples
 
@@ -2972,14 +2972,14 @@ This endpoint is use to returns a list of subscription entries.
 ]
 ```
 
-<h3 id="list_of_subscription_entries-responses">Responses</h3>
+<h3 id="list-entries-for-subscription-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns a list of subscription entries|Inline|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="list_of_subscription_entries-responseschema">Response Schema</h3>
+<h3 id="list-entries-for-subscription-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -3017,9 +3017,9 @@ bearerAuth
 
 Wallet management and transaction reporting
 
-## deposit
+## Deposit
 
-<a id="opIddeposit"></a>
+<a id="opIdDeposit"></a>
 
 > Code samples
 
@@ -3248,9 +3248,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Withdrawl
+## Withdraw From Wallet
 
-<a id="opIdWithdrawl"></a>
+<a id="opIdWithdraw From Wallet"></a>
 
 > Code samples
 
@@ -3416,7 +3416,7 @@ This endpoint is used for withdrawing players wallet balance and adding it to hi
 }
 ```
 
-<h3 id="withdrawl-parameters">Parameters</h3>
+<h3 id="withdraw-from-wallet-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -3440,7 +3440,7 @@ This endpoint is used for withdrawing players wallet balance and adding it to hi
 "HTTP Token: Access denied."
 ```
 
-<h3 id="withdrawl-responses">Responses</h3>
+<h3 id="withdraw-from-wallet-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3450,7 +3450,7 @@ This endpoint is used for withdrawing players wallet balance and adding it to hi
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h3 id="withdrawl-responseschema">Response Schema</h3>
+<h3 id="withdraw-from-wallet-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -3464,9 +3464,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_Balance
+## Get Wallet Balance
 
-<a id="opIdRetrieve_Balance"></a>
+<a id="opIdGet Wallet Balance"></a>
 
 > Code samples
 
@@ -3632,7 +3632,7 @@ This endpoint gives us the Info about the Player current Balance in his wallet.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_balance-responses">Responses</h3>
+<h3 id="get-wallet-balance-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3641,7 +3641,7 @@ This endpoint gives us the Info about the Player current Balance in his wallet.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h3 id="retrieve_balance-responseschema">Response Schema</h3>
+<h3 id="get-wallet-balance-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -3654,9 +3654,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_Transactions_details
+## Get Wallet Transactions
 
-<a id="opIdRetrieve_Transactions_details"></a>
+<a id="opIdGet Wallet Transactions"></a>
 
 > Code samples
 
@@ -8456,7 +8456,7 @@ This endpoint returns all the transaction details of the player like deposits,wi
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_transactions_details-responses">Responses</h3>
+<h3 id="get-wallet-transactions-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8465,7 +8465,7 @@ This endpoint returns all the transaction details of the player like deposits,wi
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h3 id="retrieve_transactions_details-responseschema">Response Schema</h3>
+<h3 id="get-wallet-transactions-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -8490,9 +8490,9 @@ bearerAuth
 
 Entries consist of a photo and 1 to n tickets
 
-## purchaseEntries
+## Purchase Entries
 
-<a id="opIdpurchaseEntries"></a>
+<a id="opIdPurchase Entries"></a>
 
 > Code samples
 
@@ -8660,7 +8660,7 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 }
 ```
 
-<h3 id="purchaseentries-parameters">Parameters</h3>
+<h3 id="purchase-entries-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -8758,14 +8758,14 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 "HTTP Token: Access denied."
 ```
 
-<h3 id="purchaseentries-responses">Responses</h3>
+<h3 id="purchase-entries-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns brought tickets Info|Inline|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 
-<h3 id="purchaseentries-responseschema">Response Schema</h3>
+<h3 id="purchase-entries-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -8812,9 +8812,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## revealDrawingTicket
+## Reveal Drawing Ticket
 
-<a id="opIdrevealDrawingTicket"></a>
+<a id="opIdReveal Drawing Ticket"></a>
 
 > Code samples
 
@@ -8963,7 +8963,7 @@ func main() {
 
 This endpoint is use to reveal a SnapChance ticket at the end of a drawying.
 
-<h3 id="revealdrawingticket-parameters">Parameters</h3>
+<h3 id="reveal-drawing-ticket-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -9053,7 +9053,7 @@ This endpoint is use to reveal a SnapChance ticket at the end of a drawying.
 }
 ```
 
-<h3 id="revealdrawingticket-responses">Responses</h3>
+<h3 id="reveal-drawing-ticket-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9062,7 +9062,7 @@ This endpoint is use to reveal a SnapChance ticket at the end of a drawying.
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="revealdrawingticket-responseschema">Response Schema</h3>
+<h3 id="reveal-drawing-ticket-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -9096,9 +9096,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_All_Entries
+## List Entries for Player
 
-<a id="opIdRetrieve_All_Entries"></a>
+<a id="opIdList Entries for Player"></a>
 
 > Code samples
 
@@ -9343,7 +9343,7 @@ This endpoint is use to return the list of player Entries
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_all_entries-responses">Responses</h3>
+<h3 id="list-entries-for-player-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9351,7 +9351,7 @@ This endpoint is use to return the list of player Entries
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="retrieve_all_entries-responseschema">Response Schema</h3>
+<h3 id="list-entries-for-player-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -9419,9 +9419,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_Entry_Details
+## Get Entry
 
-<a id="opIdRetrieve_Entry_Details"></a>
+<a id="opIdGet Entry"></a>
 
 > Code samples
 
@@ -9570,7 +9570,7 @@ func main() {
 
 This endpoint is use to return the details of specified Entry.
 
-<h3 id="retrieve_entry_details-parameters">Parameters</h3>
+<h3 id="get-entry-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -9758,7 +9758,7 @@ This endpoint is use to return the details of specified Entry.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_entry_details-responses">Responses</h3>
+<h3 id="get-entry-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9766,7 +9766,7 @@ This endpoint is use to return the details of specified Entry.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="retrieve_entry_details-responseschema">Response Schema</h3>
+<h3 id="get-entry-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -9839,9 +9839,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Reveal_Ticket_Tile
+## Update Ticket State
 
-<a id="opIdReveal_Ticket_Tile"></a>
+<a id="opIdUpdate Ticket State"></a>
 
 > Code samples
 
@@ -10031,7 +10031,7 @@ func main() {
 
 `PATCH /entries/{id}/tickets/{ticket_id}`
 
-*Reveal ticket tiles*
+*Update Ticket State*
 
 This end point is used to reveal each tile of ticket.
 
@@ -10077,7 +10077,7 @@ This end point is used to reveal each tile of ticket.
 }
 ```
 
-<h3 id="reveal_ticket_tile-parameters">Parameters</h3>
+<h3 id="update-ticket-state-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -10164,7 +10164,7 @@ This end point is used to reveal each tile of ticket.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="reveal_ticket_tile-responses">Responses</h3>
+<h3 id="update-ticket-state-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10172,7 +10172,7 @@ This end point is used to reveal each tile of ticket.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="reveal_ticket_tile-responseschema">Response Schema</h3>
+<h3 id="update-ticket-state-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -10210,9 +10210,9 @@ bearerAuth
 
 Creating a session for a player
 
-## createSession
+## Login
 
-<a id="opIdcreateSession"></a>
+<a id="opIdLogin"></a>
 
 > Code samples
 
@@ -10374,7 +10374,7 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 }
 ```
 
-<h3 id="createsession-parameters">Parameters</h3>
+<h3 id="login-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -10432,7 +10432,7 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 {}
 ```
 
-<h3 id="createsession-responses">Responses</h3>
+<h3 id="login-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10440,7 +10440,7 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|None|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unauthorized|Inline|
 
-<h3 id="createsession-responseschema">Response Schema</h3>
+<h3 id="login-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -10484,9 +10484,9 @@ This operation does not require authentication
 
 Registering and activating new player
 
-## createPlayer
+## Create Player
 
-<a id="opIdcreatePlayer"></a>
+<a id="opIdCreate Player"></a>
 
 > Code samples
 
@@ -10652,7 +10652,7 @@ This endpoint is the first step in the registration process.  It will create a p
 }
 ```
 
-<h3 id="createplayer-parameters">Parameters</h3>
+<h3 id="create-player-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -10707,7 +10707,7 @@ This endpoint is the first step in the registration process.  It will create a p
 }
 ```
 
-<h3 id="createplayer-responses">Responses</h3>
+<h3 id="create-player-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10715,16 +10715,16 @@ This endpoint is the first step in the registration process.  It will create a p
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h3 id="createplayer-responseschema">Response Schema</h3>
+<h3 id="create-player-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
 
-## activatePlayer
+## Activate Player
 
-<a id="opIdactivatePlayer"></a>
+<a id="opIdActivate Player"></a>
 
 > Code samples
 
@@ -10900,7 +10900,7 @@ This Endpoint is used to activate a Player. It requires that a player already be
 }
 ```
 
-<h3 id="activateplayer-parameters">Parameters</h3>
+<h3 id="activate-player-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -10978,7 +10978,7 @@ This Endpoint is used to activate a Player. It requires that a player already be
 "HTTP Token: Access denied."
 ```
 
-<h3 id="activateplayer-responses">Responses</h3>
+<h3 id="activate-player-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10988,7 +10988,7 @@ This Endpoint is used to activate a Player. It requires that a player already be
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h3 id="activateplayer-responseschema">Response Schema</h3>
+<h3 id="activate-player-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -11020,9 +11020,9 @@ bearerAuth
 
 Callback from the NETs payment gateway
 
-## netsCallback
+## NETS Callback
 
-<a id="opIdnetsCallback"></a>
+<a id="opIdNETS Callback"></a>
 
 > Code samples
 
@@ -11181,14 +11181,14 @@ This Endpoint is used for handling the Nets Callback functionality
 }
 ```
 
-<h3 id="netscallback-parameters">Parameters</h3>
+<h3 id="nets-callback-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|false|It takes the TransactionId as part of Request|
 |» TransactionId|body|string|true|none|
 
-<h3 id="netscallback-responses">Responses</h3>
+<h3 id="nets-callback-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11204,9 +11204,9 @@ bearerAuth
 
 Creating and retriving drawyings
 
-## listEntries
+## List Entries
 
-<a id="opIdlistEntries"></a>
+<a id="opIdList Entries"></a>
 
 > Code samples
 
@@ -11355,7 +11355,7 @@ func main() {
 
 This endpoint gives information about all the purchased Tickets with in the current Entry of the on going Drawing.
 
-<h3 id="listentries-parameters">Parameters</h3>
+<h3 id="list-entries-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -11510,7 +11510,7 @@ This endpoint gives information about all the purchased Tickets with in the curr
 "HTTP Token: Access denied."
 ```
 
-<h3 id="listentries-responses">Responses</h3>
+<h3 id="list-entries-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11518,7 +11518,7 @@ This endpoint gives information about all the purchased Tickets with in the curr
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="listentries-responseschema">Response Schema</h3>
+<h3 id="list-entries-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -11566,9 +11566,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_Lottery_Drawings
+## List Drawings
 
-<a id="opIdRetrieve_Lottery_Drawings"></a>
+<a id="opIdList Drawings"></a>
 
 > Code samples
 
@@ -11900,7 +11900,7 @@ This endpoint is used to get Info about all the created drawings.Complete histor
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_lottery_drawings-responses">Responses</h3>
+<h3 id="list-drawings-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11908,7 +11908,7 @@ This endpoint is used to get Info about all the created drawings.Complete histor
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="retrieve_lottery_drawings-responseschema">Response Schema</h3>
+<h3 id="list-drawings-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -11941,9 +11941,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Retrieve_Drawing_Tickets
+## List Drawing Tickets
 
-<a id="opIdRetrieve_Drawing_Tickets"></a>
+<a id="opIdList Drawing Tickets"></a>
 
 > Code samples
 
@@ -12092,7 +12092,7 @@ func main() {
 
 This endpoint returns a list of tickets purchased in a drawing.
 
-<h3 id="retrieve_drawing_tickets-parameters">Parameters</h3>
+<h3 id="list-drawing-tickets-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -12231,7 +12231,7 @@ This endpoint returns a list of tickets purchased in a drawing.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_drawing_tickets-responses">Responses</h3>
+<h3 id="list-drawing-tickets-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12239,7 +12239,7 @@ This endpoint returns a list of tickets purchased in a drawing.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="retrieve_drawing_tickets-responseschema">Response Schema</h3>
+<h3 id="list-drawing-tickets-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -12277,9 +12277,9 @@ bearerAuth
 
 Password update and reset
 
-## Update_Password
+## Update Password
 
-<a id="opIdUpdate_Password"></a>
+<a id="opIdUpdate Password"></a>
 
 > Code samples
 
@@ -12447,7 +12447,7 @@ This endpoint is use to Update player password from Profile.
 }
 ```
 
-<h3 id="update_password-parameters">Parameters</h3>
+<h3 id="update-password-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -12471,7 +12471,7 @@ This endpoint is use to Update player password from Profile.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="update_password-responses">Responses</h3>
+<h3 id="update-password-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12480,16 +12480,16 @@ This endpoint is use to Update player password from Profile.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="update_password-responseschema">Response Schema</h3>
+<h3 id="update-password-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
 
-## Reset_Password
+## resetPasswordEmail
 
-<a id="opIdReset_Password"></a>
+<a id="opIdresetPasswordEmail"></a>
 
 > Code samples
 
@@ -12657,7 +12657,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 }
 ```
 
-<h3 id="reset_password-parameters">Parameters</h3>
+<h3 id="resetpasswordemail-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -12718,7 +12718,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 "HTTP Token: Access denied."
 ```
 
-<h3 id="reset_password-responses">Responses</h3>
+<h3 id="resetpasswordemail-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12727,7 +12727,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="reset_password-responseschema">Response Schema</h3>
+<h3 id="resetpasswordemail-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -12757,9 +12757,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Password_updated_through_Email
+## Reset Password
 
-<a id="opIdPassword_updated_through_Email"></a>
+<a id="opIdReset Password"></a>
 
 > Code samples
 
@@ -12927,7 +12927,7 @@ This endpoint is used to Reset the password.We can reset the password through li
 }
 ```
 
-<h3 id="password_updated_through_email-parameters">Parameters</h3>
+<h3 id="reset-password-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -12953,7 +12953,7 @@ This endpoint is used to Reset the password.We can reset the password through li
 }
 ```
 
-<h3 id="password_updated_through_email-responses">Responses</h3>
+<h3 id="reset-password-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12961,7 +12961,7 @@ This endpoint is used to Reset the password.We can reset the password through li
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="password_updated_through_email-responseschema">Response Schema</h3>
+<h3 id="reset-password-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -12972,9 +12972,9 @@ bearerAuth
 
 Uploading photos
 
-## Add_Photo
+## Add Photo
 
-<a id="opIdAdd_Photo"></a>
+<a id="opIdAdd Photo"></a>
 
 > Code samples
 
@@ -13130,7 +13130,7 @@ func main() {
 
 `POST /photos`
 
-This Endpoint is used to append a photo for the ticket.
+This Endpoint is used to upload a photo that can be used to purchase entries into the drawing.
 
 > Body parameter
 
@@ -13139,7 +13139,7 @@ image: string
 
 ```
 
-<h3 id="add_photo-parameters">Parameters</h3>
+<h3 id="add-photo-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -13177,7 +13177,7 @@ image: string
 "HTTP Token: Access denied."
 ```
 
-<h3 id="add_photo-responses">Responses</h3>
+<h3 id="add-photo-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13187,16 +13187,16 @@ image: string
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h3 id="add_photo-responseschema">Response Schema</h3>
+<h3 id="add-photo-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
 
-## Retrieve_Photos
+## List Photos
 
-<a id="opIdRetrieve_Photos"></a>
+<a id="opIdList Photos"></a>
 
 > Code samples
 
@@ -13397,7 +13397,7 @@ This endpoint is used to returns the list of photos used by the Player.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="retrieve_photos-responses">Responses</h3>
+<h3 id="list-photos-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13406,7 +13406,7 @@ This endpoint is used to returns the list of photos used by the Player.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="retrieve_photos-responseschema">Response Schema</h3>
+<h3 id="list-photos-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -13425,9 +13425,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Delete_Photo
+## Delete Photo
 
-<a id="opIdDelete_Photo"></a>
+<a id="opIdDelete Photo"></a>
 
 > Code samples
 
@@ -13576,7 +13576,7 @@ func main() {
 
 This endpoint is to delete the photos
 
-<h3 id="delete_photo-parameters">Parameters</h3>
+<h3 id="delete-photo-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -13590,7 +13590,7 @@ This endpoint is to delete the photos
 "HTTP Token: Access denied."
 ```
 
-<h3 id="delete_photo-responses">Responses</h3>
+<h3 id="delete-photo-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
