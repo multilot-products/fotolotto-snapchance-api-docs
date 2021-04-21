@@ -68,7 +68,7 @@ Player and Profile management and reporting
 ```shell
 # You can also use wget
 curl -X POST https://api-stg3.snapchance.no/deactivation \
-  -H 'Accept: application/json' \
+  -H 'Accept: text/plain' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
@@ -76,14 +76,14 @@ curl -X POST https://api-stg3.snapchance.no/deactivation \
 ```http
 POST https://api-stg3.snapchance.no/deactivation HTTP/1.1
 Host: api-stg3.snapchance.no
-Accept: application/json
+Accept: text/plain
 
 ```
 
 ```javascript
 
 const headers = {
-  'Accept':'application/json',
+  'Accept':'text/plain',
   'Authorization':'Bearer {access-token}'
 };
 
@@ -106,7 +106,7 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json',
+  'Accept' => 'text/plain',
   'Authorization' => 'Bearer {access-token}'
 }
 
@@ -121,7 +121,7 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json',
+  'Accept': 'text/plain',
   'Authorization': 'Bearer {access-token}'
 }
 
@@ -137,7 +137,7 @@ print(r.json())
 require 'vendor/autoload.php';
 
 $headers = array(
-    'Accept' => 'application/json',
+    'Accept' => 'text/plain',
     'Authorization' => 'Bearer {access-token}',
 );
 
@@ -191,7 +191,7 @@ import (
 func main() {
 
     headers := map[string][]string{
-        "Accept": []string{"application/json"},
+        "Accept": []string{"text/plain"},
         "Authorization": []string{"Bearer {access-token}"},
     }
 
@@ -212,12 +212,10 @@ This endpoint is used for a player to deactivate their own account permanently.
 
 > Example responses
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="deactivateplayer-responses">Responses</h3>
@@ -225,10 +223,8 @@ This endpoint is used for a player to deactivate their own account permanently.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Player is Deactivated|None|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
-
-<h3 id="deactivateplayer-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -447,12 +443,10 @@ This endpoint is use to Sets loss limits for a Player
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="set_loss_limit-responses">Responses</h3>
@@ -460,7 +454,7 @@ This endpoint is use to Sets loss limits for a Player
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the player|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="set_loss_limit-responseschema">Response Schema</h3>
@@ -683,12 +677,10 @@ This endpoint is used to Update player onboard parameter and change the flag sta
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="onboard-responses">Responses</h3>
@@ -696,10 +688,8 @@ This endpoint is used to Update player onboard parameter and change the flag sta
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the player|[player](#schemaplayer)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
-
-<h3 id="onboard-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -917,12 +907,10 @@ last_name: testName
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="update_profile-responses">Responses</h3>
@@ -930,10 +918,8 @@ last_name: testName
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns the updated player profile.|[player](#schemaplayer)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
-
-<h3 id="update_profile-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1125,12 +1111,10 @@ This endpoint is use to return the entire player Information.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_profile-responses">Responses</h3>
@@ -1138,10 +1122,8 @@ This endpoint is use to return the entire player Information.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the player Info|[player](#schemaplayer)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
-
-<h3 id="retrieve_profile-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1357,12 +1339,10 @@ This endpoint is use to set the player suspension for a specific time.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="set_suspension-responses">Responses</h3>
@@ -1370,10 +1350,8 @@ This endpoint is use to set the player suspension for a specific time.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns player details with suspended until parameter|[player](#schemaplayer)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
-
-<h3 id="set_suspension-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -1708,12 +1686,10 @@ This endpoint is use to retrieve the previous(one before the current) and curren
 ]
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="drawings-responses">Responses</h3>
@@ -1721,7 +1697,7 @@ This endpoint is use to retrieve the previous(one before the current) and curren
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns last and current drawings|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="drawings-responseschema">Response Schema</h3>
@@ -1924,12 +1900,10 @@ This endpoint is use to return the specific drawing summary.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied"
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="drawing_summary-responses">Responses</h3>
@@ -1937,7 +1911,7 @@ This endpoint is use to return the specific drawing summary.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns drawing summary|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="drawing_summary-responseschema">Response Schema</h3>
@@ -1969,7 +1943,7 @@ Automatic subscription to drawings
 # You can also use wget
 curl -X POST https://api-stg3.snapchance.no/subscription \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
+  -H 'Accept: text/plain' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
@@ -1978,7 +1952,7 @@ curl -X POST https://api-stg3.snapchance.no/subscription \
 POST https://api-stg3.snapchance.no/subscription HTTP/1.1
 Host: api-stg3.snapchance.no
 Content-Type: application/json
-Accept: application/json
+Accept: text/plain
 
 ```
 
@@ -1991,7 +1965,7 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json',
+  'Accept':'text/plain',
   'Authorization':'Bearer {access-token}'
 };
 
@@ -2015,7 +1989,7 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
+  'Accept' => 'text/plain',
   'Authorization' => 'Bearer {access-token}'
 }
 
@@ -2031,7 +2005,7 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json',
+  'Accept': 'text/plain',
   'Authorization': 'Bearer {access-token}'
 }
 
@@ -2048,7 +2022,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
+    'Accept' => 'text/plain',
     'Authorization' => 'Bearer {access-token}',
 );
 
@@ -2103,7 +2077,7 @@ func main() {
 
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
-        "Accept": []string{"application/json"},
+        "Accept": []string{"text/plain"},
         "Authorization": []string{"Bearer {access-token}"},
     }
 
@@ -2145,12 +2119,10 @@ This endpoint is used to activate the player subscription.Player can subscribe t
 
 > Example responses
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="activate_subscription-responses">Responses</h3>
@@ -2158,11 +2130,9 @@ This endpoint is used to activate the player subscription.Player can subscribe t
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns a subscription|None|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
-
-<h3 id="activate_subscription-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2370,12 +2340,10 @@ This endpoint is to Verify the activated subscription.The mandatory fields are d
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="verify_subscription-responses">Responses</h3>
@@ -2383,11 +2351,9 @@ This endpoint is to Verify the activated subscription.The mandatory fields are d
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns verified subscription details|[subscription](#schemasubscription)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
-
-<h3 id="verify_subscription-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2568,12 +2534,10 @@ This endpoint is for retrieving the Player subscription.This Returns an active s
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_subscription-responses">Responses</h3>
@@ -2581,10 +2545,8 @@ This endpoint is for retrieving the Player subscription.This Returns an active s
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieving Subscription details|[subscription](#schemasubscription)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
-
-<h3 id="retrieve_subscription-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -2600,7 +2562,7 @@ bearerAuth
 ```shell
 # You can also use wget
 curl -X POST https://api-stg3.snapchance.no/subscription/cancellation \
-  -H 'Accept: application/json' \
+  -H 'Accept: text/plain' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
@@ -2608,14 +2570,14 @@ curl -X POST https://api-stg3.snapchance.no/subscription/cancellation \
 ```http
 POST https://api-stg3.snapchance.no/subscription/cancellation HTTP/1.1
 Host: api-stg3.snapchance.no
-Accept: application/json
+Accept: text/plain
 
 ```
 
 ```javascript
 
 const headers = {
-  'Accept':'application/json',
+  'Accept':'text/plain',
   'Authorization':'Bearer {access-token}'
 };
 
@@ -2638,7 +2600,7 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json',
+  'Accept' => 'text/plain',
   'Authorization' => 'Bearer {access-token}'
 }
 
@@ -2653,7 +2615,7 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json',
+  'Accept': 'text/plain',
   'Authorization': 'Bearer {access-token}'
 }
 
@@ -2669,7 +2631,7 @@ print(r.json())
 require 'vendor/autoload.php';
 
 $headers = array(
-    'Accept' => 'application/json',
+    'Accept' => 'text/plain',
     'Authorization' => 'Bearer {access-token}',
 );
 
@@ -2723,7 +2685,7 @@ import (
 func main() {
 
     headers := map[string][]string{
-        "Accept": []string{"application/json"},
+        "Accept": []string{"text/plain"},
         "Authorization": []string{"Bearer {access-token}"},
     }
 
@@ -2744,12 +2706,10 @@ This endpoint is used to cancel the Subscription.
 
 > Example responses
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="cancel_subscription-responses">Responses</h3>
@@ -2757,10 +2717,8 @@ This endpoint is used to cancel the Subscription.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Cancels subscription|None|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
-
-<h3 id="cancel_subscription-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -3250,11 +3208,17 @@ This endpoint is used to deposit funds into the Players wallet.  Here the mandat
 }
 ```
 
+> 401 Response
+
+```
+"HTTP Token: Access denied."
+```
+
 > Not Found
 
 ```json
 {
-  "HTTP Token": "Access denied."
+  "errors": "Access denied."
 }
 ```
 
@@ -3263,7 +3227,7 @@ This endpoint is used to deposit funds into the Players wallet.  Here the mandat
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Added funds to wallet|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
@@ -3470,12 +3434,10 @@ This endpoint is used for withdrawing players wallet balance and adding it to hi
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="withdrawl-responses">Responses</h3>
@@ -3483,7 +3445,7 @@ This endpoint is used for withdrawing players wallet balance and adding it to hi
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Wallet withdrawl Amount|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden:when we dont have permission to withdraw|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
@@ -3664,12 +3626,10 @@ This endpoint gives us the Info about the Player current Balance in his wallet.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_balance-responses">Responses</h3>
@@ -3677,7 +3637,7 @@ This endpoint gives us the Info about the Player current Balance in his wallet.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the wallet balance|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
@@ -8490,12 +8450,10 @@ This endpoint returns all the transaction details of the player like deposits,wi
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_transactions_details-responses">Responses</h3>
@@ -8503,7 +8461,7 @@ This endpoint returns all the transaction details of the player like deposits,wi
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns wallet transactions|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
@@ -8794,12 +8752,10 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="purchaseentries-responses">Responses</h3>
@@ -8807,7 +8763,7 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns brought tickets Info|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 
 <h3 id="purchaseentries-responseschema">Response Schema</h3>
 
@@ -9081,12 +9037,10 @@ This endpoint is use to reveal a SnapChance ticket at the end of a drawying.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 > Forbidden
@@ -9104,7 +9058,7 @@ This endpoint is use to reveal a SnapChance ticket at the end of a drawying.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Drawing Ticket Revealed|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
@@ -9383,12 +9337,10 @@ This endpoint is use to return the list of player Entries
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_all_entries-responses">Responses</h3>
@@ -9396,7 +9348,7 @@ This endpoint is use to return the list of player Entries
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns a list of entries|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="retrieve_all_entries-responseschema">Response Schema</h3>
@@ -9800,12 +9752,10 @@ This endpoint is use to return the details of specified Entry.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_entry_details-responses">Responses</h3>
@@ -9813,7 +9763,7 @@ This endpoint is use to return the details of specified Entry.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns entry details|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="retrieve_entry_details-responseschema">Response Schema</h3>
@@ -10208,12 +10158,10 @@ This end point is used to reveal each tile of ticket.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="reveal_ticket_tile-responses">Responses</h3>
@@ -10221,7 +10169,7 @@ This end point is used to reveal each tile of ticket.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Ticket Reveal details|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="reveal_ticket_tile-responseschema">Response Schema</h3>
@@ -10481,9 +10429,7 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 > Unauthorized
 
 ```json
-{
-  "HTTP Token": "Access denied."
-}
+{}
 ```
 
 <h3 id="createsession-responses">Responses</h3>
@@ -10492,8 +10438,7 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns players session, limits and player details.|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|None|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unauthorized|Inline|
 
 <h3 id="createsession-responseschema">Response Schema</h3>
 
@@ -11027,12 +10972,10 @@ This Endpoint is used to activate a Player. It requires that a player already be
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="activateplayer-responses">Responses</h3>
@@ -11041,7 +10984,7 @@ This Endpoint is used to activate a Player. It requires that a player already be
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns an activated player.|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
@@ -11561,12 +11504,10 @@ This endpoint gives information about all the purchased Tickets with in the curr
 ]
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="listentries-responses">Responses</h3>
@@ -11574,7 +11515,7 @@ This endpoint gives information about all the purchased Tickets with in the curr
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieve all tickets info in current Entry|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="listentries-responseschema">Response Schema</h3>
@@ -11619,12 +11560,6 @@ Status Code **200**
 |»»» reveal_type|string|true|none|none|
 |»»» image_url|any|false|none|none|
 |»»» thumbnail_url|any|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» HTTP Token|string|true|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -11959,12 +11894,10 @@ This endpoint is used to get Info about all the created drawings.Complete histor
 ]
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_lottery_drawings-responses">Responses</h3>
@@ -11972,7 +11905,7 @@ This endpoint is used to get Info about all the created drawings.Complete histor
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns started drawings|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="retrieve_lottery_drawings-responseschema">Response Schema</h3>
@@ -12292,12 +12225,10 @@ This endpoint returns a list of tickets purchased in a drawing.
 ]
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="retrieve_drawing_tickets-responses">Responses</h3>
@@ -12305,7 +12236,7 @@ This endpoint returns a list of tickets purchased in a drawing.
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns a list of drawing tickets|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="retrieve_drawing_tickets-responseschema">Response Schema</h3>
@@ -12534,12 +12465,10 @@ This endpoint is use to Update player password from Profile.
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="update_password-responses">Responses</h3>
@@ -12548,7 +12477,7 @@ This endpoint is use to Update player password from Profile.
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|updates player password|None|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="update_password-responseschema">Response Schema</h3>
@@ -12783,13 +12712,19 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 }
 ```
 
+> 401 Response
+
+```
+"HTTP Token: Access denied."
+```
+
 <h3 id="reset_password-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Sends a password reset email|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="reset_password-responseschema">Response Schema</h3>
@@ -13236,12 +13171,10 @@ image: string
 }
 ```
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="add_photo-responses">Responses</h3>
@@ -13250,7 +13183,7 @@ image: string
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns photo details|[photo](#schemaphoto)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
@@ -13458,13 +13391,19 @@ This endpoint is used to returns the list of photos used by the Player.
 }
 ```
 
+> 401 Response
+
+```
+"HTTP Token: Access denied."
+```
+
 <h3 id="retrieve_photos-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns a list of photos|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
 <h3 id="retrieve_photos-responseschema">Response Schema</h3>
@@ -13495,7 +13434,7 @@ bearerAuth
 ```shell
 # You can also use wget
 curl -X DELETE https://api-stg3.snapchance.no/photos/{id} \
-  -H 'Accept: application/json' \
+  -H 'Accept: text/plain' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
@@ -13503,14 +13442,14 @@ curl -X DELETE https://api-stg3.snapchance.no/photos/{id} \
 ```http
 DELETE https://api-stg3.snapchance.no/photos/{id} HTTP/1.1
 Host: api-stg3.snapchance.no
-Accept: application/json
+Accept: text/plain
 
 ```
 
 ```javascript
 
 const headers = {
-  'Accept':'application/json',
+  'Accept':'text/plain',
   'Authorization':'Bearer {access-token}'
 };
 
@@ -13533,7 +13472,7 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json',
+  'Accept' => 'text/plain',
   'Authorization' => 'Bearer {access-token}'
 }
 
@@ -13548,7 +13487,7 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json',
+  'Accept': 'text/plain',
   'Authorization': 'Bearer {access-token}'
 }
 
@@ -13564,7 +13503,7 @@ print(r.json())
 require 'vendor/autoload.php';
 
 $headers = array(
-    'Accept' => 'application/json',
+    'Accept' => 'text/plain',
     'Authorization' => 'Bearer {access-token}',
 );
 
@@ -13618,7 +13557,7 @@ import (
 func main() {
 
     headers := map[string][]string{
-        "Accept": []string{"application/json"},
+        "Accept": []string{"text/plain"},
         "Authorization": []string{"Bearer {access-token}"},
     }
 
@@ -13645,12 +13584,10 @@ This endpoint is to delete the photos
 
 > Example responses
 
-> Unauthorized
+> 401 Response
 
-```json
-{
-  "HTTP Token": "Access denied."
-}
+```
+"HTTP Token: Access denied."
 ```
 
 <h3 id="delete_photo-responses">Responses</h3>
@@ -13658,11 +13595,9 @@ This endpoint is to delete the photos
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Deletes a photo|None|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
-
-<h3 id="delete_photo-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
