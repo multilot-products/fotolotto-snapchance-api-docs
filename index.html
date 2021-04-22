@@ -6,6 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>SnapChance v2.0.0</title>
+    <link href="images/snapchance_favicon-5df7c858.png" rel="icon" type="image/png" />
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -282,7 +283,7 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-3a64e2d1.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-a9fde460.js"></script>
 
@@ -296,7 +297,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/logo-bb2e297b.svg" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">Shell</a>
               <a href="#" data-language-name="http">HTTP</a>
@@ -322,31 +323,48 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#flows" class="toc-h1 toc-link" data-title="Flows">Flows</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#registration" class="toc-h2 toc-link" data-title="Registration">Registration</a>
+                  </li>
+                  <li>
+                    <a href="#wallet-funding" class="toc-h2 toc-link" data-title="Wallet Funding">Wallet Funding</a>
+                  </li>
+                  <li>
+                    <a href="#ticket-purchase" class="toc-h2 toc-link" data-title="Ticket Purchase">Ticket Purchase</a>
+                  </li>
+                  <li>
+                    <a href="#cash-out" class="toc-h2 toc-link" data-title="Cash Out">Cash Out</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#snapchance-player" class="toc-h1 toc-link" data-title="Player">Player</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#deactivateplayer" class="toc-h2 toc-link" data-title="deactivatePlayer">deactivatePlayer</a>
+                    <a href="#deactivate-player" class="toc-h2 toc-link" data-title="Deactivate Player">Deactivate Player</a>
                   </li>
                   <li>
-                    <a href="#set_loss_limit" class="toc-h2 toc-link" data-title="Set_Loss_Limit">Set_Loss_Limit</a>
+                    <a href="#update-loss-limit" class="toc-h2 toc-link" data-title="Update Loss Limit">Update Loss Limit</a>
                   </li>
                   <li>
-                    <a href="#onboard" class="toc-h2 toc-link" data-title="Onboard">Onboard</a>
+                    <a href="#onboard-completed" class="toc-h2 toc-link" data-title="Onboard Completed">Onboard Completed</a>
                   </li>
                   <li>
-                    <a href="#update_profile" class="toc-h2 toc-link" data-title="Update_Profile">Update_Profile</a>
+                    <a href="#update-profile" class="toc-h2 toc-link" data-title="Update Profile">Update Profile</a>
                   </li>
                   <li>
-                    <a href="#retrieve_profile" class="toc-h2 toc-link" data-title="Retrieve_Profile">Retrieve_Profile</a>
+                    <a href="#get-profile" class="toc-h2 toc-link" data-title="Get Profile">Get Profile</a>
                   </li>
                   <li>
-                    <a href="#set_suspension" class="toc-h2 toc-link" data-title="Set_Suspension">Set_Suspension</a>
+                    <a href="#self-exclusion" class="toc-h2 toc-link" data-title="Self Exclusion">Self Exclusion</a>
                   </li>
                   <li>
-                    <a href="#drawings" class="toc-h2 toc-link" data-title="Drawings">Drawings</a>
+                    <a href="#player-drawings" class="toc-h2 toc-link" data-title="Player Drawings">Player Drawings</a>
                   </li>
                   <li>
-                    <a href="#drawing_summary" class="toc-h2 toc-link" data-title="Drawing_Summary">Drawing_Summary</a>
+                    <a href="#get-drawing-summary-for-player" class="toc-h2 toc-link" data-title="Get Drawing Summary for Player">Get Drawing Summary for Player</a>
                   </li>
               </ul>
           </li>
@@ -354,19 +372,19 @@
             <a href="#snapchance-subscription" class="toc-h1 toc-link" data-title="Subscription">Subscription</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#activate_subscription" class="toc-h2 toc-link" data-title="Activate_Subscription">Activate_Subscription</a>
+                    <a href="#create-subscription" class="toc-h2 toc-link" data-title="Create Subscription">Create Subscription</a>
                   </li>
                   <li>
-                    <a href="#verify_subscription" class="toc-h2 toc-link" data-title="Verify_Subscription">Verify_Subscription</a>
+                    <a href="#update-subscription" class="toc-h2 toc-link" data-title="Update Subscription">Update Subscription</a>
                   </li>
                   <li>
-                    <a href="#retrieve_subscription" class="toc-h2 toc-link" data-title="Retrieve_Subscription">Retrieve_Subscription</a>
+                    <a href="#get-subscription" class="toc-h2 toc-link" data-title="Get Subscription">Get Subscription</a>
                   </li>
                   <li>
-                    <a href="#cancel_subscription" class="toc-h2 toc-link" data-title="Cancel_Subscription">Cancel_Subscription</a>
+                    <a href="#cancel-subscription" class="toc-h2 toc-link" data-title="Cancel Subscription">Cancel Subscription</a>
                   </li>
                   <li>
-                    <a href="#list_of_subscription_entries" class="toc-h2 toc-link" data-title="List_of_Subscription_Entries">List_of_Subscription_Entries</a>
+                    <a href="#list-entries-for-subscription" class="toc-h2 toc-link" data-title="List Entries for Subscription">List Entries for Subscription</a>
                   </li>
               </ul>
           </li>
@@ -374,16 +392,16 @@
             <a href="#snapchance-wallet" class="toc-h1 toc-link" data-title="Wallet">Wallet</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#deposit" class="toc-h2 toc-link" data-title="deposit">deposit</a>
+                    <a href="#deposit" class="toc-h2 toc-link" data-title="Deposit">Deposit</a>
                   </li>
                   <li>
-                    <a href="#withdrawl" class="toc-h2 toc-link" data-title="Withdrawl">Withdrawl</a>
+                    <a href="#withdraw-from-wallet" class="toc-h2 toc-link" data-title="Withdraw From Wallet">Withdraw From Wallet</a>
                   </li>
                   <li>
-                    <a href="#retrieve_balance" class="toc-h2 toc-link" data-title="Retrieve_Balance">Retrieve_Balance</a>
+                    <a href="#get-wallet-balance" class="toc-h2 toc-link" data-title="Get Wallet Balance">Get Wallet Balance</a>
                   </li>
                   <li>
-                    <a href="#retrieve_transactions_details" class="toc-h2 toc-link" data-title="Retrieve_Transactions_details">Retrieve_Transactions_details</a>
+                    <a href="#get-wallet-transactions" class="toc-h2 toc-link" data-title="Get Wallet Transactions">Get Wallet Transactions</a>
                   </li>
               </ul>
           </li>
@@ -391,19 +409,19 @@
             <a href="#snapchance-entries" class="toc-h1 toc-link" data-title="Entries">Entries</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#purchaseentries" class="toc-h2 toc-link" data-title="purchaseEntries">purchaseEntries</a>
+                    <a href="#purchase-entries" class="toc-h2 toc-link" data-title="Purchase Entries">Purchase Entries</a>
                   </li>
                   <li>
-                    <a href="#revealdrawingticket" class="toc-h2 toc-link" data-title="revealDrawingTicket">revealDrawingTicket</a>
+                    <a href="#reveal-drawing-ticket" class="toc-h2 toc-link" data-title="Reveal Drawing Ticket">Reveal Drawing Ticket</a>
                   </li>
                   <li>
-                    <a href="#retrieve_all_entries" class="toc-h2 toc-link" data-title="Retrieve_All_Entries">Retrieve_All_Entries</a>
+                    <a href="#list-entries-for-player" class="toc-h2 toc-link" data-title="List Entries for Player">List Entries for Player</a>
                   </li>
                   <li>
-                    <a href="#retrieve_entry_details" class="toc-h2 toc-link" data-title="Retrieve_Entry_Details">Retrieve_Entry_Details</a>
+                    <a href="#get-entry" class="toc-h2 toc-link" data-title="Get Entry">Get Entry</a>
                   </li>
                   <li>
-                    <a href="#reveal_ticket_tile" class="toc-h2 toc-link" data-title="Reveal_Ticket_Tile">Reveal_Ticket_Tile</a>
+                    <a href="#update-ticket-state" class="toc-h2 toc-link" data-title="Update Ticket State">Update Ticket State</a>
                   </li>
               </ul>
           </li>
@@ -411,7 +429,7 @@
             <a href="#snapchance-authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#createsession" class="toc-h2 toc-link" data-title="createSession">createSession</a>
+                    <a href="#login" class="toc-h2 toc-link" data-title="Login">Login</a>
                   </li>
               </ul>
           </li>
@@ -419,10 +437,10 @@
             <a href="#snapchance-registration" class="toc-h1 toc-link" data-title="Registration">Registration</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#createplayer" class="toc-h2 toc-link" data-title="createPlayer">createPlayer</a>
+                    <a href="#create-player" class="toc-h2 toc-link" data-title="Create Player">Create Player</a>
                   </li>
                   <li>
-                    <a href="#activateplayer" class="toc-h2 toc-link" data-title="activatePlayer">activatePlayer</a>
+                    <a href="#activate-player" class="toc-h2 toc-link" data-title="Activate Player">Activate Player</a>
                   </li>
               </ul>
           </li>
@@ -430,7 +448,7 @@
             <a href="#snapchance-payment" class="toc-h1 toc-link" data-title="Payment">Payment</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#netscallback" class="toc-h2 toc-link" data-title="netsCallback">netsCallback</a>
+                    <a href="#nets-callback" class="toc-h2 toc-link" data-title="NETS Callback">NETS Callback</a>
                   </li>
               </ul>
           </li>
@@ -438,13 +456,13 @@
             <a href="#snapchance-drawings" class="toc-h1 toc-link" data-title="Drawings">Drawings</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#listentries" class="toc-h2 toc-link" data-title="listEntries">listEntries</a>
+                    <a href="#list-entries" class="toc-h2 toc-link" data-title="List Entries">List Entries</a>
                   </li>
                   <li>
-                    <a href="#retrieve_lottery_drawings" class="toc-h2 toc-link" data-title="Retrieve_Lottery_Drawings">Retrieve_Lottery_Drawings</a>
+                    <a href="#list-drawings" class="toc-h2 toc-link" data-title="List Drawings">List Drawings</a>
                   </li>
                   <li>
-                    <a href="#retrieve_drawing_tickets" class="toc-h2 toc-link" data-title="Retrieve_Drawing_Tickets">Retrieve_Drawing_Tickets</a>
+                    <a href="#list-drawing-tickets" class="toc-h2 toc-link" data-title="List Drawing Tickets">List Drawing Tickets</a>
                   </li>
               </ul>
           </li>
@@ -452,13 +470,13 @@
             <a href="#snapchance-password" class="toc-h1 toc-link" data-title="Password">Password</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#update_password" class="toc-h2 toc-link" data-title="Update_Password">Update_Password</a>
+                    <a href="#update-password" class="toc-h2 toc-link" data-title="Update Password">Update Password</a>
                   </li>
                   <li>
-                    <a href="#reset_password" class="toc-h2 toc-link" data-title="Reset_Password">Reset_Password</a>
+                    <a href="#reset-password-email" class="toc-h2 toc-link" data-title="Reset Password Email">Reset Password Email</a>
                   </li>
                   <li>
-                    <a href="#password_updated_through_email" class="toc-h2 toc-link" data-title="Password_updated_through_Email">Password_updated_through_Email</a>
+                    <a href="#reset-password" class="toc-h2 toc-link" data-title="Reset Password">Reset Password</a>
                   </li>
               </ul>
           </li>
@@ -466,13 +484,13 @@
             <a href="#snapchance-photos" class="toc-h1 toc-link" data-title="Photos">Photos</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#add_photo" class="toc-h2 toc-link" data-title="Add_Photo">Add_Photo</a>
+                    <a href="#add-photo" class="toc-h2 toc-link" data-title="Add Photo">Add Photo</a>
                   </li>
                   <li>
-                    <a href="#retrieve_photos" class="toc-h2 toc-link" data-title="Retrieve_Photos">Retrieve_Photos</a>
+                    <a href="#list-photos" class="toc-h2 toc-link" data-title="List Photos">List Photos</a>
                   </li>
                   <li>
-                    <a href="#delete_photo" class="toc-h2 toc-link" data-title="Delete_Photo">Delete_Photo</a>
+                    <a href="#delete-photo" class="toc-h2 toc-link" data-title="Delete Photo">Delete Photo</a>
                   </li>
               </ul>
           </li>
@@ -492,6 +510,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
+            <li><a href='https://snapchance.no'>SnapChance Norway</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -521,7 +540,7 @@
 <li><a href="https://api-stg3.snapchance.no">https://api-stg3.snapchance.no</a></li>
 </ul>
 
-<p>Web: <a href="https://multilot.com">Multilot</a> </p>
+<p>Web: <a href="https://snapchance.no">SnapChance</a></p>
 <h1 id='authentication'>Authentication</h1>
 <ul>
 <li>HTTP Authentication, scheme: bearer The SnapChance API offers JWT (JSON Web Token) Authentication. JWT is a short lifetime token that is generated and returned when the player authenticates to the SnapChance API.  Players can obtain a JWT token by providing valid credentials (emailId and password) to /session endpoint. The token has a specific expiration time.</li>
@@ -532,33 +551,82 @@
   --header 'Content-Type: application/json' \
   --data '{"email":"user@email.com","password":"ComplexPassword123"}'</pre>
 
-<p>The valid JWT token must be supplied as part of the header to access API&#39;s all other endpoints.</p>
+The valid JWT token must be supplied as part of the header to access API's all other endpoints.
+
+<h1 id='flows'>Flows</h1><h2 id='registration'>Registration</h2><h2 id='wallet-funding'>Wallet Funding</h2><h2 id='ticket-purchase'>Ticket Purchase</h2>
+<p>To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:</p>
+<h3 id='pre-requisites'>Pre-requisites</h3><h3 id='1-get-photos-create-photos-required'>1. <a href="#list-photos">Get Photos</a> / <a href="#add-photo">Create Photos</a> (required)</h3>
+<p>The user is required to have an existing photo db entry</p>
+
+<p><strong>Relevant data:</strong>  </p>
+
+<ul>
+<li>A GET request to <code>/photos</code> returns an array of photo objects, each of which have property <code>id</code>.<br>
+or<br></li>
+<li>A POST request to <code>/photos</code> returns a photo object with property <code>id</code>.</li>
+</ul>
+<h3 id='2-get-player-drawings-required'>2. <a href="#player-drawings">Get Player Drawings</a> (required)</h3>
+<p>The current drawing id is required to purchase tickets in the current drawing (the only drawing in which ticket purchases are allowed).<br>
+The ticket price for the current drawing is required, which is provided by the player drawings query</p>
+
+<p><strong>Relevant data:</strong>   </p>
+
+<ul>
+<li>A GET request to <code>/player/drawings</code> returns an array containing two objects: the previous drawing (one before the current, index 0) and current drawing (index 1).</li>
+<li>The current drawing id is extracted using the <code>id</code> property from the current drawing object.</li>
+<li>The ticket price for the current drawing is extracted using the <code>ticket_price</code> property from the current drawing object.</li>
+</ul>
+<h3 id='3-get-balance-optional'>3. <a href="#get-wallet-balance">Get Balance</a> (optional)</h3>
+<p>The user is required to have a positive wallet balance that exceeds or equals the number of tickets being purchased multiplied by the ticket price.</p>
+
+<p><strong>Relevant data:</strong>  </p>
+
+<ul>
+<li>A GET request to <code>/wallet/balance</code> returns an object with property <code>balance</code> as the current balance for an authenticated user.</li>
+</ul>
+<h3 id='4-get-profile-transactions-optional'>4. <a href="#get-profile">Get Profile</a> / <a href="#get-wallet-transactions">Transactions</a> (optional)</h3>
+<p>The user is required to have a <code>daily_loss_limit</code> that is greater than or equal to the aggregate of (a) the amount spent in the previous 24 hours and (b) the number of tickets being purchased multiplied by the ticket price.<br>
+The user is required to have a <code>weekly_loss_limit</code> that is greater than or equal to the aggregate of (a) the amount spent in the previous 7 days and (b) the number of tickets being purchased multiplied by the ticket price.<br>
+The amount spent must be calculated using the aggregate of all transaction amounts that fall within the respective date range, not including transactions of type <code>deposit</code> or <code>withdrawal</code>.  </p>
+
+<p><strong>Relevant data:</strong>  </p>
+
+<ul>
+<li>A GET request to <code>/profile</code> returns an player object that includes properties <code>daily_loss_limit</code> and <code>weekly_loss_limit</code>.</li>
+<li>A GET request to <code>/wallet/transactions</code> returns a paginated array of transactions, each of which include properties <code>amount</code>, <code>type</code> and <code>created_at</code>.</li>
+</ul>
+<h3 id='request'>Request</h3>
+<p><strong><a href="#purchase-entries">Create Entries</a></strong>  </p>
+
+<p>After all the pre-requisites are satisfied, a request to the <code>/drawings/:drawing_id/entries</code> is made using the photo ID as <code>photo_id</code> param and number of tickets purchased as <code>tickets_count</code>.</p>
+<h2 id='cash-out'>Cash Out</h2>
 
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
-  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
+  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'
+</pre>
 
 <h1 id="snapchance-player">Player</h1>
 
 <p>Player and Profile management and reporting</p>
-<h2 id='deactivateplayer'>deactivatePlayer</h2>
-<p><a id="opIddeactivatePlayer"></a></p>
+<h2 id='deactivate-player'>Deactivate Player</h2>
+<p><a id="opIdDeactivate Player"></a></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: text/plain'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer {access-token}'</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-stg3.snapchance.no/deactivation</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-stg3.snapchance.no</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/plain</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">text/plain</span><span class="dl">'</span><span class="p">,</span>
   <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">Bearer {access-token}</span><span class="dl">'</span>
 <span class="p">};</span>
 
@@ -578,7 +646,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
   <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -590,7 +658,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'text/plain'</span><span class="p">,</span>
   <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -603,7 +671,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 <span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
     <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span><span class="p">,</span>
 <span class="p">);</span>
 
@@ -651,7 +719,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 <span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
-        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"text/plain"</span><span class="p">},</span>
         <span class="s">"Authorization"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"Bearer {access-token}"</span><span class="p">},</span>
     <span class="p">}</span>
 
@@ -672,13 +740,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 <blockquote>
 <p>Example responses</p>
 
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="deactivateplayer-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="deactivate-player-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -697,8 +763,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -708,14 +774,12 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 </tr>
 </tbody></table>
 
-<h3 id="deactivateplayer-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='set_loss_limit'>Set_Loss_Limit</h2>
-<p><a id="opIdSet_Loss_Limit"></a></p>
+<h2 id='update-loss-limit'>Update Loss Limit</h2>
+<p><a id="opIdUpdate Loss Limit"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -860,7 +924,7 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
   </span><span class="nl">"weekly_loss_limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2900"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="set_loss_limit-parameters">Parameters</h3>
+<h3 id="update-loss-limit-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -928,13 +992,11 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="set_loss_limit-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="update-loss-limit-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -953,8 +1015,8 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -964,7 +1026,7 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
 </tr>
 </tbody></table>
 
-<h3 id="set_loss_limit-responseschema">Response Schema</h3>
+<h3 id="update-loss-limit-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -1144,8 +1206,8 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='onboard'>Onboard</h2>
-<p><a id="opIdOnboard"></a></p>
+<h2 id='onboard-completed'>Onboard Completed</h2>
+<p><a id="opIdOnboard Completed"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -1306,13 +1368,11 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/onboard <sp
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="onboard-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="onboard-completed-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -1331,8 +1391,8 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/onboard <sp
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -1342,14 +1402,12 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/onboard <sp
 </tr>
 </tbody></table>
 
-<h3 id="onboard-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='update_profile'>Update_Profile</h2>
-<p><a id="opIdUpdate_Profile"></a></p>
+<h2 id='update-profile'>Update Profile</h2>
+<p><a id="opIdUpdate Profile"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -1493,7 +1551,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 <span class="na">last_name</span><span class="pi">:</span> <span class="s">testName</span>
 
 </code></pre></div>
-<h3 id="update_profile-parameters">Parameters</h3>
+<h3 id="update-profile-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1561,13 +1619,11 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="update_profile-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="update-profile-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -1586,8 +1642,8 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -1597,14 +1653,12 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 </tr>
 </tbody></table>
 
-<h3 id="update_profile-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_profile'>Retrieve_Profile</h2>
-<p><a id="opIdRetrieve_Profile"></a></p>
+<h2 id='get-profile'>Get Profile</h2>
+<p><a id="opIdGet Profile"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -1765,13 +1819,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/profile <span
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_profile-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="get-profile-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -1790,8 +1842,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/profile <span
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -1801,14 +1853,12 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/profile <span
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_profile-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='set_suspension'>Set_Suspension</h2>
-<p><a id="opIdSet_Suspension"></a></p>
+<h2 id='self-exclusion'>Self Exclusion</h2>
+<p><a id="opIdSelf Exclusion"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -1951,7 +2001,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/suspension <
   </span><span class="nl">"suspended_until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-12T15:28:05.335Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="set_suspension-parameters">Parameters</h3>
+<h3 id="self-exclusion-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2012,13 +2062,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/suspension <
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="set_suspension-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="self-exclusion-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -2037,8 +2085,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/suspension <
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -2048,14 +2096,12 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/suspension <
 </tr>
 </tbody></table>
 
-<h3 id="set_suspension-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='drawings'>Drawings</h2>
-<p><a id="opIdDrawings"></a></p>
+<h2 id='player-drawings'>Player Drawings</h2>
+<p><a id="opIdPlayer Drawings"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -2359,13 +2405,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="drawings-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="player-drawings-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -2384,8 +2428,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -2395,7 +2439,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 </tr>
 </tbody></table>
 
-<h3 id="drawings-responseschema">Response Schema</h3>
+<h3 id="player-drawings-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -2547,8 +2591,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='drawing_summary'>Drawing_Summary</h2>
-<p><a id="opIdDrawing_Summary"></a></p>
+<h2 id='get-drawing-summary-for-player'>Get Drawing Summary for Player</h2>
+<p><a id="opIdGet Drawing Summary for Player"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -2675,7 +2719,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 
 <p>This endpoint is use to return the specific drawing summary.</p>
 
-<h3 id="drawing_summary-parameters">Parameters</h3>
+<h3 id="get-drawing-summary-for-player-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2707,13 +2751,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="drawing_summary-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="get-drawing-summary-for-player-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -2732,8 +2774,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -2743,7 +2785,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 </tr>
 </tbody></table>
 
-<h3 id="drawing_summary-responseschema">Response Schema</h3>
+<h3 id="get-drawing-summary-for-player-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -2787,8 +2829,8 @@ bearerAuth
 <h1 id="snapchance-subscription">Subscription</h1>
 
 <p>Automatic subscription to drawings</p>
-<h2 id='activate_subscription'>Activate_Subscription</h2>
-<p><a id="opIdActivate_Subscription"></a></p>
+<h2 id='create-subscription'>Create Subscription</h2>
+<p><a id="opIdCreate Subscription"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -2796,13 +2838,13 @@ bearerAuth
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: text/plain'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer {access-token}'</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-stg3.snapchance.no/subscription</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-stg3.snapchance.no</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/plain</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
   "drawing_id": 2243,
@@ -2812,7 +2854,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 }</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
-  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">text/plain</span><span class="dl">'</span><span class="p">,</span>
   <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">Bearer {access-token}</span><span class="dl">'</span>
 <span class="p">};</span>
 
@@ -2833,7 +2875,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
   <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -2846,7 +2888,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'text/plain'</span><span class="p">,</span>
   <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -2860,7 +2902,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
     <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span><span class="p">,</span>
 <span class="p">);</span>
 
@@ -2909,7 +2951,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 
     <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
         <span class="s">"Content-Type"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
-        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"text/plain"</span><span class="p">},</span>
         <span class="s">"Authorization"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"Bearer {access-token}"</span><span class="p">},</span>
     <span class="p">}</span>
 
@@ -2937,7 +2979,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
   </span><span class="nl">"tickets_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="activate_subscription-parameters">Parameters</h3>
+<h3 id="create-subscription-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2988,13 +3030,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 <blockquote>
 <p>Example responses</p>
 
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="activate_subscription-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="create-subscription-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -3013,8 +3053,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -3030,14 +3070,12 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 </tr>
 </tbody></table>
 
-<h3 id="activate_subscription-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='verify_subscription'>Verify_Subscription</h2>
-<p><a id="opIdVerify_Subscription"></a></p>
+<h2 id='update-subscription'>Update Subscription</h2>
+<p><a id="opIdUpdate Subscription"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -3172,7 +3210,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/subscriptio
 </code></pre></div>
 <p><code>PATCH /subscription</code></p>
 
-<p>This endpoint is to Verify the activated subscription.The mandatory fields are deposit id and drawing id. </p>
+<p>This endpoint is to Verify the activated subscription.The mandatory fields are deposit id and drawing id.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -3182,7 +3220,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/subscriptio
   </span><span class="nl">"drawing_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2243</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="verify_subscription-parameters">Parameters</h3>
+<h3 id="update-subscription-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3239,13 +3277,11 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/subscriptio
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="verify_subscription-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="update-subscription-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -3264,8 +3300,8 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/subscriptio
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -3281,14 +3317,12 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/subscriptio
 </tr>
 </tbody></table>
 
-<h3 id="verify_subscription-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_subscription'>Retrieve_Subscription</h2>
-<p><a id="opIdRetrieve_Subscription"></a></p>
+<h2 id='get-subscription'>Get Subscription</h2>
+<p><a id="opIdGet Subscription"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -3438,13 +3472,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/subscription 
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_subscription-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="get-subscription-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -3463,8 +3495,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/subscription 
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -3474,30 +3506,28 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/subscription 
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_subscription-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='cancel_subscription'>Cancel_Subscription</h2>
-<p><a id="opIdCancel_Subscription"></a></p>
+<h2 id='cancel-subscription'>Cancel Subscription</h2>
+<p><a id="opIdCancel Subscription"></a></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription/cancellation <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: text/plain'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer {access-token}'</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://api-stg3.snapchance.no/subscription/cancellation</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-stg3.snapchance.no</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/plain</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">text/plain</span><span class="dl">'</span><span class="p">,</span>
   <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">Bearer {access-token}</span><span class="dl">'</span>
 <span class="p">};</span>
 
@@ -3517,7 +3547,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
   <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -3529,7 +3559,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'text/plain'</span><span class="p">,</span>
   <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -3542,7 +3572,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 <span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
     <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span><span class="p">,</span>
 <span class="p">);</span>
 
@@ -3590,7 +3620,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 <span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
-        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"text/plain"</span><span class="p">},</span>
         <span class="s">"Authorization"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"Bearer {access-token}"</span><span class="p">},</span>
     <span class="p">}</span>
 
@@ -3611,13 +3641,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 <blockquote>
 <p>Example responses</p>
 
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="cancel_subscription-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="cancel-subscription-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -3636,8 +3664,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -3647,14 +3675,12 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
 </tr>
 </tbody></table>
 
-<h3 id="cancel_subscription-responseschema">Response Schema</h3>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='list_of_subscription_entries'>List_of_Subscription_Entries</h2>
-<p><a id="opIdList_of_Subscription_Entries"></a></p>
+<h2 id='list-entries-for-subscription'>List Entries for Subscription</h2>
+<p><a id="opIdList Entries for Subscription"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -3876,7 +3902,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/subscription/
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<h3 id="list_of_subscription_entries-responses">Responses</h3>
+<h3 id="list-entries-for-subscription-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -3900,7 +3926,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/subscription/
 </tr>
 </tbody></table>
 
-<h3 id="list_of_subscription_entries-responseschema">Response Schema</h3>
+<h3 id="list-entries-for-subscription-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -4077,8 +4103,8 @@ bearerAuth
 <h1 id="snapchance-wallet">Wallet</h1>
 
 <p>Wallet management and transaction reporting</p>
-<h2 id='deposit'>deposit</h2>
-<p><a id="opIddeposit"></a></p>
+<h2 id='deposit'>Deposit</h2>
+<p><a id="opIdDeposit"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -4270,10 +4296,15 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/depos
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
+<p>401 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<blockquote>
 <p>Not Found</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <h3 id="deposit-responses">Responses</h3>
@@ -4295,8 +4326,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/depos
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>None</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>403</td>
@@ -4365,8 +4396,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/depos
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='withdrawl'>Withdrawl</h2>
-<p><a id="opIdWithdrawl"></a></p>
+<h2 id='withdraw-from-wallet'>Withdraw From Wallet</h2>
+<p><a id="opIdWithdraw From Wallet"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -4509,7 +4540,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/withd
   </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="withdrawl-parameters">Parameters</h3>
+<h3 id="withdraw-from-wallet-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4547,13 +4578,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/withd
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="withdrawl-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="withdraw-from-wallet-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -4572,8 +4601,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/withd
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>403</td>
@@ -4595,7 +4624,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/withd
 </tr>
 </tbody></table>
 
-<h3 id="withdrawl-responseschema">Response Schema</h3>
+<h3 id="withdraw-from-wallet-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -4628,8 +4657,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/withd
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_balance'>Retrieve_Balance</h2>
-<p><a id="opIdRetrieve_Balance"></a></p>
+<h2 id='get-wallet-balance'>Get Wallet Balance</h2>
+<p><a id="opIdGet Wallet Balance"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -4767,13 +4796,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/balanc
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_balance-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="get-wallet-balance-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -4792,8 +4819,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/balanc
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -4809,7 +4836,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/balanc
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_balance-responseschema">Response Schema</h3>
+<h3 id="get-wallet-balance-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -4835,8 +4862,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/balanc
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_transactions_details'>Retrieve_Transactions_details</h2>
-<p><a id="opIdRetrieve_Transactions_details"></a></p>
+<h2 id='get-wallet-transactions'>Get Wallet Transactions</h2>
+<p><a id="opIdGet Wallet Transactions"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -9608,13 +9635,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/transa
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_transactions_details-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="get-wallet-transactions-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -9633,8 +9658,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/transa
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -9650,7 +9675,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/transa
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_transactions_details-responseschema">Response Schema</h3>
+<h3 id="get-wallet-transactions-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -9736,8 +9761,8 @@ bearerAuth
 <h1 id="snapchance-entries">Entries</h1>
 
 <p>Entries consist of a photo and 1 to n tickets</p>
-<h2 id='purchaseentries'>purchaseEntries</h2>
-<p><a id="opIdpurchaseEntries"></a></p>
+<h2 id='purchase-entries'>Purchase Entries</h2>
+<p><a id="opIdPurchase Entries"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -9882,7 +9907,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/drawings/<sp
   </span><span class="nl">"tickets_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="purchaseentries-parameters">Parameters</h3>
+<h3 id="purchase-entries-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -10006,13 +10031,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/drawings/<sp
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="purchaseentries-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="purchase-entries-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -10031,12 +10054,12 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/drawings/<sp
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
-<h3 id="purchaseentries-responseschema">Response Schema</h3>
+<h3 id="purchase-entries-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>201</strong></p>
 
@@ -10300,8 +10323,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/drawings/<sp
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='revealdrawingticket'>revealDrawingTicket</h2>
-<p><a id="opIdrevealDrawingTicket"></a></p>
+<h2 id='reveal-drawing-ticket'>Reveal Drawing Ticket</h2>
+<p><a id="opIdReveal Drawing Ticket"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -10428,7 +10451,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
 
 <p>This endpoint is use to reveal a SnapChance ticket at the end of a drawying.</p>
 
-<h3 id="revealdrawingticket-parameters">Parameters</h3>
+<h3 id="reveal-drawing-ticket-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -10516,12 +10539,10 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
 <blockquote>
 <p>Forbidden</p>
 </blockquote>
@@ -10531,7 +10552,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="revealdrawingticket-responses">Responses</h3>
+<h3 id="reveal-drawing-ticket-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -10550,8 +10571,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>403</td>
@@ -10567,7 +10588,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
 </tr>
 </tbody></table>
 
-<h3 id="revealdrawingticket-responseschema">Response Schema</h3>
+<h3 id="reveal-drawing-ticket-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>201</strong></p>
 
@@ -10740,8 +10761,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_all_entries'>Retrieve_All_Entries</h2>
-<p><a id="opIdRetrieve_All_Entries"></a></p>
+<h2 id='list-entries-for-player'>List Entries for Player</h2>
+<p><a id="opIdList Entries for Player"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -10958,13 +10979,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries <span
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_all_entries-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="list-entries-for-player-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -10983,8 +11002,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries <span
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -10994,7 +11013,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries <span
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_all_entries-responseschema">Response Schema</h3>
+<h3 id="list-entries-for-player-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -11405,8 +11424,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries <span
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_entry_details'>Retrieve_Entry_Details</h2>
-<p><a id="opIdRetrieve_Entry_Details"></a></p>
+<h2 id='get-entry'>Get Entry</h2>
+<p><a id="opIdGet Entry"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -11533,7 +11552,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries/<span
 
 <p>This endpoint is use to return the details of specified Entry.</p>
 
-<h3 id="retrieve_entry_details-parameters">Parameters</h3>
+<h3 id="get-entry-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -11729,13 +11748,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries/<span
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_entry_details-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="get-entry-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -11754,8 +11771,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries/<span
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -11765,7 +11782,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries/<span
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_entry_details-responseschema">Response Schema</h3>
+<h3 id="get-entry-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -12211,8 +12228,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries/<span
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='reveal_ticket_tile'>Reveal_Ticket_Tile</h2>
-<p><a id="opIdReveal_Ticket_Tile"></a></p>
+<h2 id='update-ticket-state'>Update Ticket State</h2>
+<p><a id="opIdUpdate Ticket State"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -12380,7 +12397,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/entries/<sp
 </code></pre></div>
 <p><code>PATCH /entries/{id}/tickets/{ticket_id}</code></p>
 
-<p><em>Reveal ticket tiles</em></p>
+<p><em>Update Ticket State</em></p>
 
 <p>This end point is used to reveal each tile of ticket.</p>
 
@@ -12425,7 +12442,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/entries/<sp
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="reveal_ticket_tile-parameters">Parameters</h3>
+<h3 id="update-ticket-state-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -12574,13 +12591,11 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/entries/<sp
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="reveal_ticket_tile-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="update-ticket-state-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -12599,8 +12614,8 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/entries/<sp
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -12610,7 +12625,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/entries/<sp
 </tr>
 </tbody></table>
 
-<h3 id="reveal_ticket_tile-responseschema">Response Schema</h3>
+<h3 id="update-ticket-state-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -12787,8 +12802,8 @@ bearerAuth
 <h1 id="snapchance-authentication">Authentication</h1>
 
 <p>Creating a session for a player</p>
-<h2 id='createsession'>createSession</h2>
-<p><a id="opIdcreateSession"></a></p>
+<h2 id='login'>Login</h2>
+<p><a id="opIdLogin"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -12927,7 +12942,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/session <spa
   </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ComplexPassword123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="createsession-parameters">Parameters</h3>
+<h3 id="login-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -13007,11 +13022,9 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/session <spa
 
 <p>Unauthorized</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
 </span></code></pre></div>
-<h3 id="createsession-responses">Responses</h3>
+<h3 id="login-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -13034,20 +13047,14 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/session <spa
 <td>None</td>
 </tr>
 <tr>
-<td>401</td>
-<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
 <td>Unauthorized</td>
 <td>Inline</td>
 </tr>
-<tr>
-<td>404</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
-<td>Not Found</td>
-<td>None</td>
-</tr>
 </tbody></table>
 
-<h3 id="createsession-responseschema">Response Schema</h3>
+<h3 id="login-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>201</strong></p>
 
@@ -13272,8 +13279,8 @@ This operation does not require authentication
 <h1 id="snapchance-registration">Registration</h1>
 
 <p>Registering and activating new player</p>
-<h2 id='createplayer'>createPlayer</h2>
-<p><a id="opIdcreatePlayer"></a></p>
+<h2 id='create-player'>Create Player</h2>
+<p><a id="opIdCreate Player"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -13416,7 +13423,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/players <spa
   </span><span class="nl">"bankid_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="createplayer-parameters">Parameters</h3>
+<h3 id="create-player-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -13489,7 +13496,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/players <spa
   </span><span class="nl">"param is missing or the value is empty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bankid_code"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="createplayer-responses">Responses</h3>
+<h3 id="create-player-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -13519,14 +13526,14 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/players <spa
 </tr>
 </tbody></table>
 
-<h3 id="createplayer-responseschema">Response Schema</h3>
+<h3 id="create-player-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='activateplayer'>activatePlayer</h2>
-<p><a id="opIdactivatePlayer"></a></p>
+<h2 id='activate-player'>Activate Player</h2>
+<p><a id="opIdActivate Player"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -13679,7 +13686,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/activation <
   </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="activateplayer-parameters">Parameters</h3>
+<h3 id="activate-player-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -13791,13 +13798,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/activation <
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="activateplayer-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="activate-player-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -13822,8 +13827,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/activation <
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -13839,7 +13844,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/activation <
 </tr>
 </tbody></table>
 
-<h3 id="activateplayer-responseschema">Response Schema</h3>
+<h3 id="activate-player-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>201</strong></p>
 
@@ -13974,8 +13979,8 @@ bearerAuth
 <h1 id="snapchance-payment">Payment</h1>
 
 <p>Callback from the NETs payment gateway</p>
-<h2 id='netscallback'>netsCallback</h2>
-<p><a id="opIdnetsCallback"></a></p>
+<h2 id='nets-callback'>NETS Callback</h2>
+<p><a id="opIdNETS Callback"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -14111,7 +14116,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/callbacks <s
   </span><span class="nl">"TransactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="netscallback-parameters">Parameters</h3>
+<h3 id="nets-callback-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -14138,7 +14143,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/callbacks <s
 </tr>
 </tbody></table>
 
-<h3 id="netscallback-responses">Responses</h3>
+<h3 id="nets-callback-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -14170,8 +14175,8 @@ bearerAuth
 <h1 id="snapchance-drawings">Drawings</h1>
 
 <p>Creating and retriving drawyings</p>
-<h2 id='listentries'>listEntries</h2>
-<p><a id="opIdlistEntries"></a></p>
+<h2 id='list-entries'>List Entries</h2>
+<p><a id="opIdList Entries"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -14298,7 +14303,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 
 <p>This endpoint gives information about all the purchased Tickets with in the current Entry of the on going Drawing.</p>
 
-<h3 id="listentries-parameters">Parameters</h3>
+<h3 id="list-entries-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -14461,13 +14466,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="listentries-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="list-entries-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -14486,8 +14489,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -14497,7 +14500,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 </tr>
 </tbody></table>
 
-<h3 id="listentries-responseschema">Response Schema</h3>
+<h3 id="list-entries-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -14764,32 +14767,12 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 </tr>
 </tbody></table>
 
-<p>Status Code <strong>401</strong></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>» HTTP Token</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>none</td>
-</tr>
-</tbody></table>
-
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_lottery_drawings'>Retrieve_Lottery_Drawings</h2>
-<p><a id="opIdRetrieve_Lottery_Drawings"></a></p>
+<h2 id='list-drawings'>List Drawings</h2>
+<p><a id="opIdList Drawings"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -15093,13 +15076,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings <spa
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_lottery_drawings-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="list-drawings-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -15118,8 +15099,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings <spa
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -15129,7 +15110,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings <spa
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_lottery_drawings-responseschema">Response Schema</h3>
+<h3 id="list-drawings-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -15283,8 +15264,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings <spa
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_drawing_tickets'>Retrieve_Drawing_Tickets</h2>
-<p><a id="opIdRetrieve_Drawing_Tickets"></a></p>
+<h2 id='list-drawing-tickets'>List Drawing Tickets</h2>
+<p><a id="opIdList Drawing Tickets"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -15411,7 +15392,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 
 <p>This endpoint returns a list of tickets purchased in a drawing.</p>
 
-<h3 id="retrieve_drawing_tickets-parameters">Parameters</h3>
+<h3 id="list-drawing-tickets-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -15558,13 +15539,11 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="retrieve_drawing_tickets-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="list-drawing-tickets-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -15583,8 +15562,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -15594,7 +15573,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_drawing_tickets-responseschema">Response Schema</h3>
+<h3 id="list-drawing-tickets-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -15771,8 +15750,8 @@ bearerAuth
 <h1 id="snapchance-password">Password</h1>
 
 <p>Password update and reset</p>
-<h2 id='update_password'>Update_Password</h2>
-<p><a id="opIdUpdate_Password"></a></p>
+<h2 id='update-password'>Update Password</h2>
+<p><a id="opIdUpdate Password"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -15917,7 +15896,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password <s
   </span><span class="nl">"new_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"passwordtest12"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="update_password-parameters">Parameters</h3>
+<h3 id="update-password-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -15961,13 +15940,11 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password <s
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="update_password-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="update-password-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -15992,8 +15969,8 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password <s
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -16003,14 +15980,14 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password <s
 </tr>
 </tbody></table>
 
-<h3 id="update_password-responseschema">Response Schema</h3>
+<h3 id="update-password-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='reset_password'>Reset_Password</h2>
-<p><a id="opIdReset_Password"></a></p>
+<h2 id='reset-password-email'>Reset Password Email</h2>
+<p><a id="opIdReset Password Email"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -16155,7 +16132,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
   </span><span class="nl">"redirect_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api-stg3.snapchance.no/reset_password"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="reset_password-parameters">Parameters</h3>
+<h3 id="reset-password-email-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -16231,7 +16208,12 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="reset_password-responses">Responses</h3>
+<blockquote>
+<p>401 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="reset-password-email-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -16256,8 +16238,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>None</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -16267,7 +16249,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
 </tr>
 </tbody></table>
 
-<h3 id="reset_password-responseschema">Response Schema</h3>
+<h3 id="reset-password-email-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -16412,8 +16394,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='password_updated_through_email'>Password_updated_through_Email</h2>
-<p><a id="opIdPassword_updated_through_Email"></a></p>
+<h2 id='reset-password'>Reset Password</h2>
+<p><a id="opIdReset Password"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -16558,7 +16540,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password_re
   </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="password_updated_through_email-parameters">Parameters</h3>
+<h3 id="reset-password-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -16606,7 +16588,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password_re
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="password_updated_through_email-responses">Responses</h3>
+<h3 id="reset-password-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -16636,7 +16618,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password_re
 </tr>
 </tbody></table>
 
-<h3 id="password_updated_through_email-responseschema">Response Schema</h3>
+<h3 id="reset-password-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -16646,8 +16628,8 @@ bearerAuth
 <h1 id="snapchance-photos">Photos</h1>
 
 <p>Uploading photos</p>
-<h2 id='add_photo'>Add_Photo</h2>
-<p><a id="opIdAdd_Photo"></a></p>
+<h2 id='add-photo'>Add Photo</h2>
+<p><a id="opIdAdd Photo"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -16781,7 +16763,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/photos <span
 </code></pre></div>
 <p><code>POST /photos</code></p>
 
-<p>This Endpoint is used to append a photo for the ticket.</p>
+<p>This Endpoint is used to upload a photo that can be used to purchase entries into the drawing.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -16789,7 +16771,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/photos <span
 <div class="highlight"><pre class="highlight yaml tab-yaml"><code><span class="na">image</span><span class="pi">:</span> <span class="s">string</span>
 
 </code></pre></div>
-<h3 id="add_photo-parameters">Parameters</h3>
+<h3 id="add-photo-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -16840,13 +16822,11 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/photos <span
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="add_photo-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="add-photo-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -16871,8 +16851,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/photos <span
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -16888,14 +16868,14 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/photos <span
 </tr>
 </tbody></table>
 
-<h3 id="add_photo-responseschema">Response Schema</h3>
+<h3 id="add-photo-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='retrieve_photos'>Retrieve_Photos</h2>
-<p><a id="opIdRetrieve_Photos"></a></p>
+<h2 id='list-photos'>List Photos</h2>
+<p><a id="opIdList Photos"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -17066,7 +17046,12 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/photos <span 
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="retrieve_photos-responses">Responses</h3>
+<blockquote>
+<p>401 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="list-photos-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -17091,8 +17076,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/photos <span 
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>None</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -17102,7 +17087,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/photos <span 
 </tr>
 </tbody></table>
 
-<h3 id="retrieve_photos-responseschema">Response Schema</h3>
+<h3 id="list-photos-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
@@ -17170,24 +17155,24 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/photos <span 
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='delete_photo'>Delete_Photo</h2>
-<p><a id="opIdDelete_Photo"></a></p>
+<h2 id='delete-photo'>Delete Photo</h2>
+<p><a id="opIdDelete Photo"></a></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
 curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<span class="o">{</span><span class="nb">id</span><span class="o">}</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: text/plain'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer {access-token}'</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://api-stg3.snapchance.no/photos/{id}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api-stg3.snapchance.no</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/plain</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">text/plain</span><span class="dl">'</span><span class="p">,</span>
   <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">Bearer {access-token}</span><span class="dl">'</span>
 <span class="p">};</span>
 
@@ -17207,7 +17192,7 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 <span class="nb">require</span> <span class="s1">'json'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+  <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
   <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -17219,7 +17204,7 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'text/plain'</span><span class="p">,</span>
   <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
@@ -17232,7 +17217,7 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 <span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'Accept'</span> <span class="o">=&gt;</span> <span class="s1">'text/plain'</span><span class="p">,</span>
     <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span><span class="p">,</span>
 <span class="p">);</span>
 
@@ -17280,7 +17265,7 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 <span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="n">headers</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span><span class="p">{</span>
-        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"application/json"</span><span class="p">},</span>
+        <span class="s">"Accept"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"text/plain"</span><span class="p">},</span>
         <span class="s">"Authorization"</span><span class="o">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"Bearer {access-token}"</span><span class="p">},</span>
     <span class="p">}</span>
 
@@ -17298,7 +17283,7 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 
 <p>This endpoint is to delete the photos</p>
 
-<h3 id="delete_photo-parameters">Parameters</h3>
+<h3 id="delete-photo-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -17321,13 +17306,11 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 <blockquote>
 <p>Example responses</p>
 
-<p>Unauthorized</p>
+<p>401 Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"HTTP Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access denied."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="delete_photo-responses">Responses</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
+</code></pre></div>
+<h3 id="delete-photo-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -17346,8 +17329,8 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 <tr>
 <td>401</td>
 <td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Unauthorized</td>
-<td>Inline</td>
+<td>Authentication information is missing or invalid</td>
+<td>string</td>
 </tr>
 <tr>
 <td>404</td>
@@ -17362,8 +17345,6 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 <td>None</td>
 </tr>
 </tbody></table>
-
-<h3 id="delete_photo-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
