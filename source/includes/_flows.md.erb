@@ -6,4 +6,54 @@
 
 ## Ticket Purchase
 
+To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:
+
+### Pre-requisites
+
+### 1. [Get Photos](#list-photos) / [Create Photos](#add-photo) (required)
+
+The user is required to have an existing photo db entry
+
+**Relevant data:**  
+
+- A GET request to `/photos` returns an array of photo objects, each of which have property `id`.  
+or  
+- A POST request to `/photos` returns a photo object with property `id`.
+
+### 2. [Get Player Drawings](#player-drawings) (required)
+
+The current drawing id is required to purchase tickets in the current drawing (the only drawing in which ticket purchases are allowed).  
+The ticket price for the current drawing is required, which is provided by the player drawings query
+
+**Relevant data:**   
+
+- A GET request to `/player/drawings` returns an array containing two objects: the previous drawing (one before the current, index 0) and current drawing (index 1).
+- The current drawing id is extracted using the `id` property from the current drawing object.
+- The ticket price for the current drawing is extracted using the `ticket_price` property from the current drawing object.
+
+### 3. [Get Balance](#get-wallet-balance) (optional)
+
+The user is required to have a positive wallet balance that exceeds or equals the number of tickets being purchased multiplied by the ticket price.
+
+**Relevant data:**  
+
+- A GET request to `/wallet/balance` returns an object with property `balance` as the current balance for an authenticated user.
+
+### 4. [Get Profile](#get-profile) / [Transactions](#get-wallet-transactions) (optional)
+
+The user is required to have a `daily_loss_limit` that is greater than or equal to the aggregate of (a) the amount spent in the previous 24 hours and (b) the number of tickets being purchased multiplied by the ticket price.  
+The user is required to have a `weekly_loss_limit` that is greater than or equal to the aggregate of (a) the amount spent in the previous 7 days and (b) the number of tickets being purchased multiplied by the ticket price.  
+The amount spent must be calculated using the aggregate of all transaction amounts that fall within the respective date range, not including transactions of type `deposit` or `withdrawal`.  
+
+**Relevant data:**  
+
+- A GET request to `/profile` returns an player object that includes properties `daily_loss_limit` and `weekly_loss_limit`.
+- A GET request to `/wallet/transactions` returns a paginated array of transactions, each of which include properties `amount`, `type` and `created_at`.
+
+### Request
+
+**[Create Entries](#purchase-entries)**  
+
+After all the pre-requisites are satisfied, a request to the `/drawings/:drawing_id/entries` is made using the photo ID as `photo_id` param and number of tickets purchased as `tickets_count`.
+
 ## Cash Out
