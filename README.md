@@ -15,6 +15,7 @@ widdershins ../fotolotto-snapchance-api/public/apiDocs.yaml -o source/index.html
 ## Run locally
 
 ```
+bundle install
 bundle exec middleman server
 ```
 
@@ -22,5 +23,4 @@ bundle exec middleman server
 ```
 ./deploy.sh
 ```
-
 
