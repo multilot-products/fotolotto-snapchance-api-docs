@@ -14,7 +14,6 @@ toc_footers:
 search: true
 highlight_theme: darkula
 headingLevel: 2
-
 ---
 
 <!-- Generator: Widdershins v4.0.1 -->
@@ -40,8 +39,6 @@ Base URLs:
 
 Web: <a href="https://snapchance.no">SnapChance</a>
 
-<%= partial "includes/flows.md.erb" %>
-
 # Authentication
 
 - HTTP Authentication, scheme: bearer The SnapChance API offers JWT (JSON Web Token) Authentication. JWT is a short lifetime token that is generated and returned when the player authenticates to the SnapChance API.  Players can obtain a JWT token by providing valid credentials (emailId and password) to /session endpoint. The token has a specific expiration time.
@@ -53,9 +50,13 @@ Web: <a href="https://snapchance.no">SnapChance</a>
 
 The valid JWT token must be supplied as part of the header to access API's all other endpoints.
 
+<%= partial "includes/flows.md.erb" %>
+
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
-  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
+  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'
+</pre>
+
 
 <h1 id="snapchance-player">Player</h1>
 
