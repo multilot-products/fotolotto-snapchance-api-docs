@@ -553,23 +553,40 @@
 
 The valid JWT token must be supplied as part of the header to access API's all other endpoints.
 
-<h1 id='flows'>Flows</h1><h2 id='registration'>Registration</h2><h2 id='wallet-funding'>Wallet Funding</h2><h2 id='ticket-purchase'>Ticket Purchase</h2>
+<h1 id='flows'>Flows</h1><h2 id='registration'>Registration</h2>
+<p>Registration is dependent on a 3rd party integration with Norwegian <a href="https://www.nets.eu/developer/e-ident/Getstarted/Pages/default.aspx">BankID</a> run by NETS.</p>
+
+<p>A player registration flow could look something like the following flow diagram:</p>
+
+<p><img src="images/snapchance-registration-68f05de8.jpg" alt="" /></p>
+
+<p>The following configuration is required</p>
+
+<ol>
+<li>Configure a URL for BankID to redirect back to.  Email NETS BankID Support at <a href="mailto:support.esecurity@nets.eu">support.esecurity@nets.eu</a> to add the redirect domain to their allow list</li>
+<li>Request your BankID client ID from multilot support</li>
+<li>Direct the user to https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&amp;response_type=code&amp;scope=openid%20profile%20ssn&amp;state={UUID}&amp;nonce={UUID}&amp;redirect_uri={REDIRECT_BACK_TO_YOUR_APP}</li>
+<li>The redirect will include a query parameter <code>code</code> in JSON Web Token (JWT) format</li>
+<li>That code should be passed to the API endpoint <a href="#create-player">POST /players</a></li>
+<li>POST to <code>/players</code> will return a token and player object.  That player object can then be updated from user input and then passed to the <a href="#activate-player">POST /activate</a> endpoint</li>
+</ol>
+<h2 id='wallet-funding'>Wallet Funding</h2><h2 id='ticket-purchase'>Ticket Purchase</h2>
 <p>To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:</p>
 <h3 id='pre-requisites'>Pre-requisites</h3><h3 id='1-get-photos-create-photos-required'>1. <a href="#list-photos">Get Photos</a> / <a href="#add-photo">Create Photos</a> (required)</h3>
 <p>The user is required to have an existing photo db entry</p>
 
-<p><strong>Relevant data:</strong>  </p>
+<p><strong>Relevant data:</strong></p>
 
 <ul>
-<li>A GET request to <code>/photos</code> returns an array of photo objects, each of which have property <code>id</code>.<br>
-or<br></li>
+<li>A GET request to <code>/photos</code> returns an array of photo objects, each of which have property <code>id</code>.
+or</li>
 <li>A POST request to <code>/photos</code> returns a photo object with property <code>id</code>.</li>
 </ul>
 <h3 id='2-get-player-drawings-required'>2. <a href="#player-drawings">Get Player Drawings</a> (required)</h3>
-<p>The current drawing id is required to purchase tickets in the current drawing (the only drawing in which ticket purchases are allowed).<br>
+<p>The current drawing id is required to purchase tickets in the current drawing (the only drawing in which ticket purchases are allowed).
 The ticket price for the current drawing is required, which is provided by the player drawings query</p>
 
-<p><strong>Relevant data:</strong>   </p>
+<p><strong>Relevant data:</strong></p>
 
 <ul>
 <li>A GET request to <code>/player/drawings</code> returns an array containing two objects: the previous drawing (one before the current, index 0) and current drawing (index 1).</li>
@@ -579,24 +596,24 @@ The ticket price for the current drawing is required, which is provided by the p
 <h3 id='3-get-balance-optional'>3. <a href="#get-wallet-balance">Get Balance</a> (optional)</h3>
 <p>The user is required to have a positive wallet balance that exceeds or equals the number of tickets being purchased multiplied by the ticket price.</p>
 
-<p><strong>Relevant data:</strong>  </p>
+<p><strong>Relevant data:</strong></p>
 
 <ul>
 <li>A GET request to <code>/wallet/balance</code> returns an object with property <code>balance</code> as the current balance for an authenticated user.</li>
 </ul>
 <h3 id='4-get-profile-transactions-optional'>4. <a href="#get-profile">Get Profile</a> / <a href="#get-wallet-transactions">Transactions</a> (optional)</h3>
-<p>The user is required to have a <code>daily_loss_limit</code> that is greater than or equal to the aggregate of (a) the amount spent in the previous 24 hours and (b) the number of tickets being purchased multiplied by the ticket price.<br>
-The user is required to have a <code>weekly_loss_limit</code> that is greater than or equal to the aggregate of (a) the amount spent in the previous 7 days and (b) the number of tickets being purchased multiplied by the ticket price.<br>
-The amount spent must be calculated using the aggregate of all transaction amounts that fall within the respective date range, not including transactions of type <code>deposit</code> or <code>withdrawal</code>.  </p>
+<p>The user is required to have a <code>daily_loss_limit</code> that is greater than or equal to the aggregate of (a) the amount spent in the previous 24 hours and (b) the number of tickets being purchased multiplied by the ticket price.
+The user is required to have a <code>weekly_loss_limit</code> that is greater than or equal to the aggregate of (a) the amount spent in the previous 7 days and (b) the number of tickets being purchased multiplied by the ticket price.
+The amount spent must be calculated using the aggregate of all transaction amounts that fall within the respective date range, not including transactions of type <code>deposit</code> or <code>withdrawal</code>.</p>
 
-<p><strong>Relevant data:</strong>  </p>
+<p><strong>Relevant data:</strong></p>
 
 <ul>
 <li>A GET request to <code>/profile</code> returns an player object that includes properties <code>daily_loss_limit</code> and <code>weekly_loss_limit</code>.</li>
 <li>A GET request to <code>/wallet/transactions</code> returns a paginated array of transactions, each of which include properties <code>amount</code>, <code>type</code> and <code>created_at</code>.</li>
 </ul>
 <h3 id='request'>Request</h3>
-<p><strong><a href="#purchase-entries">Create Entries</a></strong>  </p>
+<p><strong><a href="#purchase-entries">Create Entries</a></strong></p>
 
 <p>After all the pre-requisites are satisfied, a request to the <code>/drawings/:drawing_id/entries</code> is made using the photo ID as <code>photo_id</code> param and number of tickets purchased as <code>tickets_count</code>.</p>
 <h2 id='cash-out'>Cash Out</h2>
