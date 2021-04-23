@@ -1,0 +1,20 @@
+{
+  "name": "fotolotto-snapchance-api-docs",
+  "version": "1.0.0",
+  "description": "Documentation for the multilot application platform",
+  "main": "scripts/convertSwaggerToMarkdown.js",
+  "scripts": {
+    "convert" : "node scripts/convertSwaggerToMarkdown"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multilot-products/fotolotto-snapchance-api-docs.git"
+  },
+  "author": "Unity Technologies",
+  "homepage": "https://multilot-products.github.io/fotolotto-snapchance-api-docs",
+
+  "dependencies": {
+    "widdershins": "^4.0.1",
+    "yaml": "^1.10.2"
+  }
+}

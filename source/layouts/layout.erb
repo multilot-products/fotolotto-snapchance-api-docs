@@ -14,11 +14,13 @@ License for the specific language governing permissions and limitations
 under the License.
 %>
 <% language_tabs = current_page.data.language_tabs || [] %>
-<% page_content = yield %>
+<% api_content = yield %>
+
 <%
+  include_content = ''
   if current_page.data.includes
     current_page.data.includes.each do |include|
-      page_content += partial("includes/#{include}")
+      include_content += partial("includes/#{include}")
     end
   end
 %>
@@ -83,7 +85,24 @@ under the License.
         <ul class="search-results"></ul>
       <% end %>
       <ul id="toc" class="toc-list-h1">
-        <% toc_data(page_content).each do |h1| %>
+        <% toc_data(include_content).each do |h1| %>
+          <li>
+            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
+            <% if h1[:children].length > 0 %>
+              <ul class="toc-list-h2">
+                <% h1[:children].each do |h2| %>
+                  <li>
+                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </li>
+        <% end %>
+        <li>
+          <span class="toc-divider">Endpoints</span>
+        </li>
+        <% toc_data(api_content).drop(1).each do |h1| %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>
@@ -109,7 +128,8 @@ under the License.
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <%= page_content %>
+        <%= include_content %>
+        <%= api_content %>
       </div>
       <div class="dark-box">
         <% if language_tabs.any? %>
