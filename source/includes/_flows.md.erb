@@ -41,7 +41,7 @@ In order to add funds to a wallet, 2 requests are required as well as a redirect
 
 ### 1. [Create Deposit](#deposit)
 
-To create a pending deposit, a POST request needs to be made to `/wallet/deposits` with params `amount` for units of a particular currency, and `redirect_url`, which NETS will redirect to once the payment is completed or canceled.  
+To create a pending deposit, a POST request needs to be made to `/wallet/deposits` with params `amount` for units of currency associated with the authenticated user, and `redirect_url`, which NETS will redirect to once the payment is completed or canceled.  
 
 ### 2. Complete NETS payment
 
@@ -52,7 +52,7 @@ The response for the create deposit request will return a `redirect_url` of its 
 Upon completing the NETS payment process, NETS will redirect the user to the original `redirect_url` provided in the create deposit request.  That redirect url will be appended with 3 query params:
 
 * `deposit_id` The ID of the pending deposit
-* `responseCode` The text status of the deposit (options are `OK` or `Cancel`)
+* `responseCode` The text status of the deposit (options include `OK`, `Cancel`)
 * `callback_url` The `redirect_url` param from the deposits POST request
 
 If the query param `responseCode` is `OK`, we can verify the deposit by making a PATCH request to `/wallet/deposits/:deposit_id` using the `deposit_id` query param.  This request will verify the deposit with NETS, and update the deposit status to `complete`, as well as the user's wallet balance.
@@ -123,3 +123,19 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 After all the pre-requisites are satisfied, a request to the `/drawings/:drawing_id/entries` is made using the photo ID as `photo_id` param and number of tickets purchased as `tickets_count`.
 
 ## Cash Out
+
+### Pre-requisites
+
+### [Get Balance](#get-wallet-balance) (optional)
+
+The user is required to have a positive wallet balance that exceeds or equals the withdrawal amount.
+
+**Relevant data:**
+
+* A GET request to `/wallet/balance` returns an object with property `balance` as the current balance for an authenticated user.
+
+### Process
+
+[Withdrawal](#withdraw-from-wallet)
+
+To create a withdrawal, a POST request needs to be made to `/wallet/withdrawals` with param `amount` for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user's wallet and update the wallet balance.
