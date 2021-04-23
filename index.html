@@ -561,7 +561,7 @@ The valid JWT token must be supplied as part of the header to access API's all o
 
 <p>A player registration flow could look something like the following flow diagram:</p>
 
-<p><img src="images/images/snapchance-registration.png" alt="" /></p>
+<p><img src="images/snapchance-registration-68f05de8.jpg" alt="" /></p>
 <h3 id='pre-requistes'>Pre-requistes</h3><h3 id='1-redirect-url'>1. Redirect URL</h3>
 <ul>
 <li>Create a URL that BankID can redirect back to after a player successfully logs in to BankID</li>
@@ -580,13 +580,34 @@ The valid JWT token must be supplied as part of the header to access API's all o
 <li>The client can collect additional information from the player.</li>
 <li>That player object can then be sent to the <a href="#activate-player">POST /activate</a> endpoint.  This will complete the registration flow.</li>
 </ol>
-<h2 id='wallet-funding'>Wallet Funding</h2><h2 id='creating-lotteries-and-drawings'>Creating Lotteries and Drawings</h2>
+<h2 id='wallet-funding'>Wallet Funding</h2><h3 id='pre-requistes-2'>Pre-requistes</h3><h3 id='redirect-url'>Redirect URL</h3>
+<ul>
+<li>Create a URL that BankID can redirect back to after a player successfully logs in to BankID</li>
+<li>Email NETS BankID Support at <a href="mailto:support.esecurity@nets.eu">support.esecurity@nets.eu</a> to add the redirect domain to their allow list</li>
+</ul>
+<h3 id='process-2'>Process</h3>
+<p>In order to add funds to a wallet, 2 requests are required as well as a redirect to and from the NETS.</p>
+<h3 id='1-create-deposit'>1. <a href="#deposit">Create Deposit</a></h3>
+<p>To create a pending deposit, a POST request needs to be made to <code>/wallet/deposits</code> with params <code>amount</code> for units of currency associated with the authenticated user, and <code>redirect_url</code>, which NETS will redirect to once the payment is completed or canceled.  </p>
+<h3 id='2-complete-nets-payment'>2. Complete NETS payment</h3>
+<p>The response for the create deposit request will return a <code>redirect_url</code> of its own.  The user must be redirected to this NETS url, where they may make a payment using credit card information.</p>
+<h3 id='3-verify-deposit'>3. Verify Deposit</h3>
+<p>Upon completing the NETS payment process, NETS will redirect the user to the original <code>redirect_url</code> provided in the create deposit request.  That redirect url will be appended with 3 query params:</p>
+
+<ul>
+<li><code>deposit_id</code> The ID of the pending deposit</li>
+<li><code>responseCode</code> The text status of the deposit (options include <code>OK</code>, <code>Cancel</code>)</li>
+<li><code>callback_url</code> The <code>redirect_url</code> param from the deposits POST request</li>
+</ul>
+
+<p>If the query param <code>responseCode</code> is <code>OK</code>, we can verify the deposit by making a PATCH request to <code>/wallet/deposits/:deposit_id</code> using the <code>deposit_id</code> query param.  This request will verify the deposit with NETS, and update the deposit status to <code>complete</code>, as well as the user&#39;s wallet balance.</p>
+<h2 id='creating-lotteries-and-drawings'>Creating Lotteries and Drawings</h2>
 <p>Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.</p>
 
 <aside class="warning">
 SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
 </aside>
-<h3 id='process-2'>Process</h3>
+<h3 id='process-3'>Process</h3>
 <p><img src="images/images/snapchance-admin.jpg" alt="" /></p>
 <h2 id='ticket-purchase'>Ticket Purchase</h2>
 <p>To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:</p>
@@ -630,11 +651,23 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 <li>A GET request to <code>/profile</code> returns an player object that includes properties <code>daily_loss_limit</code> and <code>weekly_loss_limit</code>.</li>
 <li>A GET request to <code>/wallet/transactions</code> returns a paginated array of transactions, each of which include properties <code>amount</code>, <code>type</code> and <code>created_at</code>.</li>
 </ul>
-<h3 id='request'>Request</h3>
+<h3 id='process-4'>Process</h3>
 <p><strong><a href="#purchase-entries">Create Entries</a></strong></p>
 
 <p>After all the pre-requisites are satisfied, a request to the <code>/drawings/:drawing_id/entries</code> is made using the photo ID as <code>photo_id</code> param and number of tickets purchased as <code>tickets_count</code>.</p>
-<h2 id='cash-out'>Cash Out</h2>
+<h2 id='cash-out'>Cash Out</h2><h3 id='pre-requisites-2'>Pre-requisites</h3><h3 id='get-balance-optional'><a href="#get-wallet-balance">Get Balance</a> (optional)</h3>
+<p>The user is required to have a positive wallet balance that exceeds or equals the withdrawal amount.</p>
+
+<p><strong>Relevant data:</strong></p>
+
+<ul>
+<li>A GET request to <code>/wallet/balance</code> returns an object with property <code>balance</code> as the current balance for an authenticated user.</li>
+</ul>
+<h3 id='process-5'>Process</h3>
+<p><a href="#withdraw-from-wallet">Withdrawal</a></p>
+
+<p>To create a withdrawal, a POST request needs to be made to <code>/wallet/withdrawals</code> with param <code>amount</code> for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user&#39;s wallet and update the wallet balance.</p>
+
 
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
