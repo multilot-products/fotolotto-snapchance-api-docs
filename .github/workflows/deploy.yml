@@ -11,7 +11,7 @@ jobs:
       ruby-version: 3.0
 
     steps:
-    - uses: actions/cheackout@v2
+    - uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
