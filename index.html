@@ -338,7 +338,7 @@
                     <a href="#ticket-purchase" class="toc-h2 toc-link" data-title="Ticket Purchase">Ticket Purchase</a>
                   </li>
                   <li>
-                    <a href="#cash-out" class="toc-h2 toc-link" data-title="Cash Out">Cash Out</a>
+                    <a href="#payout" class="toc-h2 toc-link" data-title="Payout">Payout</a>
                   </li>
               </ul>
           </li>
@@ -571,16 +571,24 @@ The valid JWT token must be supplied as part of the header to access API's all o
 <ul>
 <li>The client ID is required when you direct the player to BankIDs login portal</li>
 </ul>
-<h3 id='process'>Process</h3>
-<ol>
+<h3 id='process'>Process</h3><h3 id='1-redirect-to-and-from-nets'>1. Redirect to and from NETS</h3>
+<ul>
 <li>Direct the user to the BankID login portal at https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&amp;response_type=code&amp;scope=openid%20profile%20ssn&amp;state={UUID}&amp;nonce={UUID}&amp;redirect_uri={REDIRECT_BACK_TO_YOUR_APP}</li>
 <li>After the player successfully logs in to BankID, BankID will redirect them to the URL provide in the redirect_uri query parameter</li>
 <li>BankID will append a query parameter <code>code</code> when redirected.  The code will be in JSON Web Token (JWT) format</li>
-<li>That code should be passed in the request body to the API endpoint <a href="#create-player">POST /players</a>, which will return a token and player object.</li>
-<li>The client can collect additional information from the player.</li>
-<li>That player object can then be sent to the <a href="#activate-player">POST /activate</a> endpoint.  This will complete the registration flow.</li>
-</ol>
-<h2 id='wallet-funding'>Wallet Funding</h2><h3 id='pre-requistes-2'>Pre-requistes</h3><h3 id='redirect-url'>Redirect URL</h3>
+</ul>
+<h3 id='2-create-player'>2. <a href="#create-player">Create Player</a></h3>
+<p>The query param <code>code</code> should be passed in a POST request body to the API endpoint <code>/players</code>, which will return an authentication token and player object.</p>
+<h3 id='3-activate-player'>3. <a href="#activate-player">Activate Player</a></h3>
+<ul>
+<li>The client can collect additional information from the player in the UI to add to their <a href="#tocS_player">profile</a>.</li>
+<li>The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request <code>/activate</code> endpoint.  This will complete the registration flow. </li>
+</ul>
+<h2 id='wallet-funding'>Wallet Funding</h2>
+<p>A player add funds flow could look something like the following flow diagram:</p>
+
+<p><img src="images/snapchance-add-funds-4a281163.jpg" alt="" /></p>
+<h3 id='pre-requistes-2'>Pre-requistes</h3><h3 id='redirect-url'>Redirect URL</h3>
 <ul>
 <li>Create a URL that BankID can redirect back to after a player successfully logs in to BankID</li>
 <li>Email NETS BankID Support at <a href="mailto:support.esecurity@nets.eu">support.esecurity@nets.eu</a> to add the redirect domain to their allow list</li>
@@ -591,7 +599,7 @@ The valid JWT token must be supplied as part of the header to access API's all o
 <p>To create a pending deposit, a POST request needs to be made to <code>/wallet/deposits</code> with params <code>amount</code> for units of currency associated with the authenticated user, and <code>redirect_url</code>, which NETS will redirect to once the payment is completed or canceled.  </p>
 <h3 id='2-complete-nets-payment'>2. Complete NETS payment</h3>
 <p>The response for the create deposit request will return a <code>redirect_url</code> of its own.  The user must be redirected to this NETS url, where they may make a payment using credit card information.</p>
-<h3 id='3-verify-deposit'>3. Verify Deposit</h3>
+<h3 id='3-verify-deposit'>3. <a href="#verify-deposit">Verify Deposit</a></h3>
 <p>Upon completing the NETS payment process, NETS will redirect the user to the original <code>redirect_url</code> provided in the create deposit request.  That redirect url will be appended with 3 query params:</p>
 
 <ul>
@@ -608,8 +616,12 @@ The valid JWT token must be supplied as part of the header to access API's all o
 SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
 </aside>
 <h3 id='process-3'>Process</h3>
-<p><img src="images/images/snapchance-admin.jpg" alt="" /></p>
+<p><img src="images/snapchance-admin-b4873e1b.png" alt="" /></p>
 <h2 id='ticket-purchase'>Ticket Purchase</h2>
+<p>A player ticket purchase flow could look something like the following flow diagram:</p>
+
+<p><img src="images/snapchance-ticket-purchase-975eb414.jpg" alt="" /></p>
+
 <p>To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:</p>
 <h3 id='pre-requisites'>Pre-requisites</h3><h3 id='1-get-photos-create-photos-required'>1. <a href="#list-photos">Get Photos</a> / <a href="#add-photo">Create Photos</a> (required)</h3>
 <p>The user is required to have an existing photo db entry</p>
@@ -655,7 +667,11 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 <p><strong><a href="#purchase-entries">Create Entries</a></strong></p>
 
 <p>After all the pre-requisites are satisfied, a request to the <code>/drawings/:drawing_id/entries</code> is made using the photo ID as <code>photo_id</code> param and number of tickets purchased as <code>tickets_count</code>.</p>
-<h2 id='cash-out'>Cash Out</h2><h3 id='pre-requisites-2'>Pre-requisites</h3><h3 id='get-balance-optional'><a href="#get-wallet-balance">Get Balance</a> (optional)</h3>
+<h2 id='payout'>Payout</h2>
+<p>A player payout flow could look something like the following flow diagram:</p>
+
+<p><img src="images/snapchance-payout-93a57af7.jpg" alt="" /></p>
+<h3 id='pre-requisites-2'>Pre-requisites</h3><h3 id='1-get-balance-optional'>1. <a href="#get-wallet-balance">Get Balance</a> (optional)</h3>
 <p>The user is required to have a positive wallet balance that exceeds or equals the withdrawal amount.</p>
 
 <p><strong>Relevant data:</strong></p>
@@ -663,10 +679,18 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 <ul>
 <li>A GET request to <code>/wallet/balance</code> returns an object with property <code>balance</code> as the current balance for an authenticated user.</li>
 </ul>
+<h3 id='2-get-profile-optional'>2. <a href="#get-profile">Get Profile</a> (optional)</h3>
+<p>The user is required to have a valid bank account number as part of their profile.</p>
+
+<p><strong>Relevant data:</strong></p>
+
+<ul>
+<li>A GET request to <code>/profile</code> returns an player object that includes property <code>bank_account_number</code>, which may be a string or null.</li>
+</ul>
 <h3 id='process-5'>Process</h3>
 <p><a href="#withdraw-from-wallet">Withdrawal</a></p>
 
-<p>To create a withdrawal, a POST request needs to be made to <code>/wallet/withdrawals</code> with param <code>amount</code> for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user&#39;s wallet and update the wallet balance.</p>
+<p>To create a withdrawal, a POST request needs to be made to <code>/wallet/withdrawals</code> with param <code>amount</code> for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user&#39;s wallet and update the wallet balance.  The user will then receive an email notification regarding their pending bank transfer to the bank account number they provided to their profile.</p>
 
 
 <pre>curl --request GET \
