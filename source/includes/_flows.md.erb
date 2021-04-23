@@ -20,14 +20,26 @@ A player registration flow could look something like the following flow diagram:
 
 ### Process
 
-1. Direct the user to the BankID login portal at https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&response_type=code&scope=openid%20profile%20ssn&state={UUID}&nonce={UUID}&redirect_uri={REDIRECT_BACK_TO_YOUR_APP}
-1. After the player successfully logs in to BankID, BankID will redirect them to the URL provide in the redirect_uri query parameter
-1. BankID will append a query parameter `code` when redirected.  The code will be in JSON Web Token (JWT) format
-1. That code should be passed in the request body to the API endpoint [POST /players](#create-player), which will return a token and player object.
-1. The client can collect additional information from the player.
-1. That player object can then be sent to the [POST /activate](#activate-player) endpoint.  This will complete the registration flow.
+### 1. Redirect to and from NETS
+
+* Direct the user to the BankID login portal at https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&response_type=code&scope=openid%20profile%20ssn&state={UUID}&nonce={UUID}&redirect_uri={REDIRECT_BACK_TO_YOUR_APP}
+* After the player successfully logs in to BankID, BankID will redirect them to the URL provide in the redirect_uri query parameter
+* BankID will append a query parameter `code` when redirected.  The code will be in JSON Web Token (JWT) format
+
+### 2. [Create Player](#create-player)
+
+The query param `code` should be passed in a POST request body to the API endpoint `/players`, which will return an authentication token and player object.
+
+### 3. [Activate Player](#activate-player)
+
+* The client can collect additional information from the player in the UI to add to their [profile](#tocS_player).
+* The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request `/activate` endpoint.  This will complete the registration flow. 
 
 ## Wallet Funding
+
+A player add funds flow could look something like the following flow diagram:
+
+<%= image_tag "images/snapchance-add-funds.jpg" %>
 
 ### Pre-requistes
 ### Redirect URL
@@ -47,7 +59,7 @@ To create a pending deposit, a POST request needs to be made to `/wallet/deposit
 
 The response for the create deposit request will return a `redirect_url` of its own.  The user must be redirected to this NETS url, where they may make a payment using credit card information.
 
-### 3. Verify Deposit
+### 3. [Verify Deposit](#verify-deposit)
 
 Upon completing the NETS payment process, NETS will redirect the user to the original `redirect_url` provided in the create deposit request.  That redirect url will be appended with 3 query params:
 
@@ -71,6 +83,10 @@ SnapChance currently only supports running a single lottery and a single active 
 
 
 ## Ticket Purchase
+
+A player ticket purchase flow could look something like the following flow diagram:
+
+<%= image_tag "images/snapchance-ticket-purchase.jpg" %>
 
 To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:
 
@@ -122,11 +138,15 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 
 After all the pre-requisites are satisfied, a request to the `/drawings/:drawing_id/entries` is made using the photo ID as `photo_id` param and number of tickets purchased as `tickets_count`.
 
-## Cash Out
+## Payout
+
+A player payout flow could look something like the following flow diagram:
+
+<%= image_tag "images/snapchance-payout.jpg" %>
 
 ### Pre-requisites
 
-### [Get Balance](#get-wallet-balance) (optional)
+### 1. [Get Balance](#get-wallet-balance) (optional)
 
 The user is required to have a positive wallet balance that exceeds or equals the withdrawal amount.
 
@@ -134,8 +154,16 @@ The user is required to have a positive wallet balance that exceeds or equals th
 
 * A GET request to `/wallet/balance` returns an object with property `balance` as the current balance for an authenticated user.
 
+### 2. [Get Profile](#get-profile) (optional)
+
+The user is required to have a valid bank account number as part of their profile.
+
+**Relevant data:**
+
+* A GET request to `/profile` returns an player object that includes property `bank_account_number`, which may be a string or null.
+
 ### Process
 
 [Withdrawal](#withdraw-from-wallet)
 
-To create a withdrawal, a POST request needs to be made to `/wallet/withdrawals` with param `amount` for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user's wallet and update the wallet balance.
+To create a withdrawal, a POST request needs to be made to `/wallet/withdrawals` with param `amount` for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user's wallet and update the wallet balance.  The user will then receive an email notification regarding their pending bank transfer to the bank account number they provided to their profile.
