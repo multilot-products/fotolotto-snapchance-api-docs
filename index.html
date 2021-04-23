@@ -332,6 +332,9 @@
                     <a href="#wallet-funding" class="toc-h2 toc-link" data-title="Wallet Funding">Wallet Funding</a>
                   </li>
                   <li>
+                    <a href="#creating-lotteries-and-drawings" class="toc-h2 toc-link" data-title="Creating Lotteries and Drawings">Creating Lotteries and Drawings</a>
+                  </li>
+                  <li>
                     <a href="#ticket-purchase" class="toc-h2 toc-link" data-title="Ticket Purchase">Ticket Purchase</a>
                   </li>
                   <li>
@@ -559,18 +562,33 @@ The valid JWT token must be supplied as part of the header to access API's all o
 <p>A player registration flow could look something like the following flow diagram:</p>
 
 <p><img src="images/snapchance-registration-68f05de8.jpg" alt="" /></p>
-
-<p>The following configuration is required</p>
-
+<h3 id='pre-requistes'>Pre-requistes</h3><h3 id='1-redirect-url'>1. Redirect URL</h3>
+<ul>
+<li>Create a URL that BankID can redirect back to after a player successfully logs in to BankID</li>
+<li>Email NETS BankID Support at <a href="mailto:support.esecurity@nets.eu">support.esecurity@nets.eu</a> to add the redirect domain to their allow list</li>
+</ul>
+<h3 id='2-request-your-bankid-client-id-from-multilot-support'>2. Request your BankID client ID from Multilot support</h3>
+<ul>
+<li>The client ID is required when you direct the player to BankIDs login portal</li>
+</ul>
+<h3 id='process'>Process</h3>
 <ol>
-<li>Configure a URL for BankID to redirect back to.  Email NETS BankID Support at <a href="mailto:support.esecurity@nets.eu">support.esecurity@nets.eu</a> to add the redirect domain to their allow list</li>
-<li>Request your BankID client ID from multilot support</li>
-<li>Direct the user to https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&amp;response_type=code&amp;scope=openid%20profile%20ssn&amp;state={UUID}&amp;nonce={UUID}&amp;redirect_uri={REDIRECT_BACK_TO_YOUR_APP}</li>
-<li>The redirect will include a query parameter <code>code</code> in JSON Web Token (JWT) format</li>
-<li>That code should be passed to the API endpoint <a href="#create-player">POST /players</a></li>
-<li>POST to <code>/players</code> will return a token and player object.  That player object can then be updated from user input and then passed to the <a href="#activate-player">POST /activate</a> endpoint</li>
+<li>Direct the user to the BankID login portal at https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&amp;response_type=code&amp;scope=openid%20profile%20ssn&amp;state={UUID}&amp;nonce={UUID}&amp;redirect_uri={REDIRECT_BACK_TO_YOUR_APP}</li>
+<li>After the player successfully logs in to BankID, BankID will redirect them to the URL provide in the redirect_uri query parameter</li>
+<li>BankID will append a query parameter <code>code</code> when redirected.  The code will be in JSON Web Token (JWT) format</li>
+<li>That code should be passed in the request body to the API endpoint <a href="#create-player">POST /players</a>, which will return a token and player object.</li>
+<li>The client can collect additional information from the player.</li>
+<li>That player object can then be sent to the <a href="#activate-player">POST /activate</a> endpoint.  This will complete the registration flow.</li>
 </ol>
-<h2 id='wallet-funding'>Wallet Funding</h2><h2 id='ticket-purchase'>Ticket Purchase</h2>
+<h2 id='wallet-funding'>Wallet Funding</h2><h2 id='creating-lotteries-and-drawings'>Creating Lotteries and Drawings</h2>
+<p>Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.</p>
+
+<aside class="warning">
+SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
+</aside>
+<h3 id='process-2'>Process</h3>
+<p><img src="images/images/snapchance-admin.jpg" alt="" /></p>
+<h2 id='ticket-purchase'>Ticket Purchase</h2>
 <p>To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:</p>
 <h3 id='pre-requisites'>Pre-requisites</h3><h3 id='1-get-photos-create-photos-required'>1. <a href="#list-photos">Get Photos</a> / <a href="#add-photo">Create Photos</a> (required)</h3>
 <p>The user is required to have an existing photo db entry</p>
