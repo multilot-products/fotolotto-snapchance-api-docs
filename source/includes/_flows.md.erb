@@ -29,6 +29,34 @@ A player registration flow could look something like the following flow diagram:
 
 ## Wallet Funding
 
+### Pre-requistes
+### Redirect URL
+
+* Create a URL that BankID can redirect back to after a player successfully logs in to BankID
+* Email NETS BankID Support at [support.esecurity@nets.eu](mailto:support.esecurity@nets.eu) to add the redirect domain to their allow list
+
+### Process
+
+In order to add funds to a wallet, 2 requests are required as well as a redirect to and from the NETS.
+
+### 1. [Create Deposit](#deposit)
+
+To create a pending deposit, a POST request needs to be made to `/wallet/deposits` with params `amount` for units of a particular currency, and `redirect_url`, which NETS will redirect to once the payment is completed or canceled.  
+
+### 2. Complete NETS payment
+
+The response for the create deposit request will return a `redirect_url` of its own.  The user must be redirected to this NETS url, where they may make a payment using credit card information.
+
+### 3. Verify Deposit
+
+Upon completing the NETS payment process, NETS will redirect the user to the original `redirect_url` provided in the create deposit request.  That redirect url will be appended with 3 query params:
+
+* `deposit_id` The ID of the pending deposit
+* `responseCode` The text status of the deposit (options are `OK` or `Cancel`)
+* `callback_url` The `redirect_url` param from the deposits POST request
+
+If the query param `responseCode` is `OK`, we can verify the deposit by making a PATCH request to `/wallet/deposits/:deposit_id` using the `deposit_id` query param.  This request will verify the deposit with NETS, and update the deposit status to `complete`, as well as the user's wallet balance.
+
 ## Creating Lotteries and Drawings
 
 Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.
@@ -54,9 +82,9 @@ The user is required to have an existing photo db entry
 
 **Relevant data:**
 
-- A GET request to `/photos` returns an array of photo objects, each of which have property `id`.
+* A GET request to `/photos` returns an array of photo objects, each of which have property `id`.
 or
-- A POST request to `/photos` returns a photo object with property `id`.
+* A POST request to `/photos` returns a photo object with property `id`.
 
 ### 2. [Get Player Drawings](#player-drawings) (required)
 
@@ -65,9 +93,9 @@ The ticket price for the current drawing is required, which is provided by the p
 
 **Relevant data:**
 
-- A GET request to `/player/drawings` returns an array containing two objects: the previous drawing (one before the current, index 0) and current drawing (index 1).
-- The current drawing id is extracted using the `id` property from the current drawing object.
-- The ticket price for the current drawing is extracted using the `ticket_price` property from the current drawing object.
+* A GET request to `/player/drawings` returns an array containing two objects: the previous drawing (one before the current, index 0) and current drawing (index 1).
+* The current drawing id is extracted using the `id` property from the current drawing object.
+* The ticket price for the current drawing is extracted using the `ticket_price` property from the current drawing object.
 
 ### 3. [Get Balance](#get-wallet-balance) (optional)
 
@@ -75,7 +103,7 @@ The user is required to have a positive wallet balance that exceeds or equals th
 
 **Relevant data:**
 
-- A GET request to `/wallet/balance` returns an object with property `balance` as the current balance for an authenticated user.
+* A GET request to `/wallet/balance` returns an object with property `balance` as the current balance for an authenticated user.
 
 ### 4. [Get Profile](#get-profile) / [Transactions](#get-wallet-transactions) (optional)
 
@@ -85,10 +113,10 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 
 **Relevant data:**
 
-- A GET request to `/profile` returns an player object that includes properties `daily_loss_limit` and `weekly_loss_limit`.
-- A GET request to `/wallet/transactions` returns a paginated array of transactions, each of which include properties `amount`, `type` and `created_at`.
+* A GET request to `/profile` returns an player object that includes properties `daily_loss_limit` and `weekly_loss_limit`.
+* A GET request to `/wallet/transactions` returns a paginated array of transactions, each of which include properties `amount`, `type` and `created_at`.
 
-### Request
+### Process
 
 **[Create Entries](#purchase-entries)**
 
