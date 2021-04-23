@@ -9,12 +9,11 @@ language_tabs:
   - php: PHP
   - java: Java
   - go: Go
-toc_footers: []
-includes: []
+toc_footers:
+  - <a href='https://snapchance.no'>SnapChance Norway</a>
 search: true
 highlight_theme: darkula
 headingLevel: 2
-
 ---
 
 <!-- Generator: Widdershins v4.0.1 -->
@@ -38,7 +37,7 @@ Base URLs:
 
 * <a href="https://api-stg3.snapchance.no">https://api-stg3.snapchance.no</a>
 
-Web: <a href="https://snapchance.no">SnapChance</a> 
+Web: <a href="https://snapchance.no">SnapChance</a>
 
 # Authentication
 
@@ -51,9 +50,13 @@ Web: <a href="https://snapchance.no">SnapChance</a>
 
 The valid JWT token must be supplied as part of the header to access API's all other endpoints.
 
+<%= partial "includes/flows.md.erb" %>
+
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
-  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
+  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'
+</pre>
+
 
 <h1 id="snapchance-player">Player</h1>
 
@@ -2298,7 +2301,7 @@ func main() {
 
 `PATCH /subscription`
 
-This endpoint is to Verify the activated subscription.The mandatory fields are deposit id and drawing id. 
+This endpoint is to Verify the activated subscription.The mandatory fields are deposit id and drawing id.
 
 > Body parameter
 
@@ -12487,9 +12490,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## resetPasswordEmail
+## Reset Password Email
 
-<a id="opIdresetPasswordEmail"></a>
+<a id="opIdReset Password Email"></a>
 
 > Code samples
 
@@ -12657,7 +12660,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 }
 ```
 
-<h3 id="resetpasswordemail-parameters">Parameters</h3>
+<h3 id="reset-password-email-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -12718,7 +12721,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 "HTTP Token: Access denied."
 ```
 
-<h3 id="resetpasswordemail-responses">Responses</h3>
+<h3 id="reset-password-email-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12727,7 +12730,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
-<h3 id="resetpasswordemail-responseschema">Response Schema</h3>
+<h3 id="reset-password-email-responseschema">Response Schema</h3>
 
 Status Code **200**
 

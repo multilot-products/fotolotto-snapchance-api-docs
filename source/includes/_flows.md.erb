@@ -1,0 +1,141 @@
+# Flows
+
+## Registration
+
+Registration is dependent on a 3rd party integration with Norwegian [BankID](https://www.nets.eu/developer/e-ident/Getstarted/Pages/default.aspx) run by NETS.
+
+A player registration flow could look something like the following flow diagram:
+
+<%= image_tag "images/snapchance-registration.jpg" %>
+
+### Pre-requistes
+### 1. Redirect URL
+
+* Create a URL that BankID can redirect back to after a player successfully logs in to BankID
+* Email NETS BankID Support at [support.esecurity@nets.eu](mailto:support.esecurity@nets.eu) to add the redirect domain to their allow list
+
+### 2. Request your BankID client ID from Multilot support
+
+* The client ID is required when you direct the player to BankIDs login portal
+
+### Process
+
+1. Direct the user to the BankID login portal at https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&response_type=code&scope=openid%20profile%20ssn&state={UUID}&nonce={UUID}&redirect_uri={REDIRECT_BACK_TO_YOUR_APP}
+1. After the player successfully logs in to BankID, BankID will redirect them to the URL provide in the redirect_uri query parameter
+1. BankID will append a query parameter `code` when redirected.  The code will be in JSON Web Token (JWT) format
+1. That code should be passed in the request body to the API endpoint [POST /players](#create-player), which will return a token and player object.
+1. The client can collect additional information from the player.
+1. That player object can then be sent to the [POST /activate](#activate-player) endpoint.  This will complete the registration flow.
+
+## Wallet Funding
+
+### Pre-requistes
+### Redirect URL
+
+* Create a URL that BankID can redirect back to after a player successfully logs in to BankID
+* Email NETS BankID Support at [support.esecurity@nets.eu](mailto:support.esecurity@nets.eu) to add the redirect domain to their allow list
+
+### Process
+
+In order to add funds to a wallet, 2 requests are required as well as a redirect to and from the NETS.
+
+### 1. [Create Deposit](#deposit)
+
+To create a pending deposit, a POST request needs to be made to `/wallet/deposits` with params `amount` for units of currency associated with the authenticated user, and `redirect_url`, which NETS will redirect to once the payment is completed or canceled.  
+
+### 2. Complete NETS payment
+
+The response for the create deposit request will return a `redirect_url` of its own.  The user must be redirected to this NETS url, where they may make a payment using credit card information.
+
+### 3. Verify Deposit
+
+Upon completing the NETS payment process, NETS will redirect the user to the original `redirect_url` provided in the create deposit request.  That redirect url will be appended with 3 query params:
+
+* `deposit_id` The ID of the pending deposit
+* `responseCode` The text status of the deposit (options include `OK`, `Cancel`)
+* `callback_url` The `redirect_url` param from the deposits POST request
+
+If the query param `responseCode` is `OK`, we can verify the deposit by making a PATCH request to `/wallet/deposits/:deposit_id` using the `deposit_id` query param.  This request will verify the deposit with NETS, and update the deposit status to `complete`, as well as the user's wallet balance.
+
+## Creating Lotteries and Drawings
+
+Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.
+
+<aside class="warning">
+SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
+</aside>
+
+### Process
+
+<%= image_tag "images/snapchance-admin.jpg" %>
+
+
+## Ticket Purchase
+
+To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:
+
+### Pre-requisites
+
+### 1. [Get Photos](#list-photos) / [Create Photos](#add-photo) (required)
+
+The user is required to have an existing photo db entry
+
+**Relevant data:**
+
+* A GET request to `/photos` returns an array of photo objects, each of which have property `id`.
+or
+* A POST request to `/photos` returns a photo object with property `id`.
+
+### 2. [Get Player Drawings](#player-drawings) (required)
+
+The current drawing id is required to purchase tickets in the current drawing (the only drawing in which ticket purchases are allowed).
+The ticket price for the current drawing is required, which is provided by the player drawings query
+
+**Relevant data:**
+
+* A GET request to `/player/drawings` returns an array containing two objects: the previous drawing (one before the current, index 0) and current drawing (index 1).
+* The current drawing id is extracted using the `id` property from the current drawing object.
+* The ticket price for the current drawing is extracted using the `ticket_price` property from the current drawing object.
+
+### 3. [Get Balance](#get-wallet-balance) (optional)
+
+The user is required to have a positive wallet balance that exceeds or equals the number of tickets being purchased multiplied by the ticket price.
+
+**Relevant data:**
+
+* A GET request to `/wallet/balance` returns an object with property `balance` as the current balance for an authenticated user.
+
+### 4. [Get Profile](#get-profile) / [Transactions](#get-wallet-transactions) (optional)
+
+The user is required to have a `daily_loss_limit` that is greater than or equal to the aggregate of (a) the amount spent in the previous 24 hours and (b) the number of tickets being purchased multiplied by the ticket price.
+The user is required to have a `weekly_loss_limit` that is greater than or equal to the aggregate of (a) the amount spent in the previous 7 days and (b) the number of tickets being purchased multiplied by the ticket price.
+The amount spent must be calculated using the aggregate of all transaction amounts that fall within the respective date range, not including transactions of type `deposit` or `withdrawal`.
+
+**Relevant data:**
+
+* A GET request to `/profile` returns an player object that includes properties `daily_loss_limit` and `weekly_loss_limit`.
+* A GET request to `/wallet/transactions` returns a paginated array of transactions, each of which include properties `amount`, `type` and `created_at`.
+
+### Process
+
+**[Create Entries](#purchase-entries)**
+
+After all the pre-requisites are satisfied, a request to the `/drawings/:drawing_id/entries` is made using the photo ID as `photo_id` param and number of tickets purchased as `tickets_count`.
+
+## Cash Out
+
+### Pre-requisites
+
+### [Get Balance](#get-wallet-balance) (optional)
+
+The user is required to have a positive wallet balance that exceeds or equals the withdrawal amount.
+
+**Relevant data:**
+
+* A GET request to `/wallet/balance` returns an object with property `balance` as the current balance for an authenticated user.
+
+### Process
+
+[Withdrawal](#withdraw-from-wallet)
+
+To create a withdrawal, a POST request needs to be made to `/wallet/withdrawals` with param `amount` for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user's wallet and update the wallet balance.
