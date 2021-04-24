@@ -582,21 +582,28 @@ The valid JWT token must be supplied as part of the header to access API's all o
 <h3 id='3-activate-player'>3. <a href="#activate-player">Activate Player</a></h3>
 <ul>
 <li>The client can collect additional information from the player in the UI to add to their <a href="#tocS_player">profile</a>.</li>
-<li>The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request <code>/activate</code> endpoint.  This will complete the registration flow. </li>
+<li>The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request <code>/activate</code> endpoint.  This will complete the registration flow.</li>
 </ul>
 <h2 id='wallet-funding'>Wallet Funding</h2>
 <p>A player add funds flow could look something like the following flow diagram:</p>
 
 <p><img src="images/snapchance-add-funds-4a281163.jpg" alt="" /></p>
-<h3 id='pre-requistes-2'>Pre-requistes</h3><h3 id='redirect-url'>Redirect URL</h3>
-<ul>
-<li>Create a URL that BankID can redirect back to after a player successfully logs in to BankID</li>
-<li>Email NETS BankID Support at <a href="mailto:support.esecurity@nets.eu">support.esecurity@nets.eu</a> to add the redirect domain to their allow list</li>
-</ul>
+<h3 id='pre-requisites'>Pre-requisites</h3><h3 id='1-create-nets-account'>1. Create NETs account</h3>
+<aside class="warning">
+The Multilot SnapChance operations team can take care of the NETs account setup for you
+</aside>
+
+<p>Contact NETS Sales team to create a NETs Account.
+You will get a client ID and password for the test environment and for production environment.</p>
+<h3 id='2-configure-callback-url-username-and-password'>2. Configure Callback URL, Username and Password</h3>
+<p>You will need to log into the NETs developer portal and configure the callback URL to https://api.yourdomain.com/callbacks.
+Setup the callback username and password, then securely communicate that to the Multilot SnapChance operations team at support@snapchance.no</p>
+
+<p><img src="images/snapchance-nets-callback-cb6b5d0a.png" alt="" /></p>
 <h3 id='process-2'>Process</h3>
 <p>In order to add funds to a wallet, 2 requests are required as well as a redirect to and from the NETS.</p>
 <h3 id='1-create-deposit'>1. <a href="#deposit">Create Deposit</a></h3>
-<p>To create a pending deposit, a POST request needs to be made to <code>/wallet/deposits</code> with params <code>amount</code> for units of currency associated with the authenticated user, and <code>redirect_url</code>, which NETS will redirect to once the payment is completed or canceled.  </p>
+<p>To create a pending deposit, a POST request needs to be made to <code>/wallet/deposits</code> with params <code>amount</code> for units of currency associated with the authenticated user, and <code>redirect_url</code>, which NETS will redirect to once the payment is completed or canceled.</p>
 <h3 id='2-complete-nets-payment'>2. Complete NETS payment</h3>
 <p>The response for the create deposit request will return a <code>redirect_url</code> of its own.  The user must be redirected to this NETS url, where they may make a payment using credit card information.</p>
 <h3 id='3-verify-deposit'>3. <a href="#verify-deposit">Verify Deposit</a></h3>
@@ -611,19 +618,31 @@ The valid JWT token must be supplied as part of the header to access API's all o
 <p>If the query param <code>responseCode</code> is <code>OK</code>, we can verify the deposit by making a PATCH request to <code>/wallet/deposits/:deposit_id</code> using the <code>deposit_id</code> query param.  This request will verify the deposit with NETS, and update the deposit status to <code>complete</code>, as well as the user&#39;s wallet balance.</p>
 <h2 id='creating-lotteries-and-drawings'>Creating Lotteries and Drawings</h2>
 <p>Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.</p>
+<h3 id='process-3'>Process</h3>
+<p><img src="images/snapchance-admin-b4873e1b.png" alt="" /></p>
 
 <aside class="warning">
 SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
 </aside>
-<h3 id='process-3'>Process</h3>
-<p><img src="images/snapchance-admin-b4873e1b.png" alt="" /></p>
+<h3 id='1-add-your-license'>1. Add your License</h3>
+<p>Login to the SnapChance regulator panel at <a href="https://admin-stg3.snapchance.no/regulator">https://admin-stg3.snapchance.no/regulator</a>
+<img src="images/snapchance-regulator-ee6506ad.png" alt="" /></p>
+
+<p>Input your license details
+<img src="images/snapchance-regulator-add-license-29577d8f.png" alt="" /></p>
+
+<p>Login to the SnapChance admin panel at <a href="https://admin-stg3.snapchance.no/">https://admin-stg3.snapchance.no/</a> to create your lottery
+<img src="images/snapchance-admin-create-lottery-fde65ebf.png" alt="" />
+<img src="images/snapchance-admin-create-lottery-2-2e4bbb35.png" alt="" />
+<img src="images/snapchance-admin-create-lottery-3-5368ca6d.png" alt="" />
+<img src="images/snapchance-admin-create-lottery-4-8f7c3fcf.png" alt="" /></p>
 <h2 id='ticket-purchase'>Ticket Purchase</h2>
 <p>A player ticket purchase flow could look something like the following flow diagram:</p>
 
 <p><img src="images/snapchance-ticket-purchase-975eb414.jpg" alt="" /></p>
 
 <p>To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:</p>
-<h3 id='pre-requisites'>Pre-requisites</h3><h3 id='1-get-photos-create-photos-required'>1. <a href="#list-photos">Get Photos</a> / <a href="#add-photo">Create Photos</a> (required)</h3>
+<h3 id='pre-requisites-2'>Pre-requisites</h3><h3 id='1-get-photos-create-photos-required'>1. <a href="#list-photos">Get Photos</a> / <a href="#add-photo">Create Photos</a> (required)</h3>
 <p>The user is required to have an existing photo db entry</p>
 
 <p><strong>Relevant data:</strong></p>
@@ -671,7 +690,7 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 <p>A player payout flow could look something like the following flow diagram:</p>
 
 <p><img src="images/snapchance-payout-93a57af7.jpg" alt="" /></p>
-<h3 id='pre-requisites-2'>Pre-requisites</h3><h3 id='1-get-balance-optional'>1. <a href="#get-wallet-balance">Get Balance</a> (optional)</h3>
+<h3 id='pre-requisites-3'>Pre-requisites</h3><h3 id='1-get-balance-optional'>1. <a href="#get-wallet-balance">Get Balance</a> (optional)</h3>
 <p>The user is required to have a positive wallet balance that exceeds or equals the withdrawal amount.</p>
 
 <p><strong>Relevant data:</strong></p>
