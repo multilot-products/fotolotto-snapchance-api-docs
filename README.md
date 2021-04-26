@@ -1,16 +1,5 @@
 # Markdown generation from swagger/openApi #
-
-
-Dependancy [widdershins](https://github.com/Mermade/widdershins)
-```
-npm i -g widdershins
-```
-
-Checkout [fotolotto-snapchance-api](https://github.com/multilot-products/fotolotto-snapchance-api) at the same level of this project
-
-```
-widdershins ../fotolotto-snapchance-api/public/apiDocs.yaml -o source/index.html.md
-```
+This project is using [widdershins](https://github.com/Mermade/widdershins) under the hood to convert the swagger YAML to markdown
 
 ## Run locally
 
@@ -20,7 +9,7 @@ bundle exec middleman server
 ```
 
 ## Update the API documentation
-Make sure you have the `fotolotto-snapchance-api` project checked out with the correct branch next to this project. We grab the swagger documentation from the `public/apiDocs.yaml` swagger file
+Make sure you have the [fotolotto-snapchance-api](https://github.com/multilot-products/fotolotto-snapchance-api) project checked out with the correct branch next to this project. We grab the swagger documentation from the `public/apiDocs.yaml` swagger file
 
 Run:
 ```
