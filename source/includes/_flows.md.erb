@@ -1,5 +1,3 @@
-# Flows
-
 ## Registration
 
 Registration is dependent on a 3rd party integration with Norwegian [BankID](https://www.nets.eu/developer/e-ident/Getstarted/Pages/default.aspx) run by NETS.
@@ -8,7 +6,7 @@ A player registration flow could look something like the following flow diagram:
 
 <%= image_tag "images/snapchance-registration.jpg" %>
 
-### Pre-requistes
+## Pre-requistes
 ### 1. Redirect URL
 
 * Create a URL that BankID can redirect back to after a player successfully logs in to BankID
@@ -18,7 +16,7 @@ A player registration flow could look something like the following flow diagram:
 
 * The client ID is required when you direct the player to BankIDs login portal
 
-### Process
+## Process
 
 ### 1. Redirect to and from NETS
 
@@ -33,7 +31,7 @@ The query param `code` should be passed in a POST request body to the API endpoi
 ### 3. [Activate Player](#activate-player)
 
 * The client can collect additional information from the player in the UI to add to their [profile](#tocS_player).
-* The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request `/activate` endpoint.  This will complete the registration flow. 
+* The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request `/activate` endpoint.  This will complete the registration flow.
 
 ## Wallet Funding
 
@@ -41,19 +39,19 @@ A player add funds flow could look something like the following flow diagram:
 
 <%= image_tag "images/snapchance-add-funds.jpg" %>
 
-### Pre-requistes
-### Redirect URL
+## Pre-requistes
+## Redirect URL
 
 * Create a URL that BankID can redirect back to after a player successfully logs in to BankID
 * Email NETS BankID Support at [support.esecurity@nets.eu](mailto:support.esecurity@nets.eu) to add the redirect domain to their allow list
 
-### Process
+## Process
 
 In order to add funds to a wallet, 2 requests are required as well as a redirect to and from the NETS.
 
 ### 1. [Create Deposit](#deposit)
 
-To create a pending deposit, a POST request needs to be made to `/wallet/deposits` with params `amount` for units of currency associated with the authenticated user, and `redirect_url`, which NETS will redirect to once the payment is completed or canceled.  
+To create a pending deposit, a POST request needs to be made to `/wallet/deposits` with params `amount` for units of currency associated with the authenticated user, and `redirect_url`, which NETS will redirect to once the payment is completed or canceled.
 
 ### 2. Complete NETS payment
 
@@ -69,7 +67,7 @@ Upon completing the NETS payment process, NETS will redirect the user to the ori
 
 If the query param `responseCode` is `OK`, we can verify the deposit by making a PATCH request to `/wallet/deposits/:deposit_id` using the `deposit_id` query param.  This request will verify the deposit with NETS, and update the deposit status to `complete`, as well as the user's wallet balance.
 
-## Creating Lotteries and Drawings
+#Creating Lotteries and Drawings
 
 Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.
 
@@ -77,12 +75,12 @@ Using the SnapChance admin panel you can create add your gaming license as well 
 SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
 </aside>
 
-### Process
+## Process
 
 <%= image_tag "images/snapchance-admin.png" %>
 
 
-## Ticket Purchase
+#Ticket Purchase
 
 A player ticket purchase flow could look something like the following flow diagram:
 
@@ -90,7 +88,7 @@ A player ticket purchase flow could look something like the following flow diagr
 
 To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:
 
-### Pre-requisites
+## Pre-requisites
 
 ### 1. [Get Photos](#list-photos) / [Create Photos](#add-photo) (required)
 
@@ -132,19 +130,19 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 * A GET request to `/profile` returns an player object that includes properties `daily_loss_limit` and `weekly_loss_limit`.
 * A GET request to `/wallet/transactions` returns a paginated array of transactions, each of which include properties `amount`, `type` and `created_at`.
 
-### Process
+## Process
 
 **[Create Entries](#purchase-entries)**
 
 After all the pre-requisites are satisfied, a request to the `/drawings/:drawing_id/entries` is made using the photo ID as `photo_id` param and number of tickets purchased as `tickets_count`.
 
-## Payout
+#Payout
 
 A player payout flow could look something like the following flow diagram:
 
 <%= image_tag "images/snapchance-payout.jpg" %>
 
-### Pre-requisites
+## Pre-requisites
 
 ### 1. [Get Balance](#get-wallet-balance) (optional)
 
@@ -162,7 +160,7 @@ The user is required to have a valid bank account number as part of their profil
 
 * A GET request to `/profile` returns an player object that includes property `bank_account_number`, which may be a string or null.
 
-### Process
+## Process
 
 [Withdrawal](#withdraw-from-wallet)
 
