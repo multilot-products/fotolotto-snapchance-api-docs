@@ -46,8 +46,19 @@ A player add funds flow could look something like the following flow diagram:
 ## Pre-requistes
 ## Redirect URL
 
-* Create a URL that BankID can redirect back to after a player successfully logs in to BankID
-* Email NETS BankID Support at [support.esecurity@nets.eu](mailto:support.esecurity@nets.eu) to add the redirect domain to their allow list
+<aside class="warning">
+The Multilot SnapChance operations team can take care of the NETs account setup for you
+</aside>
+
+Contact NETS Sales team to create a NETs Account.
+You will get a client ID and password for the test environment and for production environment.
+
+### 2. Configure Callback URL, Username and Password
+
+You will need to log into the NETs developer portal and configure the callback URL to https://api.yourdomain.com/callbacks.
+Setup the callback username and password, then securely communicate that to the Multilot SnapChance operations team at support@snapchance.no
+
+<%= image_tag "images/snapchance-nets-callback.png" %>
 
 ## Process
 
@@ -75,14 +86,27 @@ If the query param `responseCode` is `OK`, we can verify the deposit by making a
 
 Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.
 
+### Process
+
+<%= image_tag "images/snapchance-admin.png" %>
+
 <aside class="warning">
 SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
 </aside>
 
 ## Process
 
-<%= image_tag "images/snapchance-admin.png" %>
+Login to the SnapChance regulator panel at [https://admin-stg3.snapchance.no/regulator](https://admin-stg3.snapchance.no/regulator)
+<%= image_tag "images/snapchance-regulator.png" %>
 
+Input your license details
+<%= image_tag "images/snapchance-regulator-add-license.png" %>
+
+Login to the SnapChance admin panel at [https://admin-stg3.snapchance.no/](https://admin-stg3.snapchance.no/) to create your lottery
+<%= image_tag "images/snapchance-admin-create-lottery.png" %>
+<%= image_tag "images/snapchance-admin-create-lottery-2.png" %>
+<%= image_tag "images/snapchance-admin-create-lottery-3.png" %>
+<%= image_tag "images/snapchance-admin-create-lottery-4.png" %>
 
 #Ticket Purchase
 

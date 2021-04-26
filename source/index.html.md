@@ -24,6 +24,17 @@ headingLevel: 2
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
+# Introduction
+
+The SnapChance API is developed to support entertainment games such as scratch card game which gives a player an opportunity to win money.
+
+The API is secured with JWT authentication and the requests are authorized for the users with valid credentials. The user must authenticate with API and get a JWT token; which can be used to access all secured endpoints. The API has build-in integration with NETs for BankID verification and payment process.
+
+#### SnapChance API supports users with three roles:
+- <b>Regulator</b> - Create and manage the licenses.
+- <b>Operator/Admin</b> - Create and manage the lotteries.
+- <b>Player</b> - Add funds to the wallet; purchases and play tickets.
+
 Base URLs:
 
 * <a href="https://api-stg3.snapchance.no">https://api-stg3.snapchance.no</a>
@@ -43,7 +54,7 @@ The valid JWT token must be supplied as part of the header to access API's all o
 
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
-  --header 'authorization: Bearer $SNAPCHANCE_API_TOKEN`'</pre>
+  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
 
 <h1 id="snapchance-player">Player</h1>
 
