@@ -317,19 +317,21 @@
           </li>
           <li>
             <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting started">Getting started</a>
+          </li>
+          <li>
+            <a href="#registration" class="toc-h1 toc-link" data-title="Registration">Registration</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#registration" class="toc-h2 toc-link" data-title="Registration">Registration</a>
-                  </li>
                   <li>
                     <a href="#pre-requistes" class="toc-h2 toc-link" data-title="Pre-requistes">Pre-requistes</a>
                   </li>
                   <li>
                     <a href="#process" class="toc-h2 toc-link" data-title="Process">Process</a>
                   </li>
-                  <li>
-                    <a href="#wallet-funding" class="toc-h2 toc-link" data-title="Wallet Funding">Wallet Funding</a>
-                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#wallet-funding" class="toc-h1 toc-link" data-title="Wallet Funding">Wallet Funding</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#pre-requistes-2" class="toc-h2 toc-link" data-title="Pre-requistes">Pre-requistes</a>
                   </li>
@@ -594,8 +596,10 @@ The examples for JavaScript and Node.JS use the fetch library</p>
 </ul>
 
 <p>Web: <a href="https://snapchance.no">SnapChance</a></p>
-<h2 id='registration'>Registration</h2>
+<h1 id='registration'>Registration</h1>
 <p>Registration is dependent on a 3rd party integration with Norwegian <a href="https://www.nets.eu/developer/e-ident/Getstarted/Pages/default.aspx">BankID</a> run by NETS.</p>
+
+<p>To use a test user when registering to the system, a test account may be used from BankID <a href="https://www.nets.eu/developer/e-ident/eids/Pages/testusers.aspx#bankidno">here</a>.</p>
 
 <p>A player registration flow could look something like the following flow diagram:</p>
 
@@ -622,7 +626,9 @@ The examples for JavaScript and Node.JS use the fetch library</p>
 <li>The client can collect additional information from the player in the UI to add to their <a href="#tocS_player">profile</a>.</li>
 <li>The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request <code>/activate</code> endpoint.  This will complete the registration flow.</li>
 </ul>
-<h2 id='wallet-funding'>Wallet Funding</h2>
+<h1 id='wallet-funding'>Wallet Funding</h1>
+<p>To add funds to a test account, a test credit card may be used from NETS <a href="https://shop.nets.eu/web/partners/test-cards">here</a>.</p>
+
 <p>A player add funds flow could look something like the following flow diagram:</p>
 
 <p><img src="images/snapchance-add-funds-c705f6a0.jpg" alt="" /></p>
