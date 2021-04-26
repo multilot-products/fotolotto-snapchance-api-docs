@@ -290,7 +290,7 @@
 
   </head>
 
-  <body class="index" data-languages="[&quot;csharp&quot;,&quot;shell&quot;,&quot;http&quot;,&quot;javascript&quot;,&quot;javascript--node&quot;,&quot;ruby&quot;]">
+  <body class="index" data-languages="[&quot;csharp&quot;,&quot;shell&quot;,&quot;http&quot;,&quot;javascript&quot;,&quot;nodejs&quot;,&quot;ruby&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -300,11 +300,11 @@
     <div class="toc-wrapper">
       <img src="images/logo-bb2e297b.svg" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="csharp">C#</a>
               <a href="#" data-language-name="shell">Shell</a>
               <a href="#" data-language-name="http">HTTP</a>
               <a href="#" data-language-name="javascript">JavaScript</a>
-              <a href="#" data-language-name="javascript--node">Node.JS</a>
+              <a href="#" data-language-name="nodejs">Node.JS</a>
               <a href="#" data-language-name="ruby">Ruby</a>
         </div>
         <div class="search">
@@ -313,7 +313,10 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#overview" class="toc-h1 toc-link" data-title="Overview">Overview</a>
+          </li>
+          <li>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting started">Getting started</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#registration" class="toc-h2 toc-link" data-title="Registration">Registration</a>
@@ -430,7 +433,7 @@
                     <a href="#deposit" class="toc-h2 toc-link" data-title="Deposit">Deposit</a>
                   </li>
                   <li>
-                    <a href="#verify_deposit" class="toc-h2 toc-link" data-title="Verify_Deposit">Verify_Deposit</a>
+                    <a href="#verify-deposit" class="toc-h2 toc-link" data-title="Verify Deposit">Verify Deposit</a>
                   </li>
                   <li>
                     <a href="#withdraw-from-wallet" class="toc-h2 toc-link" data-title="Withdraw From Wallet">Withdraw From Wallet</a>
@@ -486,7 +489,7 @@
             <a href="#snapchance-payment" class="toc-h1 toc-link" data-title="Payment">Payment</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#nets-callback" class="toc-h2 toc-link" data-title="NETS Callback">NETS Callback</a>
+                    <a href="#nets-callback" class="toc-h2 toc-link" data-title="NETs Callback">NETs Callback</a>
                   </li>
               </ul>
           </li>
@@ -554,16 +557,35 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>The SnapChance API is developed to support entertainment games such as scratch card game which gives a player an opportunity to win money.</p>
+        <h1 id='overview'>Overview</h1>
+<p>The SnapChance API provides access to Multilot&#39;s platform to create custom scratch games, manage lotteries, as well as information about the games and the players. It allows customer platforms to customize the user experience.</p>
 
-<p>The API is secured with JWT authentication and the requests are authorized for the users with valid credentials. The user must authenticate with API and get a JWT token; which can be used to access all secured endpoints. The API has build-in integration with NETs for BankID verification and payment process.</p>
-<h4 id='snapchance-api-supports-users-with-three-roles'>SnapChance API supports users with three roles:</h4>
+<p>The scratch game supports two types of winnings:</p>
+
 <ul>
-<li><b>Regulator</b> - Create and manage the licenses.</li>
-<li><b>Operator/Admin</b> - Create and manage the lotteries.</li>
-<li><b>Player</b> - Add funds to the wallet; purchases and play tickets.</li>
+<li>An instant win: The user is receives the winnings right at the end of the game.</li>
+<li>A win at the end of a draw: Some prizes are rewarded at the end of a draw. The player won&#39;t receive these until the draw has ended.</li>
 </ul>
+
+<p>This documentation provides information about each endpoint in the API. The right-hand pane of this page shows example requests and responses for each endpoint in different languages.</p>
+<h1 id='getting-started'>Getting started</h1>
+<p>Follow these steps to start using the SnapChance API:</p>
+
+<ul>
+<li>Sign contract with Multilot SnapChance</li>
+<li>Get URLs and Credentials for test and production environment from Multilot SnapChance support team</li>
+<li>Create an application.</li>
+</ul>
+
+<p>Authenticate to the API to get a token. Authentication is required for all endpoints in the Multilot public API. The API accepts HTTP basic authentication for some endpoints and OAuth authentication for all endpoints. See Authentication.</p>
+
+<p>This API reference includes examples in several programming languages. Most of the examples assume that you replace <code>{access-token}</code> with the OAuth token</p>
+
+<p>Examples for cURL
+The cURL examples work on the command line of many operating systems, including Windows, MacOS, and Linux, though you may need to install the cURL program.</p>
+
+<p>Examples for JavaScript and Node.JS
+The examples for JavaScript and Node.JS use the fetch library</p>
 
 <p>Base URLs:</p>
 
@@ -737,7 +759,7 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
-  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
+  --header 'authorization: Bearer $SNAPCHANCE_API_TOKEN`'</pre>
 
 <h1 id="snapchance-player">Player</h1>
 
@@ -841,6 +863,25 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/deactivation
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/deactivation',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -1013,6 +1054,29 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "daily_loss_limit": 1500,
+  "weekly_loss_limit": "2900"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/loss_limits',
+{
+  method: 'PUT',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -1031,7 +1095,7 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
 </code></pre></div>
 <p><code>PUT /loss_limits</code></p>
 
-<p>This endpoint is use to Sets loss limits for a Player</p>
+<p>This endpoint is used to set the loss limits for a player</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -1081,10 +1145,10 @@ curl <span class="nt">-X</span> PUT https://api-stg3.snapchance.no/loss_limits <
 <p>Returns the player</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test0308"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1942-03-08"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test0308@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1985-03-08"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"janedoe@example.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"bank_account_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"suspended_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1394,6 +1458,25 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/onboard <sp
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/onboard',
+{
+  method: 'PATCH',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -1411,7 +1494,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/onboard <sp
 </code></pre></div>
 <p><code>PATCH /onboard</code></p>
 
-<p>This endpoint is used to Update player onboard parameter and change the flag status when the Player buys his first ticket.</p>
+<p>This endpoint is used to update player onboard flag to true after the player buys their first ticket.</p>
 
 <blockquote>
 <p>Example responses</p>
@@ -1419,11 +1502,11 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/onboard <sp
 <p>Returns the player</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test0308"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1942-03-08"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test0308@gmail.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 123 1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1985-03-08"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"janedoe@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 23 1234"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"bank_account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111111111"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"suspended_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"weekly_loss_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3500</span><span class="p">,</span><span class="w">
@@ -1541,8 +1624,8 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{
-  "first_name": "playerTEST",
-  "last_name": "testName"
+  "first_name": "Jane",
+  "last_name": "Doe"
 }</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">application/x-www-form-urlencoded</span><span class="dl">'</span><span class="p">,</span>
@@ -1562,6 +1645,29 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "first_name": "Jane",
+  "last_name": "Doe"
+};
+const headers = {
+  'Content-Type':'application/x-www-form-urlencoded',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/profile',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -1580,13 +1686,13 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 </code></pre></div>
 <p><code>PATCH /profile</code></p>
 
-<p>This endpoint is use to update the player information.The updated Info is sent as a part of request.</p>
+<p>This endpoint is used to update the players profile.</p>
 
 <blockquote>
 <p>Body parameter</p>
 </blockquote>
-<div class="highlight"><pre class="highlight yaml tab-yaml"><code><span class="na">first_name</span><span class="pi">:</span> <span class="s">playerTEST</span>
-<span class="na">last_name</span><span class="pi">:</span> <span class="s">testName</span>
+<div class="highlight"><pre class="highlight yaml tab-yaml"><code><span class="na">first_name</span><span class="pi">:</span> <span class="s">Jane</span>
+<span class="na">last_name</span><span class="pi">:</span> <span class="s">Doe</span>
 
 </code></pre></div>
 <h3 id="update-profile-parameters">Parameters</h3>
@@ -1605,21 +1711,21 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 <td>body</td>
 <td>object</td>
 <td>false</td>
-<td>Updated Info</td>
+<td>none</td>
 </tr>
 <tr>
 <td>» firstname</td>
 <td>body</td>
 <td>string</td>
 <td>false</td>
-<td>player33</td>
+<td>Jane</td>
 </tr>
 <tr>
 <td>» lastname</td>
 <td>body</td>
 <td>string</td>
 <td>false</td>
-<td>testchange</td>
+<td>Doe</td>
 </tr>
 </tbody></table>
 
@@ -1629,11 +1735,11 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 <p>Returns the updated player profile.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"playerTEST"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testName"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1935-05-23"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"playtest7@gmail.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 123 1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1985-05-23"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"janedoe@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"654 69 879"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"bank_account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11111111111111"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"suspended_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"weekly_loss_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">3500</span><span class="p">,</span><span class="w">
@@ -1672,8 +1778,8 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/profile <sp
 </tr>
 </thead><tbody>
 <tr>
-<td>201</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
 <td>Returns the updated player profile.</td>
 <td><a href="#schemaplayer">player</a></td>
 </tr>
@@ -1783,6 +1889,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/profile <span
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/profile',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -1800,7 +1925,7 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/profile <span
 </code></pre></div>
 <p><code>GET /profile</code></p>
 
-<p>This endpoint is use to return the entire player Information.</p>
+<p>This endpoint is use to return the entire player information.</p>
 
 <blockquote>
 <p>Example responses</p>
@@ -1808,8 +1933,8 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/profile <span
 <p>Returns the player Info</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"playtest7"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test7"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1935-05-23"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"playtest7@gmail.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 123 1234"</span><span class="p">,</span><span class="w">
@@ -1978,6 +2103,28 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/suspension <
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "suspended_until": "2021-04-12T15:28:05.335Z"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/suspension',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -2192,6 +2339,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/player/drawings',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -2663,6 +2829,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/player/drawin
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/player/drawings/{id}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -2900,6 +3085,31 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "drawing_id": 2243,
+  "photo_id": 77,
+  "redirect_url": "https://snapchance-staging5.netlify.app/subscription/confirm",
+  "tickets_count": 1
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -3101,6 +3311,29 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/subscriptio
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "deposit_id": "20847",
+  "drawing_id": 2243
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -3319,6 +3552,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/subscription 
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -3499,6 +3751,25 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/subscription
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription/cancellation',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -3646,6 +3917,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/subscription/
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription/entries',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -4068,6 +4358,29 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/depos
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "amount": 20,
+  "redirect_url": "https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/deposits',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -4086,7 +4399,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/depos
 </code></pre></div>
 <p><code>POST /wallet/deposits</code></p>
 
-<p>This endpoint is used to deposit funds into the Players wallet.  Here the mandatory fields are the amount and redirect url.</p>
+<p>This endpoint is used to deposit funds into the Players wallet.  See <a href="#wallet-funding">Wallet Funding Flow</a> for more info.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -4243,8 +4556,8 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/depos
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='verify_deposit'>Verify_Deposit</h2>
-<p><a id="opIdVerify_Deposit"></a></p>
+<h2 id='verify-deposit'>Verify Deposit</h2>
+<p><a id="opIdVerify Deposit"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -4314,6 +4627,25 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/wallet/depo
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/deposits/{id}',
+{
+  method: 'PATCH',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -4333,7 +4665,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/wallet/depo
 
 <p>This endpoint is used to verify the deposits added to the player wallet.</p>
 
-<h3 id="verify_deposit-parameters">Parameters</h3>
+<h3 id="verify-deposit-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4370,7 +4702,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/wallet/depo
 </blockquote>
 <div class="highlight"><pre class="highlight plaintext"><code>"HTTP Token: Access denied."
 </code></pre></div>
-<h3 id="verify_deposit-responses">Responses</h3>
+<h3 id="verify-deposit-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -4412,7 +4744,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/wallet/depo
 </tr>
 </tbody></table>
 
-<h3 id="verify_deposit-responseschema">Response Schema</h3>
+<h3 id="verify-deposit-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>201</strong></p>
 
@@ -4563,6 +4895,28 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/wallet/withd
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "amount": 50
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/withdrawals',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -4796,6 +5150,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/balanc
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/balance',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -4979,6 +5352,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/wallet/transa
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/transactions',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -9876,6 +10268,29 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/drawings/<sp
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "photo_id": 0,
+  "tickets_count": 0
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -9894,7 +10309,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/drawings/<sp
 </code></pre></div>
 <p><code>POST /drawings/{id}/entries</code></p>
 
-<p>This endpoint is used to buy entries.  An entry consists of a single photo and multiple tickets. Tickets can be scratched for an instant win or be &quot;revealed&quot; at the end of the drawing. Please see the purchase entries flow.</p>
+<p>This endpoint is used to buy entries.  An entry consists of a single photo and multiple tickets. Tickets can be scratched for an instant win or be &quot;revealed&quot; at the end of the drawing. Please see the <a href="#ticket-purchase">Ticket Purcahse Flow</a> fro more info.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -10420,6 +10835,25 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/tickets/{id}/reveal',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -10437,7 +10871,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/tickets/<spa
 </code></pre></div>
 <p><code>POST /tickets/{id}/reveal</code></p>
 
-<p>This endpoint is use to reveal a SnapChance ticket at the end of a drawying.</p>
+<p>This endpoint is use to reveal a SnapChance ticket at the end of a drawing.</p>
 
 <h3 id="reveal-drawing-ticket-parameters">Parameters</h3>
 
@@ -10836,6 +11270,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries <span
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/entries',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -11478,6 +11931,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/entries/<span
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/entries/{id}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -12284,6 +12756,62 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/entries/<sp
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "scratch_state": [
+    [
+      {
+        "revealed": true
+      },
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      }
+    ],
+    [
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      }
+    ],
+    [
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      }
+    ]
+  ]
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id}',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -12811,6 +13339,28 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/session <spa
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "email": "user@email.com",
+  "password": "ComplexPassword123"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('https://api-stg3.snapchance.no/session',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -12916,9 +13466,13 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/session <spa
 <blockquote>
 <p>Returns players session, limits and player details.</p>
 
-<p>Unauthorized</p>
+<p>Forbidden</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Feil e-post eller passord"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <h3 id="login-responses">Responses</h3>
 
@@ -12945,7 +13499,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/session <spa
 <tr>
 <td>403</td>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
-<td>Unauthorized</td>
+<td>Forbidden</td>
 <td>Inline</td>
 </tr>
 </tbody></table>
@@ -13280,6 +13834,28 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/players <spa
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "bankid_code": "string"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/players',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -13525,6 +14101,33 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/activation <
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "first_name": "string",
+  "last_name": "string",
+  "email": "string",
+  "password": "string",
+  "is_pep": true,
+  "language": "string"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/activation',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -13851,8 +14454,8 @@ bearerAuth
 <h1 id="snapchance-payment">Payment</h1>
 
 <p>Callback from the NETs payment gateway</p>
-<h2 id='nets-callback'>NETS Callback</h2>
-<p><a id="opIdNETS Callback"></a></p>
+<h2 id='nets-callback'>NETs Callback</h2>
+<p><a id="opIdNETs Callback"></a></p>
 
 <blockquote>
 <p>Code samples</p>
@@ -13953,6 +14556,27 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/callbacks <s
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "TransactionId": "string"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/callbacks',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -13970,7 +14594,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/callbacks <s
 </code></pre></div>
 <p><code>POST /callbacks</code></p>
 
-<p>This Endpoint is used for handling the Nets Callback functionality</p>
+<p>This endpoint is used for handling callback from NETs.  See <a href="#wallet-funding">Wallet Funding Flow</a> for more info.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -14125,6 +14749,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -14701,6 +15344,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings <spa
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -15173,6 +15835,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/drawings/<spa
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings/{id}/tickets',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -15627,6 +16308,29 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password <s
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "password": "password2",
+  "new_password": "passwordtest12"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/password',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -15645,7 +16349,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password <s
 </code></pre></div>
 <p><code>PATCH /password</code></p>
 
-<p>This endpoint is use to Update player password from Profile.</p>
+<p>This endpoint is used to update a players password.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -15851,6 +16555,29 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "email": "test@gmail.com",
+  "redirect_url": "https://api-stg3.snapchance.no/reset_password"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/password_reset',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -15869,7 +16596,7 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
 </code></pre></div>
 <p><code>POST /password_reset</code></p>
 
-<p>This endpoint is use to Send a password reset email.Here the mandatory fields are email and redirect-url.</p>
+<p>This endpoint is used to start the password reset flow by sending an email to the users email address.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -15945,13 +16672,12 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/password_res
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"Email is invalid"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Redirect url translation missing: nn.activemodel.errors.models.password_reset.attributes.redirect_url.url"</span><span class="w">
+    </span><span class="s2">"Email Tokenet er ugyldig"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"Redirect url host is not allowed"</span><span class="w">
+    </span><span class="s2">"Redirect url host er ikke tillatt"</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -16218,6 +16944,29 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password_re
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "new_password": "password123",
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/password_reset',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
 
@@ -16236,7 +16985,7 @@ curl <span class="nt">-X</span> PATCH https://api-stg3.snapchance.no/password_re
 </code></pre></div>
 <p><code>PATCH /password_reset</code></p>
 
-<p>This endpoint is used to Reset the password.We can reset the password through link sent to Email.</p>
+<p>This endpoint is used to finalize the reset password process.</p>
 
 <blockquote>
 <p>Body parameter</p>
@@ -16438,6 +17187,28 @@ curl <span class="nt">-X</span> POST https://api-stg3.snapchance.no/photos <span
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+const inputBody = {
+  "image": "string"
+};
+const headers = {
+  'Content-Type':'application/x-www-form-urlencoded',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/photos',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -16655,6 +17426,25 @@ curl <span class="nt">-X</span> GET https://api-stg3.snapchance.no/photos <span 
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/photos',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -16916,6 +17706,25 @@ curl <span class="nt">-X</span> DELETE https://api-stg3.snapchance.no/photos/<sp
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/photos/{id}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'rest-client'</span>
 <span class="nb">require</span> <span class="s1">'json'</span>
@@ -17417,11 +18226,11 @@ bearerAuth
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="csharp">C#</a>
                 <a href="#" data-language-name="shell">Shell</a>
                 <a href="#" data-language-name="http">HTTP</a>
                 <a href="#" data-language-name="javascript">JavaScript</a>
-                <a href="#" data-language-name="javascript--node">Node.JS</a>
+                <a href="#" data-language-name="nodejs">Node.JS</a>
                 <a href="#" data-language-name="ruby">Ruby</a>
           </div>
       </div>
