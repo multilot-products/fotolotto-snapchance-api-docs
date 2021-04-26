@@ -1,13 +1,30 @@
-# Introduction
+# Overview
+The SnapChance API provides access to Multilot's platform to create custom scratch games, manage lotteries, as well as information about the games and the players. It allows customer platforms to customize the user experience.
 
-The SnapChance API is developed to support entertainment games such as scratch card game which gives a player an opportunity to win money.
+The scratch game supports two types of winnings:
 
-The API is secured with JWT authentication and the requests are authorized for the users with valid credentials. The user must authenticate with API and get a JWT token; which can be used to access all secured endpoints. The API has build-in integration with NETs for BankID verification and payment process.
+* An instant win: The user is receives the winnings right at the end of the game.
+* A win at the end of a draw: Some prizes are rewarded at the end of a draw. The player won't receive these until the draw has ended.
 
-#### SnapChance API supports users with three roles:
-- <b>Regulator</b> - Create and manage the licenses.
-- <b>Operator/Admin</b> - Create and manage the lotteries.
-- <b>Player</b> - Add funds to the wallet; purchases and play tickets.
+This documentation provides information about each endpoint in the API. The right-hand pane of this page shows example requests and responses for each endpoint in different languages.
+
+
+# Getting started
+Follow these steps to start using the SnapChance API:
+
+* Sign contract with Multilot SnapChance
+* Get URLs and Credentials for test and production environment from Multilot SnapChance support team
+* Create an application.
+
+Authenticate to the API to get a token. Authentication is required for all endpoints in the Multilot public API. The API accepts HTTP basic authentication for some endpoints and OAuth authentication for all endpoints. See Authentication.
+
+This API reference includes examples in several programming languages. Most of the examples assume that you replace `{access-token}` with the OAuth token
+
+Examples for cURL
+The cURL examples work on the command line of many operating systems, including Windows, MacOS, and Linux, though you may need to install the cURL program.
+
+Examples for JavaScript and Node.JS
+The examples for JavaScript and Node.JS use the fetch library
 
 Base URLs:
 

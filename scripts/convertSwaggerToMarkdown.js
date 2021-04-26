@@ -10,12 +10,9 @@ const options = {
     { 'shell': "Shell" },
     { 'http': "HTTP" },
     { 'javascript': 'JavaScript' },
-    { 'javascript--node': 'Node.JS' },
+    { 'nodejs': 'Node.JS' },
     { 'ruby': 'Ruby' }
   ],
-  templateCallback: function (templateName, stage, data) {
-    return data;
-  },
   theme: 'darkula',
   search: true,
   sample: true,
