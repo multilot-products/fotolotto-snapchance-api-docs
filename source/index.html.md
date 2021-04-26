@@ -1,11 +1,11 @@
 ---
 title: SnapChance v2.0.0
 language_tabs:
-  - csharp: csharp
+  - csharp: C#
   - shell: Shell
   - http: HTTP
   - javascript: JavaScript
-  - javascript--node: Node.JS
+  - nodejs: Node.JS
   - ruby: Ruby
 toc_footers:
   - <a href="https://snapchance.no">SnapChance Norway</a>
@@ -43,7 +43,7 @@ The valid JWT token must be supplied as part of the header to access API's all o
 
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
-  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
+  --header 'authorization: Bearer $SNAPCHANCE_API_TOKEN`'</pre>
 
 <h1 id="snapchance-player">Player</h1>
 
@@ -141,6 +141,28 @@ Accept: text/plain
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/deactivation',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'text/plain',
@@ -326,6 +348,32 @@ fetch('https://api-stg3.snapchance.no/loss_limits',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "daily_loss_limit": 1500,
+  "weekly_loss_limit": "2900"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/loss_limits',
+{
+  method: 'PUT',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -346,7 +394,7 @@ p JSON.parse(result)
 
 `PUT /loss_limits`
 
-This endpoint is use to Sets loss limits for a Player
+This endpoint is used to set the loss limits for a player
 
 > Body parameter
 
@@ -371,10 +419,10 @@ This endpoint is use to Sets loss limits for a Player
 
 ```json
 {
-  "first_name": "test0308",
-  "last_name": "test",
-  "birthdate": "1942-03-08",
-  "email": "test0308@gmail.com",
+  "first_name": "Jane",
+  "last_name": "Doe",
+  "birthdate": "1985-03-08",
+  "email": "janedoe@example.com",
   "phone_number": null,
   "bank_account_number": null,
   "suspended_until": null,
@@ -531,6 +579,28 @@ fetch('https://api-stg3.snapchance.no/onboard',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/onboard',
+{
+  method: 'PATCH',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -550,7 +620,7 @@ p JSON.parse(result)
 
 `PATCH /onboard`
 
-This endpoint is used to Update player onboard parameter and change the flag status when the Player buys his first ticket.
+This endpoint is used to update player onboard flag to true after the player buys their first ticket.
 
 > Example responses
 
@@ -558,11 +628,11 @@ This endpoint is used to Update player onboard parameter and change the flag sta
 
 ```json
 {
-  "first_name": "test0308",
-  "last_name": "test",
-  "birthdate": "1942-03-08",
-  "email": "test0308@gmail.com",
-  "phone_number": "123 123 1234",
+  "first_name": "Jane",
+  "last_name": "Doe",
+  "birthdate": "1985-03-08",
+  "email": "janedoe@example.com",
+  "phone_number": "123 23 1234",
   "bank_account_number": "11111111111111",
   "suspended_until": null,
   "weekly_loss_limit": 3500,
@@ -671,8 +741,8 @@ Accept: application/json
 
 ```javascript
 const inputBody = '{
-  "first_name": "playerTEST",
-  "last_name": "testName"
+  "first_name": "Jane",
+  "last_name": "Doe"
 }';
 const headers = {
   'Content-Type':'application/x-www-form-urlencoded',
@@ -684,6 +754,32 @@ fetch('https://api-stg3.snapchance.no/profile',
 {
   method: 'PATCH',
   body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "first_name": "Jane",
+  "last_name": "Doe"
+};
+const headers = {
+  'Content-Type':'application/x-www-form-urlencoded',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/profile',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
   headers: headers
 })
 .then(function(res) {
@@ -714,13 +810,13 @@ p JSON.parse(result)
 
 `PATCH /profile`
 
-This endpoint is use to update the player information.The updated Info is sent as a part of request.
+This endpoint is used to update the players profile.
 
 > Body parameter
 
 ```yaml
-first_name: playerTEST
-last_name: testName
+first_name: Jane
+last_name: Doe
 
 ```
 
@@ -728,9 +824,9 @@ last_name: testName
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|Updated Info|
-|» firstname|body|string|false|player33|
-|» lastname|body|string|false|testchange|
+|body|body|object|false|none|
+|» firstname|body|string|false|Jane|
+|» lastname|body|string|false|Doe|
 
 > Example responses
 
@@ -738,11 +834,11 @@ last_name: testName
 
 ```json
 {
-  "first_name": "playerTEST",
-  "last_name": "testName",
-  "birthdate": "1935-05-23",
-  "email": "playtest7@gmail.com",
-  "phone_number": "123 123 1234",
+  "first_name": "Jane",
+  "last_name": "Doe",
+  "birthdate": "1985-05-23",
+  "email": "janedoe@example.com",
+  "phone_number": "654 69 879",
   "bank_account_number": "11111111111111",
   "suspended_until": null,
   "weekly_loss_limit": 3500,
@@ -776,7 +872,7 @@ last_name: testName
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns the updated player profile.|[player](#schemaplayer)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the updated player profile.|[player](#schemaplayer)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 
@@ -885,6 +981,28 @@ fetch('https://api-stg3.snapchance.no/profile',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/profile',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -904,7 +1022,7 @@ p JSON.parse(result)
 
 `GET /profile`
 
-This endpoint is use to return the entire player Information.
+This endpoint is use to return the entire player information.
 
 > Example responses
 
@@ -912,8 +1030,8 @@ This endpoint is use to return the entire player Information.
 
 ```json
 {
-  "first_name": "playtest7",
-  "last_name": "test7",
+  "first_name": "Jane",
+  "last_name": "Doe",
   "birthdate": "1935-05-23",
   "email": "playtest7@gmail.com",
   "phone_number": "123 123 1234",
@@ -1066,6 +1184,31 @@ fetch('https://api-stg3.snapchance.no/suspension',
 {
   method: 'POST',
   body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "suspended_until": "2021-04-12T15:28:05.335Z"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/suspension',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
   headers: headers
 })
 .then(function(res) {
@@ -1246,6 +1389,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/player/drawings',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -1609,6 +1774,28 @@ fetch('https://api-stg3.snapchance.no/player/drawings/{id}',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/player/drawings/{id}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -1801,6 +1988,34 @@ fetch('https://api-stg3.snapchance.no/subscription',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "drawing_id": 2243,
+  "photo_id": 77,
+  "redirect_url": "https://snapchance-staging5.netlify.app/subscription/confirm",
+  "tickets_count": 1
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -1945,6 +2160,32 @@ fetch('https://api-stg3.snapchance.no/subscription',
 {
   method: 'PATCH',
   body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "deposit_id": "20847",
+  "drawing_id": 2243
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
   headers: headers
 })
 .then(function(res) {
@@ -2117,6 +2358,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -2312,6 +2575,28 @@ fetch('https://api-stg3.snapchance.no/subscription/cancellation',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription/cancellation',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -2434,6 +2719,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/subscription/entries',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -2734,6 +3041,32 @@ fetch('https://api-stg3.snapchance.no/wallet/deposits',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "amount": 20,
+  "redirect_url": "https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/deposits',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -2754,7 +3087,7 @@ p JSON.parse(result)
 
 `POST /wallet/deposits`
 
-This endpoint is used to deposit funds into the Players wallet.  Here the mandatory fields are the amount and redirect url.
+This endpoint is used to deposit funds into the Players wallet.  See [Wallet Funding Flow](#wallet-funding) for more info.
 
 > Body parameter
 
@@ -2826,9 +3159,9 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## Verify_Deposit
+## Verify Deposit
 
-<a id="opIdVerify_Deposit"></a>
+<a id="opIdVerify Deposit"></a>
 
 > Code samples
 
@@ -2909,6 +3242,28 @@ fetch('https://api-stg3.snapchance.no/wallet/deposits/{id}',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/deposits/{id}',
+{
+  method: 'PATCH',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -2930,7 +3285,7 @@ p JSON.parse(result)
 
 This endpoint is used to verify the deposits added to the player wallet.
 
-<h3 id="verify_deposit-parameters">Parameters</h3>
+<h3 id="verify-deposit-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2955,7 +3310,7 @@ This endpoint is used to verify the deposits added to the player wallet.
 "HTTP Token: Access denied."
 ```
 
-<h3 id="verify_deposit-responses">Responses</h3>
+<h3 id="verify-deposit-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2965,7 +3320,7 @@ This endpoint is used to verify the deposits added to the player wallet.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h3 id="verify_deposit-responseschema">Response Schema</h3>
+<h3 id="verify-deposit-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -3088,6 +3443,31 @@ fetch('https://api-stg3.snapchance.no/wallet/withdrawals',
 {
   method: 'POST',
   body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "amount": 50
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/withdrawals',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
   headers: headers
 })
 .then(function(res) {
@@ -3276,6 +3656,28 @@ fetch('https://api-stg3.snapchance.no/wallet/balance',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/balance',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -3416,6 +3818,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/wallet/transactions',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -8260,6 +8684,32 @@ fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "photo_id": 0,
+  "tickets_count": 0
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -8280,7 +8730,7 @@ p JSON.parse(result)
 
 `POST /drawings/{id}/entries`
 
-This endpoint is used to buy entries.  An entry consists of a single photo and multiple tickets. Tickets can be scratched for an instant win or be "revealed" at the end of the drawing. Please see the purchase entries flow.
+This endpoint is used to buy entries.  An entry consists of a single photo and multiple tickets. Tickets can be scratched for an instant win or be "revealed" at the end of the drawing. Please see the [Ticket Purcahse Flow](#ticket-purchase) fro more info.
 
 > Body parameter
 
@@ -8555,6 +9005,28 @@ fetch('https://api-stg3.snapchance.no/tickets/{id}/reveal',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/tickets/{id}/reveal',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -8574,7 +9046,7 @@ p JSON.parse(result)
 
 `POST /tickets/{id}/reveal`
 
-This endpoint is use to reveal a SnapChance ticket at the end of a drawying.
+This endpoint is use to reveal a SnapChance ticket at the end of a drawing.
 
 <h3 id="reveal-drawing-ticket-parameters">Parameters</h3>
 
@@ -8789,6 +9261,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/entries',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -9082,6 +9576,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/entries/{id}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -9514,6 +10030,65 @@ fetch('https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id}',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "scratch_state": [
+    [
+      {
+        "revealed": true
+      },
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      }
+    ],
+    [
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      }
+    ],
+    [
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      },
+      {
+        "revealed": false
+      }
+    ]
+  ]
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id}',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -9829,6 +10404,31 @@ fetch('https://api-stg3.snapchance.no/session',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "email": "user@email.com",
+  "password": "ComplexPassword123"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('https://api-stg3.snapchance.no/session',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -9911,10 +10511,14 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 
 > Returns players session, limits and player details.
 
-> Unauthorized
+> Forbidden
 
 ```json
-{}
+{
+  "errors": [
+    "Feil e-post eller passord"
+  ]
+}
 ```
 
 <h3 id="login-responses">Responses</h3>
@@ -9923,7 +10527,7 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 |---|---|---|---|
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns players session, limits and player details.|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|None|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
 
 <h3 id="login-responseschema">Response Schema</h3>
 
@@ -10076,6 +10680,31 @@ fetch('https://api-stg3.snapchance.no/players',
 {
   method: 'POST',
   body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "bankid_code": "string"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/players',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
   headers: headers
 })
 .then(function(res) {
@@ -10308,6 +10937,36 @@ fetch('https://api-stg3.snapchance.no/activation',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "first_name": "string",
+  "last_name": "string",
+  "email": "string",
+  "password": "string",
+  "is_pep": true,
+  "language": "string"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/activation',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -10463,9 +11122,9 @@ bearerAuth
 
 Callback from the NETs payment gateway
 
-## NETS Callback
+## NETs Callback
 
-<a id="opIdNETS Callback"></a>
+<a id="opIdNETs Callback"></a>
 
 > Code samples
 
@@ -10577,6 +11236,30 @@ fetch('https://api-stg3.snapchance.no/callbacks',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "TransactionId": "string"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/callbacks',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -10596,7 +11279,7 @@ p JSON.parse(result)
 
 `POST /callbacks`
 
-This Endpoint is used for handling the Nets Callback functionality
+This endpoint is used for handling callback from NETs.  See [Wallet Funding Flow](#wallet-funding) for more info.
 
 > Body parameter
 
@@ -10709,6 +11392,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -11041,6 +11746,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -11406,6 +12133,28 @@ fetch('https://api-stg3.snapchance.no/drawings/{id}/tickets',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/drawings/{id}/tickets',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -11701,6 +12450,32 @@ fetch('https://api-stg3.snapchance.no/password',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "password": "password2",
+  "new_password": "passwordtest12"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/password',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -11721,7 +12496,7 @@ p JSON.parse(result)
 
 `PATCH /password`
 
-This endpoint is use to Update player password from Profile.
+This endpoint is used to update a players password.
 
 > Body parameter
 
@@ -11890,6 +12665,32 @@ fetch('https://api-stg3.snapchance.no/password_reset',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "email": "test@gmail.com",
+  "redirect_url": "https://api-stg3.snapchance.no/reset_password"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/password_reset',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -11910,7 +12711,7 @@ p JSON.parse(result)
 
 `POST /password_reset`
 
-This endpoint is use to Send a password reset email.Here the mandatory fields are email and redirect-url.
+This endpoint is used to start the password reset flow by sending an email to the users email address.
 
 > Body parameter
 
@@ -11962,8 +12763,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 ```json
 {
   "errors": [
-    "Email is invalid",
-    "Redirect url translation missing: nn.activemodel.errors.models.password_reset.attributes.redirect_url.url"
+    "Email Tokenet er ugyldig"
   ]
 }
 ```
@@ -11971,7 +12771,7 @@ This endpoint is use to Send a password reset email.Here the mandatory fields ar
 ```json
 {
   "errors": [
-    "Redirect url host is not allowed"
+    "Redirect url host er ikke tillatt"
   ]
 }
 ```
@@ -12110,6 +12910,32 @@ fetch('https://api-stg3.snapchance.no/password_reset',
 
 ```
 
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "new_password": "password123",
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"
+};
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/password_reset',
+{
+  method: 'PATCH',
+  body: JSON.stringify(inputBody),
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
 ```ruby
 require 'rest-client'
 require 'json'
@@ -12130,7 +12956,7 @@ p JSON.parse(result)
 
 `PATCH /password_reset`
 
-This endpoint is used to Reset the password.We can reset the password through link sent to Email.
+This endpoint is used to finalize the reset password process.
 
 > Body parameter
 
@@ -12293,6 +13119,31 @@ fetch('https://api-stg3.snapchance.no/photos',
 {
   method: 'POST',
   body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
+const inputBody = {
+  "image": "string"
+};
+const headers = {
+  'Content-Type':'application/x-www-form-urlencoded',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/photos',
+{
+  method: 'POST',
+  body: JSON.stringify(inputBody),
   headers: headers
 })
 .then(function(res) {
@@ -12467,6 +13318,28 @@ Accept: application/json
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/photos',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
@@ -12669,6 +13542,28 @@ Accept: text/plain
 ```
 
 ```javascript
+
+const headers = {
+  'Accept':'text/plain',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://api-stg3.snapchance.no/photos/{id}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```nodejs
+const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'text/plain',
