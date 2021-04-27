@@ -349,6 +349,9 @@
                   <li>
                     <a href="#process-3" class="toc-h2 toc-link" data-title="Process">Process</a>
                   </li>
+                  <li>
+                    <a href="#process-4" class="toc-h2 toc-link" data-title="Process">Process</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -358,7 +361,7 @@
                     <a href="#pre-requisites" class="toc-h2 toc-link" data-title="Pre-requisites">Pre-requisites</a>
                   </li>
                   <li>
-                    <a href="#process-4" class="toc-h2 toc-link" data-title="Process">Process</a>
+                    <a href="#process-5" class="toc-h2 toc-link" data-title="Process">Process</a>
                   </li>
               </ul>
           </li>
@@ -369,13 +372,16 @@
                     <a href="#pre-requisites-2" class="toc-h2 toc-link" data-title="Pre-requisites">Pre-requisites</a>
                   </li>
                   <li>
-                    <a href="#process-5" class="toc-h2 toc-link" data-title="Process">Process</a>
+                    <a href="#process-6" class="toc-h2 toc-link" data-title="Process">Process</a>
                   </li>
               </ul>
           </li>
         <li>
           <span class="toc-divider">Endpoints</span>
         </li>
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
@@ -633,10 +639,17 @@ The examples for JavaScript and Node.JS use the fetch library</p>
 
 <p><img src="images/snapchance-add-funds-c705f6a0.jpg" alt="" /></p>
 <h2 id='pre-requistes-2'>Pre-requistes</h2><h2 id='redirect-url'>Redirect URL</h2>
-<ul>
-<li>Create a URL that BankID can redirect back to after a player successfully logs in to BankID</li>
-<li>Email NETS BankID Support at <a href="mailto:support.esecurity@nets.eu">support.esecurity@nets.eu</a> to add the redirect domain to their allow list</li>
-</ul>
+<aside class="warning">
+The Multilot SnapChance operations team can take care of the NETs account setup for you
+</aside>
+
+<p>Contact NETS Sales team to create a NETs Account.
+You will get a client ID and password for the test environment and for production environment.</p>
+<h3 id='2-configure-callback-url-username-and-password'>2. Configure Callback URL, Username and Password</h3>
+<p>You will need to log into the NETs developer portal and configure the callback URL to https://api.yourdomain.com/callbacks.
+Setup the callback username and password, then securely communicate that to the Multilot SnapChance operations team at support@snapchance.no</p>
+
+<p><img src="images/snapchance-nets-callback-cb6b5d0a.png" alt="" /></p>
 <h2 id='process-2'>Process</h2>
 <p>In order to add funds to a wallet, 2 requests are required as well as a redirect to and from the NETS.</p>
 <h3 id='1-create-deposit'>1. <a href="#deposit">Create Deposit</a></h3>
@@ -655,12 +668,24 @@ The examples for JavaScript and Node.JS use the fetch library</p>
 <p>If the query param <code>responseCode</code> is <code>OK</code>, we can verify the deposit by making a PATCH request to <code>/wallet/deposits/:deposit_id</code> using the <code>deposit_id</code> query param.  This request will verify the deposit with NETS, and update the deposit status to <code>complete</code>, as well as the user&#39;s wallet balance.</p>
 <h1 id='creating-lotteries-and-drawings'>Creating Lotteries and Drawings</h1>
 <p>Using the SnapChance admin panel you can create add your gaming license as well as create lotteries and drawings using your license.</p>
+<h2 id='process-3'>Process</h2>
+<p><img src="images/snapchance-admin-b4873e1b.png" alt="" /></p>
 
 <aside class="warning">
 SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
 </aside>
-<h2 id='process-3'>Process</h2>
-<p><img src="images/snapchance-admin-b4873e1b.png" alt="" /></p>
+<h2 id='process-4'>Process</h2>
+<p>Login to the SnapChance regulator panel at <a href="https://admin-stg3.snapchance.no/regulator">https://admin-stg3.snapchance.no/regulator</a>
+<img src="images/snapchance-regulator-ee6506ad.png" alt="" /></p>
+
+<p>Input your license details
+<img src="images/snapchance-regulator-add-license-29577d8f.png" alt="" /></p>
+
+<p>Login to the SnapChance admin panel at <a href="https://admin-stg3.snapchance.no/">https://admin-stg3.snapchance.no/</a> to create your lottery
+<img src="images/snapchance-admin-create-lottery-fde65ebf.png" alt="" />
+<img src="images/snapchance-admin-create-lottery-2-2e4bbb35.png" alt="" />
+<img src="images/snapchance-admin-create-lottery-3-5368ca6d.png" alt="" />
+<img src="images/snapchance-admin-create-lottery-4-8f7c3fcf.png" alt="" /></p>
 <h1 id='ticket-purchase'>Ticket Purchase</h1>
 <p>A player ticket purchase flow could look something like the following flow diagram:</p>
 
@@ -707,7 +732,7 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 <li>A GET request to <code>/profile</code> returns an player object that includes properties <code>daily_loss_limit</code> and <code>weekly_loss_limit</code>.</li>
 <li>A GET request to <code>/wallet/transactions</code> returns a paginated array of transactions, each of which include properties <code>amount</code>, <code>type</code> and <code>created_at</code>.</li>
 </ul>
-<h2 id='process-4'>Process</h2>
+<h2 id='process-5'>Process</h2>
 <p><strong><a href="#purchase-entries">Create Entries</a></strong></p>
 
 <p>After all the pre-requisites are satisfied, a request to the <code>/drawings/:drawing_id/entries</code> is made using the photo ID as <code>photo_id</code> param and number of tickets purchased as <code>tickets_count</code>.</p>
@@ -731,7 +756,7 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 <ul>
 <li>A GET request to <code>/profile</code> returns an player object that includes property <code>bank_account_number</code>, which may be a string or null.</li>
 </ul>
-<h2 id='process-5'>Process</h2>
+<h2 id='process-6'>Process</h2>
 <p><a href="#withdraw-from-wallet">Withdrawal</a></p>
 
 <p>To create a withdrawal, a POST request needs to be made to <code>/wallet/withdrawals</code> with param <code>amount</code> for units of currency associated with the authenticated user.  This will add a withdrawal transaction to the user&#39;s wallet and update the wallet balance.  The user will then receive an email notification regarding their pending bank transfer to the bank account number they provided to their profile.</p>
@@ -743,6 +768,16 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 <blockquote>
 <p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
 </blockquote>
+<h1 id='introduction'>Introduction</h1>
+<p>The SnapChance API is developed to support entertainment games such as scratch card game which gives a player an opportunity to win money.</p>
+
+<p>The API is secured with JWT authentication and the requests are authorized for the users with valid credentials. The user must authenticate with API and get a JWT token; which can be used to access all secured endpoints. The API has build-in integration with NETs for BankID verification and payment process.</p>
+<h4 id='snapchance-api-supports-users-with-three-roles'>SnapChance API supports users with three roles:</h4>
+<ul>
+<li><b>Regulator</b> - Create and manage the licenses.</li>
+<li><b>Operator/Admin</b> - Create and manage the lotteries.</li>
+<li><b>Player</b> - Add funds to the wallet; purchases and play tickets.</li>
+</ul>
 
 <p>Base URLs:</p>
 
@@ -765,7 +800,7 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 
 <pre>curl --request GET \
   --url https://api-stg3.snapchance.no/profile \
-  --header 'authorization: Bearer $SNAPCHANCE_API_TOKEN`'</pre>
+  --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
 
 <h1 id="snapchance-player">Player</h1>
 
@@ -1123,21 +1158,14 @@ fetch('https://api-stg3.snapchance.no/loss_limits',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» daily_loss_limit</td>
+<td>daily_loss_limit</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» weekly_loss_limit</td>
+<td>weekly_loss_limit</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -1713,21 +1741,14 @@ fetch('https://api-stg3.snapchance.no/profile',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» firstname</td>
+<td>firstname</td>
 <td>body</td>
 <td>string</td>
 <td>false</td>
 <td>Jane</td>
 </tr>
 <tr>
-<td>» lastname</td>
+<td>lastname</td>
 <td>body</td>
 <td>string</td>
 <td>false</td>
@@ -2171,14 +2192,7 @@ fetch('https://api-stg3.snapchance.no/suspension',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» suspended_until</td>
+<td>suspended_until</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -3158,35 +3172,28 @@ fetch('https://api-stg3.snapchance.no/subscription',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>Activating a subscription for player</td>
-</tr>
-<tr>
-<td>» drawing_id</td>
+<td>drawing_id</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» photo_id</td>
+<td>photo_id</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» redirect_url</td>
+<td>redirect_url</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» tickets_count</td>
+<td>tickets_count</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
@@ -3381,21 +3388,14 @@ fetch('https://api-stg3.snapchance.no/subscription',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>As part of request we send deposit id and drawing id</td>
-</tr>
-<tr>
-<td>» deposit_id</td>
+<td>deposit_id</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» drawing_id</td>
+<td>drawing_id</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
@@ -4427,21 +4427,14 @@ fetch('https://api-stg3.snapchance.no/wallet/deposits',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» amount</td>
+<td>amount</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» redirect_url</td>
+<td>redirect_url</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -4963,14 +4956,7 @@ fetch('https://api-stg3.snapchance.no/wallet/withdrawals',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>Amount to be Withdrawn</td>
-</tr>
-<tr>
-<td>» amount</td>
+<td>amount</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
@@ -10344,21 +10330,14 @@ fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
 <td>Drawing ID</td>
 </tr>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>As part of request it takes PhotoId and Ticket count</td>
-</tr>
-<tr>
-<td>» photo_id</td>
+<td>photo_id</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» tickets_count</td>
+<td>tickets_count</td>
 <td>body</td>
 <td>number</td>
 <td>true</td>
@@ -12893,56 +12872,49 @@ fetch('https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id}',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>scratch state</td>
-</tr>
-<tr>
-<td>» scratch_state</td>
+<td>scratch_state</td>
 <td>body</td>
 <td>[any]</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»» 0</td>
+<td>» 0</td>
 <td>body</td>
 <td>[any]</td>
 <td>false</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»»» revealed</td>
+<td>»» revealed</td>
 <td>body</td>
 <td>boolean</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»» 1</td>
+<td>» 1</td>
 <td>body</td>
 <td>[any]</td>
 <td>false</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»»» revealed</td>
+<td>»» revealed</td>
 <td>body</td>
 <td>boolean</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»» 2</td>
+<td>» 2</td>
 <td>body</td>
 <td>[any]</td>
 <td>false</td>
 <td>none</td>
 </tr>
 <tr>
-<td>»»» revealed</td>
+<td>»» revealed</td>
 <td>body</td>
 <td>boolean</td>
 <td>true</td>
@@ -13406,21 +13378,14 @@ fetch('https://api-stg3.snapchance.no/session',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>Email and Password as Request body</td>
-</tr>
-<tr>
-<td>» email</td>
+<td>email</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» password</td>
+<td>password</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -13901,14 +13866,7 @@ fetch('https://api-stg3.snapchance.no/players',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» bankid_code</td>
+<td>bankid_code</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -14179,49 +14137,42 @@ fetch('https://api-stg3.snapchance.no/activation',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>Player Activation request</td>
-</tr>
-<tr>
-<td>» first_name</td>
+<td>first_name</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» last_name</td>
+<td>last_name</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» email</td>
+<td>email</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» password</td>
+<td>password</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» is_pep</td>
+<td>is_pep</td>
 <td>body</td>
 <td>boolean</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» language</td>
+<td>language</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -14621,14 +14572,7 @@ fetch('https://api-stg3.snapchance.no/callbacks',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>It takes the TransactionId as part of Request</td>
-</tr>
-<tr>
-<td>» TransactionId</td>
+<td>TransactionId</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -16377,21 +16321,14 @@ fetch('https://api-stg3.snapchance.no/password',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>password change</td>
-</tr>
-<tr>
-<td>» password</td>
+<td>password</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» new_password</td>
+<td>new_password</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -16624,21 +16561,14 @@ fetch('https://api-stg3.snapchance.no/password_reset',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>Password Reset</td>
-</tr>
-<tr>
-<td>» email</td>
+<td>email</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» redirect_url</td>
+<td>redirect_url</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -17013,21 +16943,14 @@ fetch('https://api-stg3.snapchance.no/password_reset',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» new_password</td>
+<td>new_password</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
 <td>none</td>
 </tr>
 <tr>
-<td>» token</td>
+<td>token</td>
 <td>body</td>
 <td>string</td>
 <td>true</td>
@@ -17254,14 +17177,7 @@ fetch('https://api-stg3.snapchance.no/photos',
 </tr>
 </thead><tbody>
 <tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» image</td>
+<td>image</td>
 <td>body</td>
 <td>string</td>
 <td>false</td>
