@@ -26,7 +26,8 @@ const options = {
   headings: 2,
   yaml: false,
   resolve: false,
-  toc_footers: [{ url: "https://snapchance.no", description: "SnapChance Norway" }]
+  toc_footers: [{ url: "https://snapchance.no", description: "SnapChance Norway" }],
+  omitBody: true
 }
 
 // TODO: We might want to consider moving this repo to a subdir of the api project or getting this file in some other way

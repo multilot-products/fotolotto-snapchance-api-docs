@@ -420,9 +420,8 @@ This endpoint is used to set the loss limits for a player
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|none|
-|» daily_loss_limit|body|number|true|none|
-|» weekly_loss_limit|body|string|true|none|
+|daily_loss_limit|body|number|true|none|
+|weekly_loss_limit|body|string|true|none|
 
 > Example responses
 
@@ -835,9 +834,8 @@ last_name: Doe
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|none|
-|» firstname|body|string|false|Jane|
-|» lastname|body|string|false|Doe|
+|firstname|body|string|false|Jane|
+|lastname|body|string|false|Doe|
 
 > Example responses
 
@@ -1264,8 +1262,7 @@ This endpoint is use to set the player suspension for a specific time.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|none|
-|» suspended_until|body|string|true|none|
+|suspended_until|body|string|true|none|
 
 > Example responses
 
@@ -2064,11 +2061,10 @@ This endpoint is used to activate the player subscription.Player can subscribe t
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|Activating a subscription for player|
-|» drawing_id|body|number|true|none|
-|» photo_id|body|number|true|none|
-|» redirect_url|body|string|true|none|
-|» tickets_count|body|number|true|none|
+|drawing_id|body|number|true|none|
+|photo_id|body|number|true|none|
+|redirect_url|body|string|true|none|
+|tickets_count|body|number|true|none|
 
 > Example responses
 
@@ -2242,9 +2238,8 @@ This endpoint is to Verify the activated subscription.The mandatory fields are d
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|As part of request we send deposit id and drawing id|
-|» deposit_id|body|string|true|none|
-|» drawing_id|body|number|true|none|
+|deposit_id|body|string|true|none|
+|drawing_id|body|number|true|none|
 
 > Example responses
 
@@ -3113,9 +3108,8 @@ This endpoint is used to deposit funds into the Players wallet.  See [Wallet Fun
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|none|
-|» amount|body|number|true|none|
-|» redirect_url|body|string|true|The application URL that NETS will redirect back to|
+|amount|body|number|true|none|
+|redirect_url|body|string|true|The application URL that NETS will redirect back to|
 
 > Example responses
 
@@ -3523,8 +3517,7 @@ This endpoint is used for withdrawing players wallet balance and adding it to hi
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|Amount to be Withdrawn|
-|» amount|body|number|true|none|
+|amount|body|number|true|none|
 
 > Example responses
 
@@ -8757,9 +8750,8 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|integer(int64)|true|Drawing ID|
-|body|body|object|false|As part of request it takes PhotoId and Ticket count|
-|» photo_id|body|number|true|none|
-|» tickets_count|body|number|true|none|
+|photo_id|body|number|true|none|
+|tickets_count|body|number|true|none|
 
 > Example responses
 
@@ -10170,14 +10162,13 @@ This end point is used to reveal each tile of ticket.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|scratch state|
-|» scratch_state|body|[any]|true|none|
-|»» 0|body|[any]|false|none|
-|»»» revealed|body|boolean|true|none|
-|»» 1|body|[any]|false|none|
-|»»» revealed|body|boolean|true|none|
-|»» 2|body|[any]|false|none|
-|»»» revealed|body|boolean|true|none|
+|scratch_state|body|[any]|true|none|
+|» 0|body|[any]|false|none|
+|»» revealed|body|boolean|true|none|
+|» 1|body|[any]|false|none|
+|»» revealed|body|boolean|true|none|
+|» 2|body|[any]|false|none|
+|»» revealed|body|boolean|true|none|
 |id|path|string|true|none|
 |ticket_id|path|string|true|none|
 
@@ -10474,9 +10465,8 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|Email and Password as Request body|
-|» email|body|string|true|none|
-|» password|body|string|true|none|
+|email|body|string|true|none|
+|password|body|string|true|none|
 
 > Example responses
 
@@ -10760,8 +10750,7 @@ This endpoint is the first step in the registration process.  It will create a p
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|none|
-|» bankid_code|body|string|true|none|
+|bankid_code|body|string|true|none|
 
 > Example responses
 
@@ -11017,13 +11006,12 @@ This Endpoint is used to activate a Player. It requires that a player already be
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|Player Activation request|
-|» first_name|body|string|true|none|
-|» last_name|body|string|true|none|
-|» email|body|string|true|none|
-|» password|body|string|true|none|
-|» is_pep|body|boolean|true|none|
-|» language|body|string|true|none|
+|first_name|body|string|true|none|
+|last_name|body|string|true|none|
+|email|body|string|true|none|
+|password|body|string|true|none|
+|is_pep|body|boolean|true|none|
+|language|body|string|true|none|
 
 > Example responses
 
@@ -11304,8 +11292,7 @@ This endpoint is used for handling callback from NETs.  See [Wallet Funding Flow
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|It takes the TransactionId as part of Request|
-|» TransactionId|body|string|true|none|
+|TransactionId|body|string|true|none|
 
 <h3 id="nets-callback-responses">Responses</h3>
 
@@ -12522,9 +12509,8 @@ This endpoint is used to update a players password.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|password change |
-|» password|body|string|true|none|
-|» new_password|body|string|true|none|
+|password|body|string|true|none|
+|new_password|body|string|true|none|
 
 > Example responses
 
@@ -12737,9 +12723,8 @@ This endpoint is used to start the password reset flow by sending an email to th
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|Password Reset |
-|» email|body|string|true|none|
-|» redirect_url|body|string|true|none|
+|email|body|string|true|none|
+|redirect_url|body|string|true|none|
 
 > Example responses
 
@@ -12982,9 +12967,8 @@ This endpoint is used to finalize the reset password process.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|none|
-|» new_password|body|string|true|none|
-|» token|body|string|true|none|
+|new_password|body|string|true|none|
+|token|body|string|true|none|
 
 > Example responses
 
@@ -13198,8 +13182,7 @@ image: string
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|false|none|
-|» image|body|string|false|binary|
+|image|body|string|false|binary|
 
 > Example responses
 
