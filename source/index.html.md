@@ -5,7 +5,7 @@ language_tabs:
   - shell: Shell
   - http: HTTP
   - javascript: JavaScript
-  - nodejs: Node.JS
+  - javascript--node: Node.JS
   - ruby: Ruby
 toc_footers:
   - <a href="https://snapchance.no">SnapChance Norway</a>
@@ -56,148 +56,94 @@ Player and Profile management and reporting
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/deactivation";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/deactivation");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Accept", "text/plain");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/deactivation \
-  -H 'Accept: text/plain' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/deactivation \
+  --header 'Accept: text/plain' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/deactivation HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /deactivation HTTP/1.1
 Accept: text/plain
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/deactivation',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("POST", "https://api-stg3.snapchance.no/deactivation");
+xhr.setRequestHeader("Accept", "text/plain");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/deactivation",
+  "headers": {
+    "Accept": "text/plain",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/deactivation',
-{
-  method: 'POST',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'text/plain',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/deactivation")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/deactivation',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Accept"] = 'text/plain'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /deactivation`
@@ -232,164 +178,109 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    /// Make a dummy request
-    public async Task MakePutRequest()
-    {
-      int id = 1;
-      string url = "https://api-stg3.snapchance.no/loss_limits";
-
-      
-      
-      var result = await PutAsync(id, null, url);
-          
-    }
-
-    /// Performs a PUT Request
-    public async Task PutAsync(int id, undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute PUT request
-        HttpResponseMessage response = await Client.PutAsync(url + $"/{id}", jsonContent);
-
-        //Return response
-        return await DeserializeObject(response);
-    }
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/loss_limits");
+var request = new RestRequest(Method.PUT);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"daily_loss_limit\":1500,\"weekly_loss_limit\":\"2900\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X PUT https://api-stg3.snapchance.no/loss_limits \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request PUT \
+  --url https://api-stg3.snapchance.no/loss_limits \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"daily_loss_limit":1500,"weekly_loss_limit":"2900"}'
 ```
 
 ```http
-PUT https://api-stg3.snapchance.no/loss_limits HTTP/1.1
-Host: api-stg3.snapchance.no
+PUT /loss_limits HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 52
 
+{"daily_loss_limit":1500,"weekly_loss_limit":"2900"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "daily_loss_limit": 1500,
   "weekly_loss_limit": "2900"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/loss_limits',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PUT", "https://api-stg3.snapchance.no/loss_limits");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "daily_loss_limit": 1500,
-  "weekly_loss_limit": "2900"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "PUT",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/loss_limits",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/loss_limits',
-{
-  method: 'PUT',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({daily_loss_limit: 1500, weekly_loss_limit: '2900'}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/loss_limits")
 
-result = RestClient.put 'https://api-stg3.snapchance.no/loss_limits',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Put.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"daily_loss_limit\":1500,\"weekly_loss_limit\":\"2900\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `PUT /loss_limits`
@@ -502,130 +393,101 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/profile");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X PATCH https://api-stg3.snapchance.no/profile \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request PATCH \
+  --url https://api-stg3.snapchance.no/profile \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data ''
 ```
 
 ```http
-PATCH https://api-stg3.snapchance.no/profile HTTP/1.1
-Host: api-stg3.snapchance.no
+PATCH /profile HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
-const inputBody = '{
-  "first_name": "Jane",
-  "last_name": "Doe"
-}';
-const headers = {
-  'Content-Type':'application/x-www-form-urlencoded',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const data = null;
 
-fetch('https://api-stg3.snapchance.no/profile',
-{
-  method: 'PATCH',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("PATCH", "https://api-stg3.snapchance.no/profile");
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "first_name": "Jane",
-  "last_name": "Doe"
-};
-const headers = {
-  'Content-Type':'application/x-www-form-urlencoded',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "PATCH",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/profile",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/profile',
-{
-  method: 'PATCH',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/x-www-form-urlencoded',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/profile")
 
-result = RestClient.patch 'https://api-stg3.snapchance.no/profile',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Patch.new(url)
+request["Content-Type"] = 'application/x-www-form-urlencoded'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `PATCH /profile`
@@ -707,136 +569,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/profile";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/profile");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/profile \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/profile \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/profile HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /profile HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/profile',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/profile");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/profile",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/profile',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/profile")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/profile',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /profile`
@@ -903,157 +723,108 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/suspension";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/suspension");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"suspended_until\":\"2021-04-12T15:28:05.335Z\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/suspension \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/suspension \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"suspended_until":"2021-04-12T15:28:05.335Z"}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/suspension HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /suspension HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 46
 
+{"suspended_until":"2021-04-12T15:28:05.335Z"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "suspended_until": "2021-04-12T15:28:05.335Z"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/suspension',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/suspension");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "suspended_until": "2021-04-12T15:28:05.335Z"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/suspension",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/suspension',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({suspended_until: '2021-04-12T15:28:05.335Z'}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/suspension")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/suspension',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"suspended_until\":\"2021-04-12T15:28:05.335Z\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /suspension`
@@ -1134,136 +905,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/player/drawings";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/player/drawings");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/player/drawings \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/player/drawings \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/player/drawings HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /player/drawings HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/player/drawings',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/player/drawings");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/player/drawings",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/player/drawings',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/player/drawings")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/player/drawings',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /player/drawings`
@@ -1499,136 +1228,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/player/drawings/{id}";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/player/drawings/0");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/player/drawings/{id} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/player/drawings/0 \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/player/drawings/{id} HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /player/drawings/0 HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/player/drawings/{id}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/player/drawings/0");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/player/drawings/0",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/player/drawings/{id}',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/player/drawings/0")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/player/drawings/{id}',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /player/drawings/{id}`
@@ -1693,163 +1380,116 @@ Automatic subscription to drawings
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/subscription";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/subscription");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "text/plain");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"drawing_id\":2243,\"photo_id\":77,\"redirect_url\":\"https://snapchance-staging5.netlify.app/subscription/confirm\",\"tickets_count\":1}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/subscription \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: text/plain' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/subscription \
+  --header 'Accept: text/plain' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"drawing_id":2243,"photo_id":77,"redirect_url":"https://snapchance-staging5.netlify.app/subscription/confirm","tickets_count":1}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/subscription HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /subscription HTTP/1.1
 Content-Type: application/json
 Accept: text/plain
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 129
 
+{"drawing_id":2243,"photo_id":77,"redirect_url":"https://snapchance-staging5.netlify.app/subscription/confirm","tickets_count":1}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "drawing_id": 2243,
   "photo_id": 77,
   "redirect_url": "https://snapchance-staging5.netlify.app/subscription/confirm",
   "tickets_count": 1
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/subscription',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/subscription");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "text/plain");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "drawing_id": 2243,
-  "photo_id": 77,
-  "redirect_url": "https://snapchance-staging5.netlify.app/subscription/confirm",
-  "tickets_count": 1
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/subscription",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "text/plain",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/subscription',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({
+  drawing_id: 2243,
+  photo_id: 77,
+  redirect_url: 'https://snapchance-staging5.netlify.app/subscription/confirm',
+  tickets_count: 1
+}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'text/plain',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/subscription")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/subscription',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'text/plain'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"drawing_id\":2243,\"photo_id\":77,\"redirect_url\":\"https://snapchance-staging5.netlify.app/subscription/confirm\",\"tickets_count\":1}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /subscription`
@@ -1905,130 +1545,109 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/subscription");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"deposit_id\":\"20847\",\"drawing_id\":2243}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X PATCH https://api-stg3.snapchance.no/subscription \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request PATCH \
+  --url https://api-stg3.snapchance.no/subscription \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"deposit_id":"20847","drawing_id":2243}'
 ```
 
 ```http
-PATCH https://api-stg3.snapchance.no/subscription HTTP/1.1
-Host: api-stg3.snapchance.no
+PATCH /subscription HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 40
 
+{"deposit_id":"20847","drawing_id":2243}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "deposit_id": "20847",
   "drawing_id": 2243
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/subscription',
-{
-  method: 'PATCH',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PATCH", "https://api-stg3.snapchance.no/subscription");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "deposit_id": "20847",
-  "drawing_id": 2243
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "PATCH",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/subscription",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/subscription',
-{
-  method: 'PATCH',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({deposit_id: '20847', drawing_id: 2243}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/subscription")
 
-result = RestClient.patch 'https://api-stg3.snapchance.no/subscription',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Patch.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"deposit_id\":\"20847\",\"drawing_id\":2243}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `PATCH /subscription`
@@ -2101,136 +1720,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/subscription";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/subscription");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/subscription \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/subscription \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/subscription HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /subscription HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/subscription',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/subscription");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/subscription",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/subscription',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/subscription")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/subscription',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /subscription`
@@ -2286,148 +1863,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/subscription/cancellation";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/subscription/cancellation");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Accept", "text/plain");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/subscription/cancellation \
-  -H 'Accept: text/plain' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/subscription/cancellation \
+  --header 'Accept: text/plain' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/subscription/cancellation HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /subscription/cancellation HTTP/1.1
 Accept: text/plain
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/subscription/cancellation',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("POST", "https://api-stg3.snapchance.no/subscription/cancellation");
+xhr.setRequestHeader("Accept", "text/plain");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/subscription/cancellation",
+  "headers": {
+    "Accept": "text/plain",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/subscription/cancellation',
-{
-  method: 'POST',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'text/plain',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/subscription/cancellation")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/subscription/cancellation',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Accept"] = 'text/plain'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /subscription/cancellation`
@@ -2462,136 +1985,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/subscription/entries";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/subscription/entries");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/subscription/entries \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/subscription/entries \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/subscription/entries HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /subscription/entries HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/subscription/entries',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/subscription/entries");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/subscription/entries",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/subscription/entries',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/subscription/entries")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/subscription/entries',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /subscription/entries`
@@ -2746,159 +2227,112 @@ Wallet management and transaction reporting
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/wallet/deposits";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/wallet/deposits");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/wallet/deposits \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/wallet/deposits \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/wallet/deposits HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /wallet/deposits HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 110
 
+{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "amount": 20,
   "redirect_url": "https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/wallet/deposits',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/wallet/deposits");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "amount": 20,
-  "redirect_url": "https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/wallet/deposits",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/wallet/deposits',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({
+  amount: 20,
+  redirect_url: 'https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds'
+}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/wallet/deposits")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/wallet/deposits',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /wallet/deposits`
@@ -2981,119 +2415,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/wallet/deposits/0");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X PATCH https://api-stg3.snapchance.no/wallet/deposits/{id} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request PATCH \
+  --url https://api-stg3.snapchance.no/wallet/deposits/0 \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-PATCH https://api-stg3.snapchance.no/wallet/deposits/{id} HTTP/1.1
-Host: api-stg3.snapchance.no
+PATCH /wallet/deposits/0 HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/wallet/deposits/{id}',
-{
-  method: 'PATCH',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("PATCH", "https://api-stg3.snapchance.no/wallet/deposits/0");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "PATCH",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/wallet/deposits/0",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/wallet/deposits/{id}',
-{
-  method: 'PATCH',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/wallet/deposits/0")
 
-result = RestClient.patch 'https://api-stg3.snapchance.no/wallet/deposits/{id}',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Patch.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `PATCH /wallet/deposits/{id}`
@@ -3158,157 +2567,108 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/wallet/withdrawals";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/wallet/withdrawals");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"amount\":50}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/wallet/withdrawals \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/wallet/withdrawals \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"amount":50}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/wallet/withdrawals HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /wallet/withdrawals HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 13
 
+{"amount":50}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "amount": 50
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/wallet/withdrawals',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/wallet/withdrawals");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "amount": 50
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/wallet/withdrawals",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/wallet/withdrawals',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({amount: 50}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/wallet/withdrawals")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/wallet/withdrawals',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"amount\":50}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /wallet/withdrawals`
@@ -3377,136 +2737,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/wallet/balance";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/wallet/balance");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/wallet/balance \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/wallet/balance \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/wallet/balance HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /wallet/balance HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/wallet/balance',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/wallet/balance");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/wallet/balance",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/wallet/balance',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/wallet/balance")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/wallet/balance',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /wallet/balance`
@@ -3559,136 +2877,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/wallet/transactions";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/wallet/transactions");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/wallet/transactions \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/wallet/transactions \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/wallet/transactions HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /wallet/transactions HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/wallet/transactions',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/wallet/transactions");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/wallet/transactions",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/wallet/transactions',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/wallet/transactions")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/wallet/transactions',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /wallet/transactions`
@@ -4685,159 +3961,109 @@ Entries consist of a photo and 1 to n tickets
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/drawings/{id}/entries";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/drawings/0/entries");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"photo_id\":0,\"tickets_count\":0}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/drawings/{id}/entries \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/drawings/0/entries \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"photo_id":0,"tickets_count":0}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/drawings/{id}/entries HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /drawings/0/entries HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 32
 
+{"photo_id":0,"tickets_count":0}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "photo_id": 0,
   "tickets_count": 0
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/drawings/0/entries");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "photo_id": 0,
-  "tickets_count": 0
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/drawings/0/entries",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({photo_id: 0, tickets_count: 0}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/drawings/0/entries")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/drawings/{id}/entries',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"photo_id\":0,\"tickets_count\":0}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /drawings/{id}/entries`
@@ -5011,148 +4237,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/tickets/{id}/reveal";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/tickets/0/reveal");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/tickets/{id}/reveal \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/tickets/0/reveal \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/tickets/{id}/reveal HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /tickets/0/reveal HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/tickets/{id}/reveal',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("POST", "https://api-stg3.snapchance.no/tickets/0/reveal");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/tickets/0/reveal",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/tickets/{id}/reveal',
-{
-  method: 'POST',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/tickets/0/reveal")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/tickets/{id}/reveal',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /tickets/{id}/reveal`
@@ -5299,136 +4471,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/entries";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/entries");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/entries \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/entries \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/entries HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /entries HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/entries',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/entries");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/entries",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/entries',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/entries")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/entries',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /entries`
@@ -5614,136 +4744,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/entries/{id}";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/entries/0");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/entries/{id} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/entries/0 \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/entries/{id} HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /entries/0 HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/entries/{id}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/entries/0");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/entries/0",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/entries/{id}',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/entries/0")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/entries/{id}',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /entries/{id}`
@@ -6026,65 +5114,37 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/entries/string/tickets/string");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"scratch_state\":[[{\"revealed\":true},{\"revealed\":false},{\"revealed\":false}],[{\"revealed\":false},{\"revealed\":false},{\"revealed\":false}],[{\"revealed\":false},{\"revealed\":false},{\"revealed\":false}]]}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X PATCH https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id} \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request PATCH \
+  --url https://api-stg3.snapchance.no/entries/string/tickets/string \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"scratch_state":[[{"revealed":true},{"revealed":false},{"revealed":false}],[{"revealed":false},{"revealed":false},{"revealed":false}],[{"revealed":false},{"revealed":false},{"revealed":false}]]}'
 ```
 
 ```http
-PATCH https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id} HTTP/1.1
-Host: api-stg3.snapchance.no
+PATCH /entries/string/tickets/string HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 195
 
+{"scratch_state":[[{"revealed":true},{"revealed":false},{"revealed":false}],[{"revealed":false},{"revealed":false},{"revealed":false}],[{"revealed":false},{"revealed":false},{"revealed":false}]]}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "scratch_state": [
     [
       {
@@ -6120,102 +5180,82 @@ const inputBody = '{
       }
     ]
   ]
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id}',
-{
-  method: 'PATCH',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PATCH", "https://api-stg3.snapchance.no/entries/string/tickets/string");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "scratch_state": [
-    [
-      {
-        "revealed": true
-      },
-      {
-        "revealed": false
-      },
-      {
-        "revealed": false
-      }
-    ],
-    [
-      {
-        "revealed": false
-      },
-      {
-        "revealed": false
-      },
-      {
-        "revealed": false
-      }
-    ],
-    [
-      {
-        "revealed": false
-      },
-      {
-        "revealed": false
-      },
-      {
-        "revealed": false
-      }
-    ]
-  ]
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "PATCH",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/entries/string/tickets/string",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id}',
-{
-  method: 'PATCH',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({
+  scratch_state: [
+    [{revealed: true}, {revealed: false}, {revealed: false}],
+    [{revealed: false}, {revealed: false}, {revealed: false}],
+    [{revealed: false}, {revealed: false}, {revealed: false}]
+  ]
+}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/entries/string/tickets/string")
 
-result = RestClient.patch 'https://api-stg3.snapchance.no/entries/{id}/tickets/{ticket_id}',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Patch.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"scratch_state\":[[{\"revealed\":true},{\"revealed\":false},{\"revealed\":false}],[{\"revealed\":false},{\"revealed\":false},{\"revealed\":false}],[{\"revealed\":false},{\"revealed\":false},{\"revealed\":false}]]}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `PATCH /entries/{id}/tickets/{ticket_id}`
@@ -6405,155 +5445,103 @@ Creating a session for a player
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/session";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/session");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddParameter("application/json", "{\"email\":\"user@email.com\",\"password\":\"ComplexPassword123\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/session \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/session \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --data '{"email":"user@email.com","password":"ComplexPassword123"}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/session HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /session HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Host: api-stg3.snapchance.no
+Content-Length: 58
 
+{"email":"user@email.com","password":"ComplexPassword123"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "email": "user@email.com",
   "password": "ComplexPassword123"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-};
-
-fetch('https://api-stg3.snapchance.no/session',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/session");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "email": "user@email.com",
-  "password": "ComplexPassword123"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/session",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/session',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({email: 'user@email.com', password: 'ComplexPassword123'}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
+url = URI("https://api-stg3.snapchance.no/session")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/session',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request.body = "{\"email\":\"user@email.com\",\"password\":\"ComplexPassword123\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /session`
@@ -6689,157 +5677,108 @@ Registering and activating new player
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/players";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/players");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"bankid_code\":\"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/players \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/players \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"bankid_code":"string"}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/players HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /players HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 24
 
+{"bankid_code":"string"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "bankid_code": "string"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/players',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/players");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "bankid_code": "string"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/players",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/players',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({bankid_code: 'string'}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/players")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/players',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"bankid_code\":\"string\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /players`
@@ -6930,167 +5869,120 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/activation";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/activation");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"first_name\":\"string\",\"last_name\":\"string\",\"email\":\"string\",\"password\":\"string\",\"is_pep\":true,\"language\":\"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/activation \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/activation \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"first_name":"string","last_name":"string","email":"string","password":"string","is_pep":true,"language":"string"}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/activation HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /activation HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 115
 
+{"first_name":"string","last_name":"string","email":"string","password":"string","is_pep":true,"language":"string"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "first_name": "string",
   "last_name": "string",
   "email": "string",
   "password": "string",
   "is_pep": true,
   "language": "string"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/activation',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/activation");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "first_name": "string",
-  "last_name": "string",
-  "email": "string",
-  "password": "string",
-  "is_pep": true,
-  "language": "string"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/activation",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/activation',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({
+  first_name: 'string',
+  last_name: 'string',
+  email: 'string',
+  password: 'string',
+  is_pep: true,
+  language: 'string'
+}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/activation")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/activation',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"first_name\":\"string\",\"last_name\":\"string\",\"email\":\"string\",\"password\":\"string\",\"is_pep\":true,\"language\":\"string\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /activation`
@@ -7236,152 +6128,102 @@ Callback from the NETs payment gateway
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/callbacks";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/callbacks");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"TransactionId\":\"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/callbacks \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/callbacks \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"TransactionId":"string"}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/callbacks HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /callbacks HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 26
 
+{"TransactionId":"string"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "TransactionId": "string"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/callbacks',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/callbacks");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "TransactionId": "string"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/callbacks",
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/callbacks',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({TransactionId: 'string'}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/callbacks")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/callbacks',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"TransactionId\":\"string\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /callbacks`
@@ -7425,136 +6267,94 @@ Creating and retrieving drawings
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/drawings/{id}/entries";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/drawings/0/entries");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/drawings/{id}/entries \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/drawings/0/entries \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/drawings/{id}/entries HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /drawings/0/entries HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/drawings/0/entries");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/drawings/0/entries",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/drawings/{id}/entries',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/drawings/0/entries")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/drawings/{id}/entries',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /drawings/{id}/entries`
@@ -7779,136 +6579,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/drawings";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/drawings");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/drawings \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/drawings \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/drawings HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /drawings HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/drawings',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/drawings");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/drawings",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/drawings',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/drawings")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/drawings',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /drawings`
@@ -8146,136 +6904,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/drawings/{id}/tickets";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/drawings/0/tickets");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/drawings/{id}/tickets \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/drawings/0/tickets \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/drawings/{id}/tickets HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /drawings/0/tickets HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/drawings/{id}/tickets',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/drawings/0/tickets");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/drawings/0/tickets",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/drawings/{id}/tickets',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/drawings/0/tickets")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/drawings/{id}/tickets',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /drawings/{id}/tickets`
@@ -8474,130 +7190,109 @@ Password update and reset
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/password");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"password\":\"password2\",\"new_password\":\"passwordtest12\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X PATCH https://api-stg3.snapchance.no/password \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request PATCH \
+  --url https://api-stg3.snapchance.no/password \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"password":"password2","new_password":"passwordtest12"}'
 ```
 
 ```http
-PATCH https://api-stg3.snapchance.no/password HTTP/1.1
-Host: api-stg3.snapchance.no
+PATCH /password HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 56
 
+{"password":"password2","new_password":"passwordtest12"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "password": "password2",
   "new_password": "passwordtest12"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/password',
-{
-  method: 'PATCH',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PATCH", "https://api-stg3.snapchance.no/password");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "password": "password2",
-  "new_password": "passwordtest12"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "PATCH",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/password",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/password',
-{
-  method: 'PATCH',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({password: 'password2', new_password: 'passwordtest12'}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/password")
 
-result = RestClient.patch 'https://api-stg3.snapchance.no/password',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Patch.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"password\":\"password2\",\"new_password\":\"passwordtest12\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `PATCH /password`
@@ -8659,159 +7354,112 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/password_reset";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/password_reset");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"email\":\"test@gmail.com\",\"redirect_url\":\"https://api-stg3.snapchance.no/reset_password\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/password_reset \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/password_reset \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"email":"test@gmail.com","redirect_url":"https://api-stg3.snapchance.no/reset_password"}'
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/password_reset HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /password_reset HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 89
 
+{"email":"test@gmail.com","redirect_url":"https://api-stg3.snapchance.no/reset_password"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "email": "test@gmail.com",
   "redirect_url": "https://api-stg3.snapchance.no/reset_password"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/password_reset',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/password_reset");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "email": "test@gmail.com",
-  "redirect_url": "https://api-stg3.snapchance.no/reset_password"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/password_reset",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/password_reset',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({
+  email: 'test@gmail.com',
+  redirect_url: 'https://api-stg3.snapchance.no/reset_password'
+}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/password_reset")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/password_reset',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"email\":\"test@gmail.com\",\"redirect_url\":\"https://api-stg3.snapchance.no/reset_password\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /password_reset`
@@ -8932,130 +7580,112 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/password_reset");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+request.AddParameter("application/json", "{\"new_password\":\"password123\",\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X PATCH https://api-stg3.snapchance.no/password_reset \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request PATCH \
+  --url https://api-stg3.snapchance.no/password_reset \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/json' \
+  --data '{"new_password":"password123","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"}'
 ```
 
 ```http
-PATCH https://api-stg3.snapchance.no/password_reset HTTP/1.1
-Host: api-stg3.snapchance.no
+PATCH /password_reset HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+Content-Length: 229
 
+{"new_password":"password123","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"}
 ```
 
 ```javascript
-const inputBody = '{
+const data = JSON.stringify({
   "new_password": "password123",
   "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://api-stg3.snapchance.no/password_reset',
-{
-  method: 'PATCH',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
 });
 
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PATCH", "https://api-stg3.snapchance.no/password_reset");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "new_password": "password123",
-  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"
-};
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "PATCH",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/password_reset",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/password_reset',
-{
-  method: 'PATCH',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.write(JSON.stringify({
+  new_password: 'password123',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw'
+}));
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/password_reset")
 
-result = RestClient.patch 'https://api-stg3.snapchance.no/password_reset',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Patch.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+request.body = "{\"new_password\":\"password123\",\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw\"}"
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `PATCH /password_reset`
@@ -9122,157 +7752,101 @@ Uploading photos
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    /// Make a dummy request
-    public async Task MakePostRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/photos";
-      
-      
-      await PostAsync(null, url);
-      
-    }
-
-    /// Performs a POST Request
-    public async Task PostAsync(undefined content, string url)
-    {
-        //Serialize Object
-        StringContent jsonContent = SerializeObject(content);
-
-        //Execute POST request
-        HttpResponseMessage response = await Client.PostAsync(url, jsonContent);
-    }
-    
-    
-    
-    /// Serialize an object to Json
-    private StringContent SerializeObject(undefined content)
-    {
-        //Serialize Object
-        string jsonObject = JsonConvert.SerializeObject(content);
-
-        //Create Json UTF8 String Content
-        return new StringContent(jsonObject, Encoding.UTF8, "application/json");
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/photos");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X POST https://api-stg3.snapchance.no/photos \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request POST \
+  --url https://api-stg3.snapchance.no/photos \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data ''
 ```
 
 ```http
-POST https://api-stg3.snapchance.no/photos HTTP/1.1
-Host: api-stg3.snapchance.no
+POST /photos HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
-const inputBody = '{
-  "image": "string"
-}';
-const headers = {
-  'Content-Type':'application/x-www-form-urlencoded',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const data = null;
 
-fetch('https://api-stg3.snapchance.no/photos',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("POST", "https://api-stg3.snapchance.no/photos");
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
-const inputBody = {
-  "image": "string"
-};
-const headers = {
-  'Content-Type':'application/x-www-form-urlencoded',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/photos",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/photos',
-{
-  method: 'POST',
-  body: JSON.stringify(inputBody),
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Content-Type' => 'application/x-www-form-urlencoded',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/photos")
 
-result = RestClient.post 'https://api-stg3.snapchance.no/photos',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/x-www-form-urlencoded'
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `POST /photos`
@@ -9347,136 +7921,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    /// Make a dummy request
-    public async Task MakeGetRequest()
-    {
-      string url = "https://api-stg3.snapchance.no/photos";
-      var result = await GetAsync(url);
-    }
-
-    /// Performs a GET Request
-    public async Task GetAsync(string url)
-    {
-        //Start the request
-        HttpResponseMessage response = await Client.GetAsync(url);
-
-        //Validate result
-        response.EnsureSuccessStatusCode();
-
-    }
-    
-    
-    
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/photos");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X GET https://api-stg3.snapchance.no/photos \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request GET \
+  --url https://api-stg3.snapchance.no/photos \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-GET https://api-stg3.snapchance.no/photos HTTP/1.1
-Host: api-stg3.snapchance.no
+GET /photos HTTP/1.1
 Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/photos',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("GET", "https://api-stg3.snapchance.no/photos");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/photos",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/photos',
-{
-  method: 'GET',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/photos")
 
-result = RestClient.get 'https://api-stg3.snapchance.no/photos',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `GET /photos`
@@ -9570,137 +8102,94 @@ bearerAuth
 > Code samples
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-/// <<summary>>
-/// Example of Http Client
-/// <</summary>>
-public class HttpExample
-{
-    private HttpClient Client { get; set; }
-
-    /// <<summary>>
-    /// Setup http client
-    /// <</summary>>
-    public HttpExample()
-    {
-      Client = new HttpClient();
-    }
-    
-    
-    
-    
-    /// Make a dummy request
-    public async Task MakeDeleteRequest()
-    {
-      int id = 1;
-      string url = "https://api-stg3.snapchance.no/photos/{id}";
-
-      await DeleteAsync(id, url);
-    }
-
-    /// Performs a DELETE Request
-    public async Task DeleteAsync(int id, string url)
-    {
-        //Execute DELETE request
-        HttpResponseMessage response = await Client.DeleteAsync(url + $"/{id}");
-
-        //Return response
-        await DeserializeObject(response);
-    }
-    
-    /// Deserialize object from request response
-    private async Task DeserializeObject(HttpResponseMessage response)
-    {
-        //Read body 
-        string responseBody = await response.Content.ReadAsStringAsync();
-
-        //Deserialize Body to object
-        var result = JsonConvert.DeserializeObject(responseBody);
-    }
-}
-
+var client = new RestClient("https://api-stg3.snapchance.no/photos/0");
+var request = new RestRequest(Method.DELETE);
+request.AddHeader("Accept", "text/plain");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
 ```
 
 ```shell
-# You can also use wget
-curl -X DELETE https://api-stg3.snapchance.no/photos/{id} \
-  -H 'Accept: text/plain' \
-  -H 'Authorization: Bearer {access-token}'
-
+curl --request DELETE \
+  --url https://api-stg3.snapchance.no/photos/0 \
+  --header 'Accept: text/plain' \
+  --header 'Authorization: Bearer {access-token}'
 ```
 
 ```http
-DELETE https://api-stg3.snapchance.no/photos/{id} HTTP/1.1
-Host: api-stg3.snapchance.no
+DELETE /photos/0 HTTP/1.1
 Accept: text/plain
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
 
 ```
 
 ```javascript
+const data = null;
 
-const headers = {
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
-};
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-fetch('https://api-stg3.snapchance.no/photos/{id}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
 });
 
+xhr.open("DELETE", "https://api-stg3.snapchance.no/photos/0");
+xhr.setRequestHeader("Accept", "text/plain");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
 ```
 
-```nodejs
-const fetch = require('node-fetch');
+```javascript--node
+const http = require("https");
 
-const headers = {
-  'Accept':'text/plain',
-  'Authorization':'Bearer {access-token}'
+const options = {
+  "method": "DELETE",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/photos/0",
+  "headers": {
+    "Accept": "text/plain",
+    "Authorization": "Bearer {access-token}"
+  }
 };
 
-fetch('https://api-stg3.snapchance.no/photos/{id}',
-{
-  method: 'DELETE',
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
 });
 
+req.end();
 ```
 
 ```ruby
-require 'rest-client'
-require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
 
-headers = {
-  'Accept' => 'text/plain',
-  'Authorization' => 'Bearer {access-token}'
-}
+url = URI("https://api-stg3.snapchance.no/photos/0")
 
-result = RestClient.delete 'https://api-stg3.snapchance.no/photos/{id}',
-  params: {
-  }, headers: headers
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-p JSON.parse(result)
+request = Net::HTTP::Delete.new(url)
+request["Accept"] = 'text/plain'
+request["Authorization"] = 'Bearer {access-token}'
 
+response = http.request(request)
+puts response.read_body
 ```
 
 `DELETE /photos/{id}`
