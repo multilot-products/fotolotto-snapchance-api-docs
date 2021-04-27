@@ -8,7 +8,7 @@ A player registration flow could look something like the following flow diagram:
 
 <%= image_tag "images/snapchance-registration.jpg" %>
 
-## Pre-requistes
+## Prerequisites
 ### 1. Redirect URL
 
 * Create a URL that BankID can redirect back to after a player successfully logs in to BankID
@@ -23,7 +23,7 @@ A player registration flow could look something like the following flow diagram:
 ### 1. Redirect to and from NETS
 
 * Direct the user to the BankID login portal at https://www.ident-preprod1.nets.eu/its/index.html?client_id={YOUR_CLIENT_ID}&response_type=code&scope=openid%20profile%20ssn&state={UUID}&nonce={UUID}&redirect_uri={REDIRECT_BACK_TO_YOUR_APP}
-* After the player successfully logs in to BankID, BankID will redirect them to the URL provide in the redirect_uri query parameter
+* After the player successfully logs in to BankID, BankID will redirect them to the URL provided in the redirect_uri query parameter
 * BankID will append a query parameter `code` when redirected.  The code will be in JSON Web Token (JWT) format
 
 ### 2. [Create Player](#create-player)
@@ -33,17 +33,17 @@ The query param `code` should be passed in a POST request body to the API endpoi
 ### 3. [Activate Player](#activate-player)
 
 * The client can collect additional information from the player in the UI to add to their [profile](#tocS_player).
-* The player object returned in the create player response can then be combined with any data collected in the UI and sent as a POST request `/activate` endpoint.  This will complete the registration flow.
+* The player object returned in the create player response can be combined with any data collected in the UI and sent as a POST request `/activate` endpoint.  This will complete the registration flow.
 
 # Wallet Funding
 
 To add funds to a test account, a test credit card may be used from NETS [here](https://shop.nets.eu/web/partners/test-cards).
 
-A player add funds flow could look something like the following flow diagram:
+An example of a player adding funds can be found in the following flow diagram:
 
 <%= image_tag "images/snapchance-add-funds.jpg" %>
 
-## Pre-requistes
+## Prerequisites
 ## Redirect URL
 
 <aside class="warning">
@@ -62,7 +62,7 @@ Setup the callback username and password, then securely communicate that to the 
 
 ## Process
 
-In order to add funds to a wallet, 2 requests are required as well as a redirect to and from the NETS.
+In order to add funds to a wallet, two requests are required, as well as a redirect to and from the NETS.
 
 ### 1. [Create Deposit](#deposit)
 
@@ -74,7 +74,7 @@ The response for the create deposit request will return a `redirect_url` of its 
 
 ### 3. [Verify Deposit](#verify-deposit)
 
-Upon completing the NETS payment process, NETS will redirect the user to the original `redirect_url` provided in the create deposit request.  That redirect url will be appended with 3 query params:
+Upon completing the NETS payment process, NETS will redirect the user to the original `redirect_url` provided in the create deposit request.  That redirect url will be appended with three query params:
 
 * `deposit_id` The ID of the pending deposit
 * `responseCode` The text status of the deposit (options include `OK`, `Cancel`)
@@ -91,7 +91,7 @@ Using the SnapChance admin panel you can create add your gaming license as well 
 <%= image_tag "images/snapchance-admin.png" %>
 
 <aside class="warning">
-SnapChance currently only supports running a single lottery and a single active drawing at a time.  Please do not create mutliple lotteries with active drawings
+SnapChance currently only supports running a single lottery and a single active drawing at a time. Please do not create multiple lotteries with active drawings
 </aside>
 
 ## Process
@@ -110,17 +110,17 @@ Login to the SnapChance admin panel at [https://admin-stg3.snapchance.no/](https
 
 #Ticket Purchase
 
-A player ticket purchase flow could look something like the following flow diagram:
+An example of a player purchasing a ticket can be found in the following flow diagram:
 
 <%= image_tag "images/snapchance-ticket-purchase.jpg" %>
 
-To purchase tickets, there are 4 pre-requisites and one mandatory request.  Each pre-requisite requires respective request(s) for relevant data:
+To purchase tickets, there are four prerequisites and one mandatory request.  Each prerequisite requires respective request(s) for relevant data:
 
-## Pre-requisites
+## Prerequisites
 
 ### 1. [Get Photos](#list-photos) / [Create Photos](#add-photo) (required)
 
-The user is required to have an existing photo db entry
+The user is required to have an existing photo db entry.
 
 **Relevant data:**
 
@@ -131,7 +131,7 @@ or
 ### 2. [Get Player Drawings](#player-drawings) (required)
 
 The current drawing id is required to purchase tickets in the current drawing (the only drawing in which ticket purchases are allowed).
-The ticket price for the current drawing is required, which is provided by the player drawings query
+The ticket price for the current drawing is required, which is provided by the player drawings query.
 
 **Relevant data:**
 
@@ -155,22 +155,22 @@ The amount spent must be calculated using the aggregate of all transaction amoun
 
 **Relevant data:**
 
-* A GET request to `/profile` returns an player object that includes properties `daily_loss_limit` and `weekly_loss_limit`.
+* A GET request to `/profile` returns a player object that includes properties `daily_loss_limit` and `weekly_loss_limit`.
 * A GET request to `/wallet/transactions` returns a paginated array of transactions, each of which include properties `amount`, `type` and `created_at`.
 
 ## Process
 
 **[Create Entries](#purchase-entries)**
 
-After all the pre-requisites are satisfied, a request to the `/drawings/:drawing_id/entries` is made using the photo ID as `photo_id` param and number of tickets purchased as `tickets_count`.
+After all the prerequisites are satisfied, a request to the `/drawings/:drawing_id/entries` is made using the photo ID as `photo_id` param and number of tickets purchased as `tickets_count`.
 
 #Payout
 
-A player payout flow could look something like the following flow diagram:
+An example of a player being paid out can be found in the following flow diagram:
 
 <%= image_tag "images/snapchance-payout.jpg" %>
 
-## Pre-requisites
+## Prerequisites
 
 ### 1. [Get Balance](#get-wallet-balance) (optional)
 
@@ -186,7 +186,7 @@ The user is required to have a valid bank account number as part of their profil
 
 **Relevant data:**
 
-* A GET request to `/profile` returns an player object that includes property `bank_account_number`, which may be a string or null.
+* A GET request to `/profile` returns a player object that includes property `bank_account_number`, which may be a string or null.
 
 ## Process
 
