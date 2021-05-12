@@ -1016,6 +1016,7 @@ This endpoint is use to retrieve the previous(one before the current) and curren
     "ticket_price": "25.00",
     "currency": "NOK",
     "cover_url": null,
+    "repeat_every": 604800,
     "prizes": [
       {
         "id": 4981,
@@ -1100,6 +1101,7 @@ This endpoint is use to retrieve the previous(one before the current) and curren
     "ticket_price": "25.00",
     "currency": "NOK",
     "cover_url": null,
+    "repeat_every": 604800,
     "prizes": [
       {
         "id": 4988,
@@ -1206,6 +1208,7 @@ Status Code **200**
 |» ticket_price|string|true|none|none|
 |» currency|string|true|none|none|
 |» cover_url|any|false|none|none|
+|» repeat_every|number|true|none|none|
 |» prizes|[any]|true|none|none|
 |»» id|number|true|none|none|
 |»» name|string|true|none|none|
@@ -2101,7 +2104,8 @@ This endpoint is use to returns a list of subscription entries.
       "tickets_count": 1000,
       "ticket_price": "25.00",
       "currency": "NOK",
-      "cover_url": null
+      "cover_url": null,
+      "repeat_every": 604800
     },
     "photo": {
       "id": "77",
@@ -3002,6 +3006,7 @@ This endpoint returns all the transaction details of the player including withdr
           "ticket_price": "25.00",
           "currency": "NOK",
           "cover_url": null,
+          "repeat_every": 604800,
           "prizes": [
             {
               "id": 4764,
@@ -3162,6 +3167,7 @@ This endpoint returns all the transaction details of the player including withdr
           "ticket_price": "25.00",
           "currency": "NOK",
           "cover_url": null,
+          "repeat_every": 604800,
           "prizes": [
             {
               "id": 4757,
@@ -3322,6 +3328,7 @@ This endpoint returns all the transaction details of the player including withdr
           "ticket_price": "25.00",
           "currency": "NOK",
           "cover_url": null,
+          "repeat_every": 604800,
           "prizes": [
             {
               "id": 4757,
@@ -3482,6 +3489,7 @@ This endpoint returns all the transaction details of the player including withdr
           "ticket_price": "25.00",
           "currency": "NOK",
           "cover_url": null,
+          "repeat_every": 604800,
           "prizes": [
             {
               "id": 3980,
@@ -3651,6 +3659,7 @@ This endpoint returns all the transaction details of the player including withdr
           "ticket_price": "25.00",
           "currency": "NOK",
           "cover_url": null,
+          "repeat_every": 604800,
           "prizes": [
             {
               "id": 4442,
@@ -4588,6 +4597,7 @@ This endpoint is used to return the list of player Entries
         "tickets_count": 0,
         "ticket_price": "string",
         "currency": "string",
+        "repeat_every": 0,
         "cover_url": null,
         "prizes": [
           {
@@ -4691,6 +4701,7 @@ Status Code **200**
 |»»» tickets_count|number|true|none|none|
 |»»» ticket_price|string|true|none|none|
 |»»» currency|string|true|none|none|
+|»»» repeat_every|number|true|none|none|
 |»»» cover_url|any|false|none|none|
 |»»» prizes|[any]|true|none|none|
 |»»»» id|number|true|none|none|
@@ -4866,6 +4877,7 @@ This endpoint is used to return the details of a specified Entry.
     "ticket_price": "25.00",
     "currency": "NOK",
     "cover_url": null,
+    "repeat_every": 604800,
     "prizes": [
       {
         "id": 5009,
@@ -5055,6 +5067,7 @@ Status Code **200**
 |»» tickets_count|number|true|none|none|
 |»» ticket_price|string|true|none|none|
 |»» currency|string|true|none|none|
+|»» repeat_every|number|true|none|none|
 |»» cover_url|any|false|none|none|
 |»» prizes|[any]|true|none|none|
 |»»» id|number|true|none|none|
@@ -6690,6 +6703,7 @@ This endpoint returns a list of all the created drawings.  The complete history 
     "ticket_price": "25.00",
     "currency": "NOK",
     "cover_url": null,
+    "repeat_every": 604800,
     "prizes": [
       {
         "id": 6809,
@@ -6774,6 +6788,7 @@ This endpoint returns a list of all the created drawings.  The complete history 
     "ticket_price": "25.00",
     "currency": "NOK",
     "cover_url": null,
+    "repeat_every": 604800,
     "prizes": [
       {
         "id": 6816,
@@ -6882,6 +6897,7 @@ Status Code **200**
 |» ticket_price|string|true|none|none|
 |» currency|string|true|none|none|
 |» cover_url|any|false|none|none|
+|» repeat_every|number|true|none|none|
 |» prizes|[any]|true|none|none|
 |»» id|number|true|none|none|
 |»» name|string|true|none|none|
