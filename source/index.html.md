@@ -3975,7 +3975,7 @@ var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
-request.AddParameter("application/json", "{\"photo_id\":0,\"tickets_count\":0}", ParameterType.RequestBody);
+request.AddParameter("application/json", "{\"claim_code\":\"string\",\"entries\":[{\"photo_id\":0,\"tickets_count\":0}]}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -3985,7 +3985,7 @@ curl --request POST \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
-  --data '{"photo_id":0,"tickets_count":0}'
+  --data '{"claim_code":"string","entries":[{"photo_id":0,"tickets_count":0}]}'
 ```
 
 ```http
@@ -3994,15 +3994,20 @@ Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
 Host: api-stg3.snapchance.no
-Content-Length: 32
+Content-Length: 68
 
-{"photo_id":0,"tickets_count":0}
+{"claim_code":"string","entries":[{"photo_id":0,"tickets_count":0}]}
 ```
 
 ```javascript
 const data = JSON.stringify({
-  "photo_id": 0,
-  "tickets_count": 0
+  "claim_code": "string",
+  "entries": [
+    {
+      "photo_id": 0,
+      "tickets_count": 0
+    }
+  ]
 });
 
 const xhr = new XMLHttpRequest();
@@ -4050,7 +4055,7 @@ const req = http.request(options, function (res) {
   });
 });
 
-req.write(JSON.stringify({photo_id: 0, tickets_count: 0}));
+req.write(JSON.stringify({claim_code: 'string', entries: [{photo_id: 0, tickets_count: 0}]}));
 req.end();
 ```
 
@@ -4069,7 +4074,7 @@ request = Net::HTTP::Post.new(url)
 request["Content-Type"] = 'application/json'
 request["Accept"] = 'application/json'
 request["Authorization"] = 'Bearer {access-token}'
-request.body = "{\"photo_id\":0,\"tickets_count\":0}"
+request.body = "{\"claim_code\":\"string\",\"entries\":[{\"photo_id\":0,\"tickets_count\":0}]}"
 
 response = http.request(request)
 puts response.read_body
@@ -4083,8 +4088,13 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 
 ```json
 {
-  "photo_id": 0,
-  "tickets_count": 0
+  "claim_code": "string",
+  "entries": [
+    {
+      "photo_id": 0,
+      "tickets_count": 0
+    }
+  ]
 }
 ```
 
@@ -4093,12 +4103,14 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|integer(int64)|true|Drawing ID|
-|photo_id|body|number|true|none|
-|tickets_count|body|number|true|none|
+|claim_code|body|string|false|none|
+|entries|body|[any]|true|none|
+|» photo_id|body|number|true|none|
+|» tickets_count|body|number|true|none|
 
 > Example responses
 
-> Returns brought tickets Info
+> Returns a collection of brought tickets Info
 
 ```json
 {
@@ -4189,7 +4201,7 @@ This endpoint is used to buy entries.  An entry consists of a single photo and m
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns brought tickets Info|Inline|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns a collection of brought tickets Info|Inline|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 
 <h3 id="purchase-entries-responseschema">Response Schema</h3>
@@ -5695,7 +5707,7 @@ var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
-request.AddParameter("application/json", "{\"bankid_code\":\"string\"}", ParameterType.RequestBody);
+request.AddParameter("application/json", "{\"code\":\"string\"}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -5705,7 +5717,7 @@ curl --request POST \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
-  --data '{"bankid_code":"string"}'
+  --data '{"code":"string"}'
 ```
 
 ```http
@@ -5714,14 +5726,14 @@ Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
 Host: api-stg3.snapchance.no
-Content-Length: 24
+Content-Length: 17
 
-{"bankid_code":"string"}
+{"code":"string"}
 ```
 
 ```javascript
 const data = JSON.stringify({
-  "bankid_code": "string"
+  "code": "string"
 });
 
 const xhr = new XMLHttpRequest();
@@ -5769,7 +5781,7 @@ const req = http.request(options, function (res) {
   });
 });
 
-req.write(JSON.stringify({bankid_code: 'string'}));
+req.write(JSON.stringify({code: 'string'}));
 req.end();
 ```
 
@@ -5788,7 +5800,7 @@ request = Net::HTTP::Post.new(url)
 request["Content-Type"] = 'application/json'
 request["Accept"] = 'application/json'
 request["Authorization"] = 'Bearer {access-token}'
-request.body = "{\"bankid_code\":\"string\"}"
+request.body = "{\"code\":\"string\"}"
 
 response = http.request(request)
 puts response.read_body
@@ -5802,7 +5814,7 @@ This endpoint is the first step in the registration process.  It will create a p
 
 ```json
 {
-  "bankid_code": "string"
+  "code": "string"
 }
 ```
 
@@ -5810,7 +5822,7 @@ This endpoint is the first step in the registration process.  It will create a p
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|bankid_code|body|string|true|none|
+|code|body|string|true|none|
 
 > Example responses
 
@@ -5856,7 +5868,7 @@ This endpoint is the first step in the registration process.  It will create a p
 
 ```json
 {
-  "param is missing or the value is empty": "bankid_code"
+  "param is missing or the value is empty": "code"
 }
 ```
 
