@@ -26,7 +26,7 @@ headingLevel: 2
 
 Base URLs:
 
-* <a href="https://api-stg3.snapchance.no">https://api-stg3.snapchance.no</a>
+* <a href="https://api-release.snapchance.no">https://api-release.snapchance.no</a>
 
 Web: <a href="https://snapchance.no">SnapChance</a> 
 
@@ -35,14 +35,14 @@ Web: <a href="https://snapchance.no">SnapChance</a>
 - HTTP Authentication, scheme: bearer The SnapChance API offers JWT (JSON Web Token) Authentication. JWT is a short lifetime token that is generated and returned when the player authenticates to the SnapChance API.  Players can obtain a JWT token by providing valid credentials (emailId and password) to /session endpoint. The token has a specific expiration time.
 
 <pre>curl --request POST \
-  --url https://api-stg3.snapchance.no/session \
+  --url https://api-release.snapchance.no/session \
   --header 'Content-Type: application/json' \
   --data '{"email":"user@email.com","password":"ComplexPassword123"}'</pre>
 
 The valid JWT token must be supplied as part of the header to access API's all other endpoints.
 
 <pre>curl --request GET \
-  --url https://api-stg3.snapchance.no/profile \
+  --url https://api-release.snapchance.no/profile \
   --header 'authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxNzM0MzI2MywicGxheWVyX2lkIjoyLCJlbWFpbCI6IjU5Y2MifQ.fUyn-pli3fe6knErVCUj6WQ_5NbRR6_RMqtaB7Q21t4'</pre>
 
 <h1 id="snapchance-player">Player</h1>
@@ -56,7 +56,7 @@ Player and Profile management and reporting
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/deactivation");
+var client = new RestClient("https://api-release.snapchance.no/deactivation");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Accept", "text/plain");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -65,7 +65,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/deactivation \
+  --url https://api-release.snapchance.no/deactivation \
   --header 'Accept: text/plain' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -74,7 +74,7 @@ curl --request POST \
 POST /deactivation HTTP/1.1
 Accept: text/plain
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -90,7 +90,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/deactivation");
+xhr.open("POST", "https://api-release.snapchance.no/deactivation");
 xhr.setRequestHeader("Accept", "text/plain");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -102,7 +102,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/deactivation",
   "headers": {
@@ -132,7 +132,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/deactivation")
+url = URI("https://api-release.snapchance.no/deactivation")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -178,7 +178,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/loss_limits");
+var client = new RestClient("https://api-release.snapchance.no/loss_limits");
 var request = new RestRequest(Method.PUT);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -189,7 +189,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PUT \
-  --url https://api-stg3.snapchance.no/loss_limits \
+  --url https://api-release.snapchance.no/loss_limits \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -201,7 +201,7 @@ PUT /loss_limits HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 52
 
 {"daily_loss_limit":1500,"weekly_loss_limit":"2900"}
@@ -222,7 +222,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PUT", "https://api-stg3.snapchance.no/loss_limits");
+xhr.open("PUT", "https://api-release.snapchance.no/loss_limits");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -235,7 +235,7 @@ const http = require("https");
 
 const options = {
   "method": "PUT",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/loss_limits",
   "headers": {
@@ -267,7 +267,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/loss_limits")
+url = URI("https://api-release.snapchance.no/loss_limits")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -398,7 +398,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/profile");
+var client = new RestClient("https://api-release.snapchance.no/profile");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 request.AddHeader("Accept", "application/json");
@@ -408,7 +408,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PATCH \
-  --url https://api-stg3.snapchance.no/profile \
+  --url https://api-release.snapchance.no/profile \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -420,7 +420,7 @@ PATCH /profile HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -436,7 +436,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PATCH", "https://api-stg3.snapchance.no/profile");
+xhr.open("PATCH", "https://api-release.snapchance.no/profile");
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -449,7 +449,7 @@ const http = require("https");
 
 const options = {
   "method": "PATCH",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/profile",
   "headers": {
@@ -480,7 +480,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/profile")
+url = URI("https://api-release.snapchance.no/profile")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -580,7 +580,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/profile");
+var client = new RestClient("https://api-release.snapchance.no/profile");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -589,7 +589,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/profile \
+  --url https://api-release.snapchance.no/profile \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -598,7 +598,7 @@ curl --request GET \
 GET /profile HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -614,7 +614,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/profile");
+xhr.open("GET", "https://api-release.snapchance.no/profile");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -626,7 +626,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/profile",
   "headers": {
@@ -656,7 +656,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/profile")
+url = URI("https://api-release.snapchance.no/profile")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -740,7 +740,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/exclusion");
+var client = new RestClient("https://api-release.snapchance.no/exclusion");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -749,7 +749,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/exclusion \
+  --url https://api-release.snapchance.no/exclusion \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -758,7 +758,7 @@ curl --request GET \
 GET /exclusion HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -774,7 +774,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/exclusion");
+xhr.open("GET", "https://api-release.snapchance.no/exclusion");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -786,7 +786,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/exclusion",
   "headers": {
@@ -816,7 +816,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/exclusion")
+url = URI("https://api-release.snapchance.no/exclusion")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -872,7 +872,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/suspension");
+var client = new RestClient("https://api-release.snapchance.no/suspension");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -883,7 +883,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/suspension \
+  --url https://api-release.snapchance.no/suspension \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -895,7 +895,7 @@ POST /suspension HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 46
 
 {"suspended_until":"2021-04-12T15:28:05.335Z"}
@@ -915,7 +915,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/suspension");
+xhr.open("POST", "https://api-release.snapchance.no/suspension");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -928,7 +928,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/suspension",
   "headers": {
@@ -960,7 +960,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/suspension")
+url = URI("https://api-release.snapchance.no/suspension")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -1054,7 +1054,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/player/drawings");
+var client = new RestClient("https://api-release.snapchance.no/player/drawings");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -1063,7 +1063,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/player/drawings \
+  --url https://api-release.snapchance.no/player/drawings \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -1072,7 +1072,7 @@ curl --request GET \
 GET /player/drawings HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -1088,7 +1088,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/player/drawings");
+xhr.open("GET", "https://api-release.snapchance.no/player/drawings");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -1100,7 +1100,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/player/drawings",
   "headers": {
@@ -1130,7 +1130,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/player/drawings")
+url = URI("https://api-release.snapchance.no/player/drawings")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -1380,7 +1380,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/player/drawings/0");
+var client = new RestClient("https://api-release.snapchance.no/player/drawings/0");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -1389,7 +1389,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/player/drawings/0 \
+  --url https://api-release.snapchance.no/player/drawings/0 \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -1398,7 +1398,7 @@ curl --request GET \
 GET /player/drawings/0 HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -1414,7 +1414,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/player/drawings/0");
+xhr.open("GET", "https://api-release.snapchance.no/player/drawings/0");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -1426,7 +1426,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/player/drawings/0",
   "headers": {
@@ -1456,7 +1456,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/player/drawings/0")
+url = URI("https://api-release.snapchance.no/player/drawings/0")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -1532,7 +1532,7 @@ Automatic subscription to drawings
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/subscription");
+var client = new RestClient("https://api-release.snapchance.no/subscription");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "text/plain");
@@ -1543,7 +1543,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/subscription \
+  --url https://api-release.snapchance.no/subscription \
   --header 'Accept: text/plain' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -1555,7 +1555,7 @@ POST /subscription HTTP/1.1
 Content-Type: application/json
 Accept: text/plain
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 129
 
 {"drawing_id":2243,"photo_id":77,"redirect_url":"https://snapchance-staging5.netlify.app/subscription/confirm","tickets_count":1}
@@ -1578,7 +1578,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/subscription");
+xhr.open("POST", "https://api-release.snapchance.no/subscription");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "text/plain");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -1591,7 +1591,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/subscription",
   "headers": {
@@ -1628,7 +1628,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/subscription")
+url = URI("https://api-release.snapchance.no/subscription")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -1697,7 +1697,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/subscription");
+var client = new RestClient("https://api-release.snapchance.no/subscription");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -1708,7 +1708,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PATCH \
-  --url https://api-stg3.snapchance.no/subscription \
+  --url https://api-release.snapchance.no/subscription \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -1720,7 +1720,7 @@ PATCH /subscription HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 40
 
 {"deposit_id":"20847","drawing_id":2243}
@@ -1741,7 +1741,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PATCH", "https://api-stg3.snapchance.no/subscription");
+xhr.open("PATCH", "https://api-release.snapchance.no/subscription");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -1754,7 +1754,7 @@ const http = require("https");
 
 const options = {
   "method": "PATCH",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/subscription",
   "headers": {
@@ -1786,7 +1786,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/subscription")
+url = URI("https://api-release.snapchance.no/subscription")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -1872,7 +1872,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/subscription");
+var client = new RestClient("https://api-release.snapchance.no/subscription");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -1881,7 +1881,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/subscription \
+  --url https://api-release.snapchance.no/subscription \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -1890,7 +1890,7 @@ curl --request GET \
 GET /subscription HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -1906,7 +1906,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/subscription");
+xhr.open("GET", "https://api-release.snapchance.no/subscription");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -1918,7 +1918,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/subscription",
   "headers": {
@@ -1948,7 +1948,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/subscription")
+url = URI("https://api-release.snapchance.no/subscription")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -2015,7 +2015,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/subscription/cancellation");
+var client = new RestClient("https://api-release.snapchance.no/subscription/cancellation");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Accept", "text/plain");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -2024,7 +2024,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/subscription/cancellation \
+  --url https://api-release.snapchance.no/subscription/cancellation \
   --header 'Accept: text/plain' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -2033,7 +2033,7 @@ curl --request POST \
 POST /subscription/cancellation HTTP/1.1
 Accept: text/plain
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -2049,7 +2049,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/subscription/cancellation");
+xhr.open("POST", "https://api-release.snapchance.no/subscription/cancellation");
 xhr.setRequestHeader("Accept", "text/plain");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -2061,7 +2061,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/subscription/cancellation",
   "headers": {
@@ -2091,7 +2091,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/subscription/cancellation")
+url = URI("https://api-release.snapchance.no/subscription/cancellation")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -2137,7 +2137,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/subscription/entries");
+var client = new RestClient("https://api-release.snapchance.no/subscription/entries");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -2146,7 +2146,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/subscription/entries \
+  --url https://api-release.snapchance.no/subscription/entries \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -2155,7 +2155,7 @@ curl --request GET \
 GET /subscription/entries HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -2171,7 +2171,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/subscription/entries");
+xhr.open("GET", "https://api-release.snapchance.no/subscription/entries");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -2183,7 +2183,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/subscription/entries",
   "headers": {
@@ -2213,7 +2213,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/subscription/entries")
+url = URI("https://api-release.snapchance.no/subscription/entries")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -2380,22 +2380,22 @@ Wallet management and transaction reporting
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/wallet/deposits");
+var client = new RestClient("https://api-release.snapchance.no/wallet/deposits");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
-request.AddParameter("application/json", "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds\"}", ParameterType.RequestBody);
+request.AddParameter("application/json", "{\"amount\":20,\"redirect_url\":\"https://dashboard-release.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds\"}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/wallet/deposits \
+  --url https://api-release.snapchance.no/wallet/deposits \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
-  --data '{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"}'
+  --data '{"amount":20,"redirect_url":"https://dashboard-release.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"}'
 ```
 
 ```http
@@ -2403,16 +2403,16 @@ POST /wallet/deposits HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 110
 
-{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"}
+{"amount":20,"redirect_url":"https://dashboard-release.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"}
 ```
 
 ```javascript
 const data = JSON.stringify({
   "amount": 20,
-  "redirect_url": "https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
+  "redirect_url": "https://dashboard-release.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
 });
 
 const xhr = new XMLHttpRequest();
@@ -2424,7 +2424,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/wallet/deposits");
+xhr.open("POST", "https://api-release.snapchance.no/wallet/deposits");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -2437,7 +2437,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/wallet/deposits",
   "headers": {
@@ -2462,7 +2462,7 @@ const req = http.request(options, function (res) {
 
 req.write(JSON.stringify({
   amount: 20,
-  redirect_url: 'https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds'
+  redirect_url: 'https://dashboard-release.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds'
 }));
 req.end();
 ```
@@ -2472,7 +2472,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/wallet/deposits")
+url = URI("https://api-release.snapchance.no/wallet/deposits")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -2482,7 +2482,7 @@ request = Net::HTTP::Post.new(url)
 request["Content-Type"] = 'application/json'
 request["Accept"] = 'application/json'
 request["Authorization"] = 'Bearer {access-token}'
-request.body = "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds\"}"
+request.body = "{\"amount\":20,\"redirect_url\":\"https://dashboard-release.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds\"}"
 
 response = http.request(request)
 puts response.read_body
@@ -2497,7 +2497,7 @@ This endpoint is used to deposit funds into the Players wallet.  See [Wallet Fun
 ```json
 {
   "amount": 20,
-  "redirect_url": "https://dashboard2-stg3.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
+  "redirect_url": "https://dashboard-release.snapchance.no/deposit-confirm?callback_url=%2Fadd-funds"
 }
 ```
 
@@ -2568,7 +2568,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/wallet/deposits/0");
+var client = new RestClient("https://api-release.snapchance.no/wallet/deposits/0");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -2577,7 +2577,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PATCH \
-  --url https://api-stg3.snapchance.no/wallet/deposits/0 \
+  --url https://api-release.snapchance.no/wallet/deposits/0 \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -2586,7 +2586,7 @@ curl --request PATCH \
 PATCH /wallet/deposits/0 HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -2602,7 +2602,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PATCH", "https://api-stg3.snapchance.no/wallet/deposits/0");
+xhr.open("PATCH", "https://api-release.snapchance.no/wallet/deposits/0");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -2614,7 +2614,7 @@ const http = require("https");
 
 const options = {
   "method": "PATCH",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/wallet/deposits/0",
   "headers": {
@@ -2644,7 +2644,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/wallet/deposits/0")
+url = URI("https://api-release.snapchance.no/wallet/deposits/0")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -2720,7 +2720,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/wallet/withdrawals");
+var client = new RestClient("https://api-release.snapchance.no/wallet/withdrawals");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -2731,7 +2731,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/wallet/withdrawals \
+  --url https://api-release.snapchance.no/wallet/withdrawals \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -2743,7 +2743,7 @@ POST /wallet/withdrawals HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 13
 
 {"amount":50}
@@ -2763,7 +2763,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/wallet/withdrawals");
+xhr.open("POST", "https://api-release.snapchance.no/wallet/withdrawals");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -2776,7 +2776,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/wallet/withdrawals",
   "headers": {
@@ -2808,7 +2808,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/wallet/withdrawals")
+url = URI("https://api-release.snapchance.no/wallet/withdrawals")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -2890,7 +2890,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/wallet/balance");
+var client = new RestClient("https://api-release.snapchance.no/wallet/balance");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -2899,7 +2899,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/wallet/balance \
+  --url https://api-release.snapchance.no/wallet/balance \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -2908,7 +2908,7 @@ curl --request GET \
 GET /wallet/balance HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -2924,7 +2924,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/wallet/balance");
+xhr.open("GET", "https://api-release.snapchance.no/wallet/balance");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -2936,7 +2936,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/wallet/balance",
   "headers": {
@@ -2966,7 +2966,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/wallet/balance")
+url = URI("https://api-release.snapchance.no/wallet/balance")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -3030,7 +3030,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/wallet/transactions");
+var client = new RestClient("https://api-release.snapchance.no/wallet/transactions");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -3039,7 +3039,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/wallet/transactions \
+  --url https://api-release.snapchance.no/wallet/transactions \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -3048,7 +3048,7 @@ curl --request GET \
 GET /wallet/transactions HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -3064,7 +3064,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/wallet/transactions");
+xhr.open("GET", "https://api-release.snapchance.no/wallet/transactions");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -3076,7 +3076,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/wallet/transactions",
   "headers": {
@@ -3106,7 +3106,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/wallet/transactions")
+url = URI("https://api-release.snapchance.no/wallet/transactions")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -4119,7 +4119,7 @@ Entries consist of a photo and 1 to n tickets
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/drawings/0/entries");
+var client = new RestClient("https://api-release.snapchance.no/drawings/0/entries");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -4130,7 +4130,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/drawings/0/entries \
+  --url https://api-release.snapchance.no/drawings/0/entries \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -4142,7 +4142,7 @@ POST /drawings/0/entries HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 68
 
 {"claim_code":"string","entries":[{"photo_id":0,"tickets_count":0}]}
@@ -4168,7 +4168,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/drawings/0/entries");
+xhr.open("POST", "https://api-release.snapchance.no/drawings/0/entries");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -4181,7 +4181,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/drawings/0/entries",
   "headers": {
@@ -4213,7 +4213,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/drawings/0/entries")
+url = URI("https://api-release.snapchance.no/drawings/0/entries")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -4407,7 +4407,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/tickets/0/reveal");
+var client = new RestClient("https://api-release.snapchance.no/tickets/0/reveal");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -4416,7 +4416,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/tickets/0/reveal \
+  --url https://api-release.snapchance.no/tickets/0/reveal \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -4425,7 +4425,7 @@ curl --request POST \
 POST /tickets/0/reveal HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -4441,7 +4441,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/tickets/0/reveal");
+xhr.open("POST", "https://api-release.snapchance.no/tickets/0/reveal");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -4453,7 +4453,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/tickets/0/reveal",
   "headers": {
@@ -4483,7 +4483,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/tickets/0/reveal")
+url = URI("https://api-release.snapchance.no/tickets/0/reveal")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -4641,7 +4641,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/entries");
+var client = new RestClient("https://api-release.snapchance.no/entries");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -4650,7 +4650,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/entries \
+  --url https://api-release.snapchance.no/entries \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -4659,7 +4659,7 @@ curl --request GET \
 GET /entries HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -4675,7 +4675,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/entries");
+xhr.open("GET", "https://api-release.snapchance.no/entries");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -4687,7 +4687,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/entries",
   "headers": {
@@ -4717,7 +4717,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/entries")
+url = URI("https://api-release.snapchance.no/entries")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -4916,7 +4916,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/entries/0");
+var client = new RestClient("https://api-release.snapchance.no/entries/0");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -4925,7 +4925,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/entries/0 \
+  --url https://api-release.snapchance.no/entries/0 \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -4934,7 +4934,7 @@ curl --request GET \
 GET /entries/0 HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -4950,7 +4950,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/entries/0");
+xhr.open("GET", "https://api-release.snapchance.no/entries/0");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -4962,7 +4962,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/entries/0",
   "headers": {
@@ -4992,7 +4992,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/entries/0")
+url = URI("https://api-release.snapchance.no/entries/0")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -5288,7 +5288,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/entries/string/tickets/string");
+var client = new RestClient("https://api-release.snapchance.no/entries/string/tickets/string");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -5299,7 +5299,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PATCH \
-  --url https://api-stg3.snapchance.no/entries/string/tickets/string \
+  --url https://api-release.snapchance.no/entries/string/tickets/string \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -5311,7 +5311,7 @@ PATCH /entries/string/tickets/string HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 195
 
 {"scratch_state":[[{"revealed":true},{"revealed":false},{"revealed":false}],[{"revealed":false},{"revealed":false},{"revealed":false}],[{"revealed":false},{"revealed":false},{"revealed":false}]]}
@@ -5365,7 +5365,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PATCH", "https://api-stg3.snapchance.no/entries/string/tickets/string");
+xhr.open("PATCH", "https://api-release.snapchance.no/entries/string/tickets/string");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -5378,7 +5378,7 @@ const http = require("https");
 
 const options = {
   "method": "PATCH",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/entries/string/tickets/string",
   "headers": {
@@ -5416,7 +5416,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/entries/string/tickets/string")
+url = URI("https://api-release.snapchance.no/entries/string/tickets/string")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -5619,7 +5619,7 @@ Creating a session for a player
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/session");
+var client = new RestClient("https://api-release.snapchance.no/session");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -5629,7 +5629,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/session \
+  --url https://api-release.snapchance.no/session \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
   --data '{"email":"user@email.com","password":"ComplexPassword123"}'
@@ -5639,7 +5639,7 @@ curl --request POST \
 POST /session HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 58
 
 {"email":"user@email.com","password":"ComplexPassword123"}
@@ -5660,7 +5660,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/session");
+xhr.open("POST", "https://api-release.snapchance.no/session");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 
@@ -5672,7 +5672,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/session",
   "headers": {
@@ -5703,7 +5703,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/session")
+url = URI("https://api-release.snapchance.no/session")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -5851,7 +5851,7 @@ Registering and activating new player
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/players");
+var client = new RestClient("https://api-release.snapchance.no/players");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -5862,7 +5862,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/players \
+  --url https://api-release.snapchance.no/players \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -5874,7 +5874,7 @@ POST /players HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 17
 
 {"code":"string"}
@@ -5894,7 +5894,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/players");
+xhr.open("POST", "https://api-release.snapchance.no/players");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -5907,7 +5907,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/players",
   "headers": {
@@ -5939,7 +5939,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/players")
+url = URI("https://api-release.snapchance.no/players")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -6043,7 +6043,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/activation");
+var client = new RestClient("https://api-release.snapchance.no/activation");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -6054,7 +6054,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/activation \
+  --url https://api-release.snapchance.no/activation \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -6066,7 +6066,7 @@ POST /activation HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 115
 
 {"first_name":"string","last_name":"string","email":"string","password":"string","is_pep":true,"language":"string"}
@@ -6091,7 +6091,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/activation");
+xhr.open("POST", "https://api-release.snapchance.no/activation");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -6104,7 +6104,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/activation",
   "headers": {
@@ -6143,7 +6143,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/activation")
+url = URI("https://api-release.snapchance.no/activation")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -6302,7 +6302,7 @@ Callback from the NETs payment gateway
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/callbacks");
+var client = new RestClient("https://api-release.snapchance.no/callbacks");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -6312,7 +6312,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/callbacks \
+  --url https://api-release.snapchance.no/callbacks \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
   --data '{"TransactionId":"string"}'
@@ -6322,7 +6322,7 @@ curl --request POST \
 POST /callbacks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 26
 
 {"TransactionId":"string"}
@@ -6342,7 +6342,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/callbacks");
+xhr.open("POST", "https://api-release.snapchance.no/callbacks");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -6354,7 +6354,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/callbacks",
   "headers": {
@@ -6385,7 +6385,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/callbacks")
+url = URI("https://api-release.snapchance.no/callbacks")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -6441,7 +6441,7 @@ Creating and retrieving drawings
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/drawings/0/entries");
+var client = new RestClient("https://api-release.snapchance.no/drawings/0/entries");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -6450,7 +6450,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/drawings/0/entries \
+  --url https://api-release.snapchance.no/drawings/0/entries \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -6459,7 +6459,7 @@ curl --request GET \
 GET /drawings/0/entries HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -6475,7 +6475,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/drawings/0/entries");
+xhr.open("GET", "https://api-release.snapchance.no/drawings/0/entries");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -6487,7 +6487,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/drawings/0/entries",
   "headers": {
@@ -6517,7 +6517,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/drawings/0/entries")
+url = URI("https://api-release.snapchance.no/drawings/0/entries")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -6753,7 +6753,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/drawings");
+var client = new RestClient("https://api-release.snapchance.no/drawings");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -6762,7 +6762,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/drawings \
+  --url https://api-release.snapchance.no/drawings \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -6771,7 +6771,7 @@ curl --request GET \
 GET /drawings HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -6787,7 +6787,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/drawings");
+xhr.open("GET", "https://api-release.snapchance.no/drawings");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -6799,7 +6799,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/drawings",
   "headers": {
@@ -6829,7 +6829,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/drawings")
+url = URI("https://api-release.snapchance.no/drawings")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -7081,7 +7081,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/drawings/0/tickets");
+var client = new RestClient("https://api-release.snapchance.no/drawings/0/tickets");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -7090,7 +7090,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/drawings/0/tickets \
+  --url https://api-release.snapchance.no/drawings/0/tickets \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -7099,7 +7099,7 @@ curl --request GET \
 GET /drawings/0/tickets HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -7115,7 +7115,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/drawings/0/tickets");
+xhr.open("GET", "https://api-release.snapchance.no/drawings/0/tickets");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -7127,7 +7127,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/drawings/0/tickets",
   "headers": {
@@ -7157,7 +7157,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/drawings/0/tickets")
+url = URI("https://api-release.snapchance.no/drawings/0/tickets")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -7367,7 +7367,7 @@ Password update and reset
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/password");
+var client = new RestClient("https://api-release.snapchance.no/password");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -7378,7 +7378,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PATCH \
-  --url https://api-stg3.snapchance.no/password \
+  --url https://api-release.snapchance.no/password \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -7390,7 +7390,7 @@ PATCH /password HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 56
 
 {"password":"password2","new_password":"passwordtest12"}
@@ -7411,7 +7411,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PATCH", "https://api-stg3.snapchance.no/password");
+xhr.open("PATCH", "https://api-release.snapchance.no/password");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -7424,7 +7424,7 @@ const http = require("https");
 
 const options = {
   "method": "PATCH",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/password",
   "headers": {
@@ -7456,7 +7456,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/password")
+url = URI("https://api-release.snapchance.no/password")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -7531,22 +7531,22 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/password_reset");
+var client = new RestClient("https://api-release.snapchance.no/password_reset");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
-request.AddParameter("application/json", "{\"email\":\"test@gmail.com\",\"redirect_url\":\"https://api-stg3.snapchance.no/reset_password\"}", ParameterType.RequestBody);
+request.AddParameter("application/json", "{\"email\":\"test@gmail.com\",\"redirect_url\":\"https://api-release.snapchance.no/reset_password\"}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/password_reset \
+  --url https://api-release.snapchance.no/password_reset \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
-  --data '{"email":"test@gmail.com","redirect_url":"https://api-stg3.snapchance.no/reset_password"}'
+  --data '{"email":"test@gmail.com","redirect_url":"https://api-release.snapchance.no/reset_password"}'
 ```
 
 ```http
@@ -7554,16 +7554,16 @@ POST /password_reset HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 89
 
-{"email":"test@gmail.com","redirect_url":"https://api-stg3.snapchance.no/reset_password"}
+{"email":"test@gmail.com","redirect_url":"https://api-release.snapchance.no/reset_password"}
 ```
 
 ```javascript
 const data = JSON.stringify({
   "email": "test@gmail.com",
-  "redirect_url": "https://api-stg3.snapchance.no/reset_password"
+  "redirect_url": "https://api-release.snapchance.no/reset_password"
 });
 
 const xhr = new XMLHttpRequest();
@@ -7575,7 +7575,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/password_reset");
+xhr.open("POST", "https://api-release.snapchance.no/password_reset");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -7588,7 +7588,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/password_reset",
   "headers": {
@@ -7613,7 +7613,7 @@ const req = http.request(options, function (res) {
 
 req.write(JSON.stringify({
   email: 'test@gmail.com',
-  redirect_url: 'https://api-stg3.snapchance.no/reset_password'
+  redirect_url: 'https://api-release.snapchance.no/reset_password'
 }));
 req.end();
 ```
@@ -7623,7 +7623,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/password_reset")
+url = URI("https://api-release.snapchance.no/password_reset")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -7633,7 +7633,7 @@ request = Net::HTTP::Post.new(url)
 request["Content-Type"] = 'application/json'
 request["Accept"] = 'application/json'
 request["Authorization"] = 'Bearer {access-token}'
-request.body = "{\"email\":\"test@gmail.com\",\"redirect_url\":\"https://api-stg3.snapchance.no/reset_password\"}"
+request.body = "{\"email\":\"test@gmail.com\",\"redirect_url\":\"https://api-release.snapchance.no/reset_password\"}"
 
 response = http.request(request)
 puts response.read_body
@@ -7648,7 +7648,7 @@ This endpoint is used to start the password reset flow by sending an email to th
 ```json
 {
   "email": "test@gmail.com",
-  "redirect_url": "https://api-stg3.snapchance.no/reset_password"
+  "redirect_url": "https://api-release.snapchance.no/reset_password"
 }
 ```
 
@@ -7757,7 +7757,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/password_reset");
+var client = new RestClient("https://api-release.snapchance.no/password_reset");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
@@ -7768,7 +7768,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PATCH \
-  --url https://api-stg3.snapchance.no/password_reset \
+  --url https://api-release.snapchance.no/password_reset \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
@@ -7780,7 +7780,7 @@ PATCH /password_reset HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 Content-Length: 229
 
 {"new_password":"password123","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic2Vzc2lvbiIsImV4cCI6MTYxODE3NzY3MiwicGxheWVyX2lkIjoyMjcsImVtYWlsIjoidGVzdDAzMDhAZ21haWwuY29tIn0.HUUED6peO2v72s1j_etfVC_qcmzI0z7euShtQH2IhIw"}
@@ -7801,7 +7801,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PATCH", "https://api-stg3.snapchance.no/password_reset");
+xhr.open("PATCH", "https://api-release.snapchance.no/password_reset");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -7814,7 +7814,7 @@ const http = require("https");
 
 const options = {
   "method": "PATCH",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/password_reset",
   "headers": {
@@ -7849,7 +7849,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/password_reset")
+url = URI("https://api-release.snapchance.no/password_reset")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -7929,7 +7929,7 @@ Uploading photos
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/photos");
+var client = new RestClient("https://api-release.snapchance.no/photos");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 request.AddHeader("Accept", "application/json");
@@ -7939,7 +7939,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/photos \
+  --url https://api-release.snapchance.no/photos \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -7951,7 +7951,7 @@ POST /photos HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -7967,7 +7967,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/photos");
+xhr.open("POST", "https://api-release.snapchance.no/photos");
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -7980,7 +7980,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/photos",
   "headers": {
@@ -8011,7 +8011,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/photos")
+url = URI("https://api-release.snapchance.no/photos")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -8098,7 +8098,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/photos");
+var client = new RestClient("https://api-release.snapchance.no/photos");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -8107,7 +8107,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/photos \
+  --url https://api-release.snapchance.no/photos \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -8116,7 +8116,7 @@ curl --request GET \
 GET /photos HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -8132,7 +8132,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/photos");
+xhr.open("GET", "https://api-release.snapchance.no/photos");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -8144,7 +8144,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/photos",
   "headers": {
@@ -8174,7 +8174,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/photos")
+url = URI("https://api-release.snapchance.no/photos")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -8279,7 +8279,7 @@ bearerAuth
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/photos/0");
+var client = new RestClient("https://api-release.snapchance.no/photos/0");
 var request = new RestRequest(Method.DELETE);
 request.AddHeader("Accept", "text/plain");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -8288,7 +8288,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request DELETE \
-  --url https://api-stg3.snapchance.no/photos/0 \
+  --url https://api-release.snapchance.no/photos/0 \
   --header 'Accept: text/plain' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -8297,7 +8297,7 @@ curl --request DELETE \
 DELETE /photos/0 HTTP/1.1
 Accept: text/plain
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -8313,7 +8313,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("DELETE", "https://api-stg3.snapchance.no/photos/0");
+xhr.open("DELETE", "https://api-release.snapchance.no/photos/0");
 xhr.setRequestHeader("Accept", "text/plain");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -8325,7 +8325,7 @@ const http = require("https");
 
 const options = {
   "method": "DELETE",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/photos/0",
   "headers": {
@@ -8355,7 +8355,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/photos/0")
+url = URI("https://api-release.snapchance.no/photos/0")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -8407,22 +8407,22 @@ Buying and using gift cards
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/card_deposits");
+var client = new RestClient("https://api-release.snapchance.no/card_deposits");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
-request.AddParameter("application/json", "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete\",\"recipient_email\":\"john@doe.com\", \"recipient_name\":\"John Doe\",\"sender_email\":\"jane@doe.com\",\"sender_name\":\"Jane Doe\"}", ParameterType.RequestBody);
+request.AddParameter("application/json", "{\"amount\":20,\"redirect_url\":\"https://dashboard-release.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete\",\"recipient_email\":\"john@doe.com\", \"recipient_name\":\"John Doe\",\"sender_email\":\"jane@doe.com\",\"sender_name\":\"Jane Doe\"}", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
 ```shell
 curl --request POST \
-  --url https://api-stg3.snapchance.no/card_deposits \
+  --url https://api-release.snapchance.no/card_deposits \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}' \
   --header 'Content-Type: application/json' \
-  --data '{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete"}'
+  --data '{"amount":20,"redirect_url":"https://dashboard-release.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete"}'
 ```
 
 ```http
@@ -8430,15 +8430,15 @@ POST /card_deposits HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
-{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete","recipient_email":"john@doe.com","recipient_name":"John Doe","sender_email":"jane@doe.com","sender_name":"Jane Doe"}
+{"amount":20,"redirect_url":"https://dashboard-release.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete","recipient_email":"john@doe.com","recipient_name":"John Doe","sender_email":"jane@doe.com","sender_name":"Jane Doe"}
 ```
 
 ```javascript
 const data = JSON.stringify({
   "amount": 20,
-  "redirect_url": "https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete",
+  "redirect_url": "https://dashboard-release.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete",
   "recipient_email": "recipient@example.com",
   "recipient_name": "Recipient Name",
   "sender_email": "sender@example.com",
@@ -8455,7 +8455,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "https://api-stg3.snapchance.no/card_deposits");
+xhr.open("POST", "https://api-release.snapchance.no/card_deposits");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
@@ -8468,7 +8468,7 @@ const http = require("https");
 
 const options = {
   "method": "POST",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "card_deposits",
   "headers": {
@@ -8493,7 +8493,7 @@ const req = http.request(options, function (res) {
 
 req.write(JSON.stringify({
   amount: 20,
-  redirect_url: 'https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete',
+  redirect_url: 'https://dashboard-release.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete',
   recipient_email: 'recipient@example.com',
   recipient_name: 'Recipient Name',
   sender_email: 'sender@example.com',
@@ -8508,7 +8508,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/card_deposits")
+url = URI("https://api-release.snapchance.no/card_deposits")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -8518,7 +8518,7 @@ request = Net::HTTP::Post.new(url)
 request["Content-Type"] = 'application/json'
 request["Accept"] = 'application/json'
 request["Authorization"] = 'Bearer {access-token}'
-request.body = "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete\",\"recipient_email\":\"john@doe.com\", \"recipient_name\":\"John Doe\",\"sender_email\":\"jane@doe.com\",\"sender_name\":\"Jane Doe\"}"
+request.body = "{\"amount\":20,\"redirect_url\":\"https://dashboard-release.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete\",\"recipient_email\":\"john@doe.com\", \"recipient_name\":\"John Doe\",\"sender_email\":\"jane@doe.com\",\"sender_name\":\"Jane Doe\"}"
 
 response = http.request(request)
 puts response.read_body
@@ -8533,7 +8533,7 @@ This endpoint is used to purchase gift cards.
 ```json
 {
   "amount": 20,
-  "redirect_url": "https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete",
+  "redirect_url": "https://dashboard-release.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete",
   "recipient_email": "recipient@example.com",
   "recipient_name": "Recipient Name",
   "sender_email": "sender@example.com",
@@ -8593,7 +8593,7 @@ Status Code **201**
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/card_deposits/0");
+var client = new RestClient("https://api-release.snapchance.no/card_deposits/0");
 var request = new RestRequest(Method.PATCH);
 request.AddHeader("Accept", "application/json");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -8602,7 +8602,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request PATCH \
-  --url https://api-stg3.snapchance.no/card_deposits/0 \
+  --url https://api-release.snapchance.no/card_deposits/0 \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -8611,7 +8611,7 @@ curl --request PATCH \
 PATCH /card_deposits/0 HTTP/1.1
 Accept: application/json
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -8627,7 +8627,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("PATCH", "https://api-stg3.snapchance.no/card_deposits/0");
+xhr.open("PATCH", "https://api-release.snapchance.no/card_deposits/0");
 xhr.setRequestHeader("Accept", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -8639,7 +8639,7 @@ const http = require("https");
 
 const options = {
   "method": "PATCH",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/card_deposits/0",
   "headers": {
@@ -8669,7 +8669,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/card_deposits/0")
+url = URI("https://api-release.snapchance.no/card_deposits/0")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -8748,7 +8748,7 @@ Status Code **201**
 > Code samples
 
 ```csharp
-var client = new RestClient("https://api-stg3.snapchance.no/gift_cards?claim_code=AABB1");
+var client = new RestClient("https://api-release.snapchance.no/gift_cards?claim_code=AABB1");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Accept", "text/plain");
 request.AddHeader("Authorization", "Bearer {access-token}");
@@ -8757,7 +8757,7 @@ IRestResponse response = client.Execute(request);
 
 ```shell
 curl --request GET \
-  --url https://api-stg3.snapchance.no/gift_cards?claim_code=AABB1 \
+  --url https://api-release.snapchance.no/gift_cards?claim_code=AABB1 \
   --header 'Accept: text/plain' \
   --header 'Authorization: Bearer {access-token}'
 ```
@@ -8766,7 +8766,7 @@ curl --request GET \
 GET /gift_cards?claim_code=AABB1 HTTP/1.1
 Accept: text/plain
 Authorization: Bearer {access-token}
-Host: api-stg3.snapchance.no
+Host: api-release.snapchance.no
 
 ```
 
@@ -8782,7 +8782,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "https://api-stg3.snapchance.no/gift_cards?claim_code=AABB1");
+xhr.open("GET", "https://api-release.snapchance.no/gift_cards?claim_code=AABB1");
 xhr.setRequestHeader("Accept", "text/plain");
 xhr.setRequestHeader("Authorization", "Bearer {access-token}");
 
@@ -8794,7 +8794,7 @@ const http = require("https");
 
 const options = {
   "method": "GET",
-  "hostname": "api-stg3.snapchance.no",
+  "hostname": "api-release.snapchance.no",
   "port": null,
   "path": "/gift_cards?claim_code=AABB1",
   "headers": {
@@ -8824,7 +8824,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-url = URI("https://api-stg3.snapchance.no/gift_cards?claim_code=AABB1")
+url = URI("https://api-release.snapchance.no/gift_cards?claim_code=AABB1")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
