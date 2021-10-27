@@ -8396,7 +8396,7 @@ This endpoint is used to delete a photo by id.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
 
-<h1 id="snapchance-photos">Gift Cards</h1>
+<h1 id="snapchance-gift-cards">Gift Cards</h1>
 
 Buying and using gift cards
 
@@ -8526,7 +8526,7 @@ puts response.read_body
 
 `POST /card_deposits`
 
-This endpoint is used to purchase tickets.
+This endpoint is used to purchase gift cards.
 
 > Body parameter
 
