@@ -522,6 +522,7 @@ last_name: Doe
   "phone_number": "654 69 879",
   "bank_account_number": "11111111111111",
   "suspended_until": null,
+  "suspended_by": null,
   "weekly_loss_limit": 3500,
   "daily_loss_limit": 1500,
   "language": "nn",
@@ -539,6 +540,11 @@ last_name: Doe
   "avatar": {
     "url": null,
     "thumbnail_url": null
+  },
+  "exclusion": {
+    "service_enabled": false,
+    "service_name": null,
+    "state": "not_excluded"
   }
 }
 ```
@@ -676,6 +682,7 @@ This endpoint is use to return the entire player information.
   "phone_number": "123 123 1234",
   "bank_account_number": "111111111111",
   "suspended_until": null,
+  "suspended_by": null,
   "weekly_loss_limit": 3500,
   "daily_loss_limit": 1500,
   "language": "nn",
@@ -693,6 +700,11 @@ This endpoint is use to return the entire player information.
   "avatar": {
     "url": null,
     "thumbnail_url": null
+  },
+  "exclusion": {
+    "service_enabled": false,
+    "service_name": null,
+    "state": "not_excluded"
   }
 }
 ```
@@ -892,6 +904,140 @@ This endpoint is used to set the player suspension until a specific date.
 |201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns player details with suspended until parameter|[player](#schemaplayer)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## External Self Exclusion
+
+<a id="opIdExternal Self Exclusion"></a>
+
+> Code samples
+
+```csharp
+var client = new RestClient("https://api-stg3.snapchance.no/exclusion");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
+```
+
+```shell
+curl --request GET \
+  --url https://api-stg3.snapchance.no/exclusion \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
+```
+
+```http
+GET /exclusion HTTP/1.1
+Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+
+```
+
+```javascript
+const data = null;
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://api-stg3.snapchance.no/exclusion");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
+```
+
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/exclusion",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
+};
+
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.end();
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+url = URI("https://api-stg3.snapchance.no/exclusion")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+
+response = http.request(request)
+puts response.read_body
+```
+
+`GET /exclusion`
+
+This endpoint is use to return the player external self exclusion details.
+
+> Example responses
+
+> Returns the player external self exclusion details
+
+```json
+{
+  "service_enabled": true,
+  "service_name": "string",
+  "state": "string"
+}
+```
+
+> 401 Response
+
+```
+"HTTP Token: Access denied."
+```
+
+<h3 id="external-self-exclusion-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns the player external self exclusion details|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
+
+<h3 id="external-self-exclusion-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -5605,6 +5751,7 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
     "phone_number": null,
     "bank_account_number": null,
     "suspended_until": null,
+    "suspended_by": null,
     "weekly_loss_limit": 0,
     "daily_loss_limit": 0,
     "language": "string",
@@ -5620,6 +5767,11 @@ This endpoint is for Player login. Email and password are mandatory fields. Afte
     "avatar": {
       "url": null,
       "thumbnail_url": null
+    },
+    "exclusion": {
+      "service_enabled": true,
+      "service_name": "string",
+      "state": "string"
     }
   },
   "limits": {
@@ -5667,6 +5819,7 @@ Status Code **201**
 |»» phone_number|any|false|none|none|
 |»» bank_account_number|any|false|none|none|
 |»» suspended_until|any|false|none|none|
+|»» suspended_by|any|false|none|none|
 |»» weekly_loss_limit|number|true|none|none|
 |»» daily_loss_limit|number|true|none|none|
 |»» language|string|true|none|none|
@@ -5681,6 +5834,10 @@ Status Code **201**
 |»» avatar|object|true|none|none|
 |»»» url|any|false|none|none|
 |»»» thumbnail_url|any|false|none|none|
+|»» exclusion|object|true|none|none|
+|»»» service_enabled|boolean|true|none|none|
+|»»» service_name|string|true|none|none|
+|»»» state|string|true|none|none|
 |» limits|object|true|none|none|
 |»» balance_limit|string|true|none|none|
 |»» transfer_limit|string|true|none|none|
@@ -5840,6 +5997,7 @@ This endpoint is the first step in the registration process.  It will create a p
     "phone_number": null,
     "bank_account_number": null,
     "suspended_until": null,
+    "suspended_by": null,
     "weekly_loss_limit": 0,
     "daily_loss_limit": 0,
     "language": "string",
@@ -5860,6 +6018,11 @@ This endpoint is the first step in the registration process.  It will create a p
     "transfer_limit": "string",
     "weekly_loss_limit": "string",
     "daily_loss_limit": "string"
+  },
+  "exclusion": {
+    "service_enabled": false,
+    "service_name": null,
+    "state": "not_excluded"
   }
 }
 ```
@@ -8246,6 +8409,535 @@ This endpoint is used to delete a photo by id.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+<h1 id="snapchance-giftcards">GiftCards</h1>
+
+Purchasing gift cards
+
+## Purchase Gift Card
+
+<a id="opIdPurchase Gift Card"></a>
+
+> Code samples
+
+```csharp
+var client = new RestClient("https://api-stg3.snapchance.no/card_deposits");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Accept", "application/json");
+request.AddParameter("application/json", "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete\",\"recipient_email\":\"recipient@example.com\",\"recipient_name\":\"Recipient Name\",\"sender_email\":\"sender@example.com\",\"sender_name\":\"Sender Name\",\"message\":\"Message\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+```shell
+curl --request POST \
+  --url https://api-stg3.snapchance.no/card_deposits \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --data '{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete","recipient_email":"recipient@example.com","recipient_name":"Recipient Name","sender_email":"sender@example.com","sender_name":"Sender Name","message":"Message"}'
+```
+
+```http
+POST /card_deposits HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Host: api-stg3.snapchance.no
+Content-Length: 281
+
+{"amount":20,"redirect_url":"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete","recipient_email":"recipient@example.com","recipient_name":"Recipient Name","sender_email":"sender@example.com","sender_name":"Sender Name","message":"Message"}
+```
+
+```javascript
+const data = JSON.stringify({
+  "amount": 20,
+  "redirect_url": "https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete",
+  "recipient_email": "recipient@example.com",
+  "recipient_name": "Recipient Name",
+  "sender_email": "sender@example.com",
+  "sender_name": "Sender Name",
+  "message": "Message"
+});
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-stg3.snapchance.no/card_deposits");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("Accept", "application/json");
+
+xhr.send(data);
+```
+
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "POST",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/card_deposits",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  }
+};
+
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write(JSON.stringify({
+  amount: 20,
+  redirect_url: 'https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete',
+  recipient_email: 'recipient@example.com',
+  recipient_name: 'Recipient Name',
+  sender_email: 'sender@example.com',
+  sender_name: 'Sender Name',
+  message: 'Message'
+}));
+req.end();
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+url = URI("https://api-stg3.snapchance.no/card_deposits")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Post.new(url)
+request["Content-Type"] = 'application/json'
+request["Accept"] = 'application/json'
+request.body = "{\"amount\":20,\"redirect_url\":\"https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete\",\"recipient_email\":\"recipient@example.com\",\"recipient_name\":\"Recipient Name\",\"sender_email\":\"sender@example.com\",\"sender_name\":\"Sender Name\",\"message\":\"Message\"}"
+
+response = http.request(request)
+puts response.read_body
+```
+
+`POST /card_deposits`
+
+This endpoint is used to purchase gift cards.
+
+> Body parameter
+
+```json
+{
+  "amount": 20,
+  "redirect_url": "https://dashboard2-stg3.snapchance.no/gift-card-confirm?callback_url=%2Fgift-card-complete",
+  "recipient_email": "recipient@example.com",
+  "recipient_name": "Recipient Name",
+  "sender_email": "sender@example.com",
+  "sender_name": "Sender Name",
+  "message": "Message"
+}
+```
+
+<h3 id="purchase-gift-card-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|amount|body|number|true|none|
+|redirect_url|body|string|true|The application URL that NETS will redirect back to|
+|recipient_email|body|string|true|none|
+|recipient_name|body|string|true|none|
+|sender_email|body|string|true|none|
+|sender_name|body|string|true|none|
+|message|body|string|true|none|
+
+> Example responses
+
+> Purchase payment details
+
+```json
+{
+  "id": "11611",
+  "amount": 50,
+  "status": "pending",
+  "redirect_url": "https://test.epayment.nets.eu/Terminal/default.aspx?merchantId=12003105&transactionId=abd9b5de99c546e28c2cdd1aef19a7d8"
+}
+```
+
+> Not Found
+
+```json
+{
+  "errors": "Access denied."
+}
+```
+
+<h3 id="purchase-gift-card-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Purchase payment details|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
+
+<h3 id="purchase-gift-card-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|true|none|none|
+|» amount|number|true|none|none|
+|» status|string|true|none|none|
+|» redirect_url|string|true|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Verify Gift Card Purchase
+
+<a id="opIdVerify Gift Card Purchase"></a>
+
+> Code samples
+
+```csharp
+var client = new RestClient("https://api-stg3.snapchance.no/card_deposits/0");
+var request = new RestRequest(Method.PATCH);
+request.AddHeader("Accept", "application/json");
+IRestResponse response = client.Execute(request);
+```
+
+```shell
+curl --request PATCH \
+  --url https://api-stg3.snapchance.no/card_deposits/0 \
+  --header 'Accept: application/json'
+```
+
+```http
+PATCH /card_deposits/0 HTTP/1.1
+Accept: application/json
+Host: api-stg3.snapchance.no
+
+```
+
+```javascript
+const data = null;
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PATCH", "https://api-stg3.snapchance.no/card_deposits/0");
+xhr.setRequestHeader("Accept", "application/json");
+
+xhr.send(data);
+```
+
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "PATCH",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/card_deposits/0",
+  "headers": {
+    "Accept": "application/json"
+  }
+};
+
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.end();
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+url = URI("https://api-stg3.snapchance.no/card_deposits/0")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Patch.new(url)
+request["Accept"] = 'application/json'
+
+response = http.request(request)
+puts response.read_body
+```
+
+`PATCH /card_deposits/{id}`
+
+This endpoint is used to verify a gift card purchase.
+
+<h3 id="verify-gift-card-purchase-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|integer(int64)|true|Gift Card Purchase ID|
+
+> Example responses
+
+> Returns the purchased gift card details.
+
+```json
+{
+  "id": "13491",
+  "amount": 20,
+  "status": "UNCONSUMED",
+  "created_at": "2021-04-11T14:19:30.100Z",
+  "payment_method": "Visa",
+  "card_last_digits": "3422",
+  "sender_email": "sender@email.com",
+  "claim_code": "ABCD12",
+  "recipient_email": "recipient@email.com",
+  "recipient_name": "Recipient Name",
+  "redirect_url": "null"
+}
+```
+
+<h3 id="verify-gift-card-purchase-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Returns the purchased gift card details.|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|None|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error|None|
+
+<h3 id="verify-gift-card-purchase-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|true|none|none|
+|» amount|number|true|none|none|
+|» status|string|true|none|none|
+|» created_at|string|true|none|none|
+|» payment_method|string|true|none|none|
+|» card_last_digits|string|true|none|none|
+|» sender_email|string|true|none|none|
+|» claim_code|string|true|none|none|
+|» recipient_email|string|true|none|none|
+|» recipient_name|string|true|none|none|
+|» redirect_url|string|true|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Get Gift Card Details
+
+<a id="opIdGet Gift Card Details"></a>
+
+> Code samples
+
+```csharp
+var client = new RestClient("https://api-stg3.snapchance.no/gift_cards?claim_code=string");
+var request = new RestRequest(Method.GET);
+request.AddHeader("Accept", "application/json");
+request.AddHeader("Authorization", "Bearer {access-token}");
+IRestResponse response = client.Execute(request);
+```
+
+```shell
+curl --request GET \
+  --url 'https://api-stg3.snapchance.no/gift_cards?claim_code=string' \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer {access-token}'
+```
+
+```http
+GET /gift_cards?claim_code=string HTTP/1.1
+Accept: application/json
+Authorization: Bearer {access-token}
+Host: api-stg3.snapchance.no
+
+```
+
+```javascript
+const data = null;
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://api-stg3.snapchance.no/gift_cards?claim_code=string");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Authorization", "Bearer {access-token}");
+
+xhr.send(data);
+```
+
+```javascript--node
+const http = require("https");
+
+const options = {
+  "method": "GET",
+  "hostname": "api-stg3.snapchance.no",
+  "port": null,
+  "path": "/gift_cards?claim_code=string",
+  "headers": {
+    "Accept": "application/json",
+    "Authorization": "Bearer {access-token}"
+  }
+};
+
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.end();
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+url = URI("https://api-stg3.snapchance.no/gift_cards?claim_code=string")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(url)
+request["Accept"] = 'application/json'
+request["Authorization"] = 'Bearer {access-token}'
+
+response = http.request(request)
+puts response.read_body
+```
+
+`GET /gift_cards?claim_code={claim_code}`
+
+This endpoint is used to get gift card details by claim code.
+
+<h3 id="get-gift-card-details-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|claim_code|query|string|true|Gift Card Claim Code|
+
+> Example responses
+
+> Returns gift card details
+
+```json
+{
+  "claimCode": "AABB1",
+  "value": 20,
+  "currency": "NOK",
+  "sent": "2021-04-11T14:19:30.100Z",
+  "notValidAfter": "2021-04-11T14:19:30.100Z",
+  "groupId": "41c372c2-6a13-4356-a19b-06180c3334d6",
+  "status": "UNCONSUMED",
+  "properties": {
+    "tpl_from": "Jane Doe",
+    "tpl_from_email": "janedoe@email.com",
+    "tpl_to": "Jon Doe",
+    "tpl_to_email": "johndoe@email.com",
+    "tpl_message": "Gift money"
+  }
+}
+```
+
+> 401 Response
+
+```
+"HTTP Token: Access denied."
+```
+
+> Not Found
+
+```json
+{
+  "errors": [
+    "We couldn't find that gift card code. Please try again."
+  ]
+}
+```
+
+<h3 id="get-gift-card-details-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns gift card details|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication information is missing or invalid|string|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+
+<h3 id="get-gift-card-details-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» claimCode|string|true|none|none|
+|» value|number|true|none|none|
+|» currency|string|true|none|none|
+|» sent|string|true|none|none|
+|» notValidAfter|string|true|none|none|
+|» groupId|string|true|none|none|
+|» status|string|true|none|none|
+|» properties|object|true|none|none|
+|»» tpl_from|string|true|none|none|
+|»» tpl_from_email|string|true|none|none|
+|»» tpl_to|string|true|none|none|
+|»» tpl_to_email|string|true|none|none|
+|»» tpl_message|string|true|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
